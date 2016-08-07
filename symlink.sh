@@ -10,7 +10,7 @@ files=".vimrc"
 
 echo "Changing to the $dir directory..."
 cd $dir
-echo "done"
+echo "Done"
 
 for file in $files; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
