@@ -8,7 +8,7 @@ files=".vimrc"
 # mkdir -p $olddir
 # echo "done"
 
-echo -n "Changing to the $dir directory ..."
+echo "Changing to the $dir directory..."
 cd $dir
 echo "done"
 
