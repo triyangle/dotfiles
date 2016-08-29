@@ -6,6 +6,7 @@ set nocompatible
 set autoindent
 set smartindent
 set ruler
+set clipboard=unnamed
 
 syntax on
 
