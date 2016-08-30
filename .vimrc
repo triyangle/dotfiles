@@ -8,6 +8,17 @@ set smartindent
 set ruler
 set clipboard=unnamed
 
+filetype off
+
+set rtp+=~/.vim/bundle/Vundle.vim
+call vundle#begin()
+
+Plugin 'VundleVim/Vundle.vim'
+Plugin 'bling/vim-airline'
+
+call vundle#end()
+set laststatus=2
+
 syntax on
 
 set number
