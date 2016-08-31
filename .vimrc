@@ -21,6 +21,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
+
+"Show airline bar
 set laststatus=2
 
 syntax on
@@ -41,6 +43,20 @@ nnoremap k gk
 nnoremap 0 g0
 nnoremap $ g$
 
+"Solarized dark
 syntax enable
 set background=dark
 colorscheme solarized
+
+"Recommended syntastic settings
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:airline#extensions#tabline#enabled = 1
+
