@@ -7,6 +7,7 @@ set autoindent
 set smartindent
 set ruler
 set clipboard=unnamed
+set mouse=a
 
 filetype off
 
@@ -15,6 +16,9 @@ call vundle#begin()
 
 Plugin 'VundleVim/Vundle.vim'
 Plugin 'bling/vim-airline'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'scrooloose/syntastic'
+Plugin 'Valloric/YouCompleteMe'
 
 call vundle#end()
 set laststatus=2
@@ -36,3 +40,7 @@ nnoremap j gj
 nnoremap k gk
 nnoremap 0 g0
 nnoremap $ g$
+
+syntax enable
+set background=dark
+colorscheme solarized
