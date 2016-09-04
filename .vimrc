@@ -8,6 +8,7 @@ set smartindent
 set ruler
 set clipboard=unnamed
 set mouse=a
+set incsearch
 
 filetype off
 
