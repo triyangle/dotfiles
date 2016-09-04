@@ -9,6 +9,7 @@ set ruler
 set clipboard=unnamed
 set mouse=a
 set incsearch
+set hlsearch
 
 filetype off
 
