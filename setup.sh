@@ -1,13 +1,10 @@
 #!/bin/bash
 
-bash symlink.sh
+OS=`uname`
 
-echo "Retrieving Vundle from GitHub"
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+if [ "$OS" == "Darwin" ]; then
+    bash macsetup.sh
+fi
 
-echo "Installing vim plugins"
-vim +PluginInstall +qall
+bash vimsetup.sh
 
-echo "YouCompleteMe setup"
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --all

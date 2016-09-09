@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo -e "\nInitializing symlinking..."
+
 dir=~/dotfiles
 # olddir=~/dotfiles_old
 files=".vimrc"
@@ -8,14 +10,14 @@ files=".vimrc"
 # mkdir -p $olddir
 # echo "done"
 
-echo "Changing to the $dir directory..."
+echo -e "\nChanging to the $dir directory..."
 cd $dir
 echo "Done"
 
 for file in $files; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
     # mv ~/.$file ~/dotfiles_old/
-    echo "Creating symlink to $file in home directory."
+    echo -e "\nCreating symlink to $file in home directory..."
     ln -s $dir/$file ~/$file
 done
 

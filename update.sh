@@ -2,10 +2,16 @@
 
 (set -x; brew update;)
 
-(set -x; brew cleanup;)
-(set -x; brew cask cleanup;)
+echo ""
 
-brew upgrade
+(set -x; brew cleanup;)
+echo ""
+(set -x; brew cask cleanup;)
+echo ""
+
+(set -x; brew upgrade;)
+
+echo ""
 
 red=`tput setaf 1`
 green=`tput setaf 2`
@@ -25,5 +31,7 @@ do
         echo "${red}${cask}${reset} is ${green}up-to-date${reset}."
     fi
 done
+
+echo ""
 
 vim +PluginUpdate
