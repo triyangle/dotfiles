@@ -32,6 +32,7 @@ do
     fi
 done
 
-echo ""
-
+echo -e "\nUpdating vim plugins..."
 vim +PluginUpdate
+
+echo ""
