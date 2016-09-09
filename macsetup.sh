@@ -11,13 +11,12 @@ brew tap caskroom/cask
 echo -e "\nUpdating homebrew and homebrew cask..."
 brew update
 
-echo -e "\nInstalling vim..."
-brew install vim
-brew linkapps python
-
 echo -e "\nInstalling Python3..."
 brew install python3
 brew linkapps python3
+
+echo -e "\nInstalling vim..."
+brew install vim --with-python3
 
 echo -e "\nInstalling git..."
 brew install git
