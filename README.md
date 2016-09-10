@@ -1,2 +1,2 @@
 # dotfiles
-Cotains my .vimrc and the shell script to create symlinks
+Cotains my .vimrc and various shell setup scripts!
