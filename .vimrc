@@ -9,6 +9,8 @@ set ruler
 set clipboard=unnamed
 set mouse=a
 set incsearch
+set autoread
+au CursorHold * checktime
 
 filetype off
 
@@ -38,6 +40,7 @@ set backspace=indent,eol,start
 
 filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType crontab setlocal nowritebackup
 
 nnoremap j gj
 nnoremap k gk
