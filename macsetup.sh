@@ -31,4 +31,7 @@ brew cask install java
 echo -e "\nInstalling Eclipse..."
 brew cask install eclipse-installer
 
+echo -e "\nSetting up crontab file..."
+crontab crontab.txt
+
 echo ""
