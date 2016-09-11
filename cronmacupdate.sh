@@ -1,7 +1,5 @@
 #!/bin/bash
 
-TERM=dumb
-
 echo "Updating brew..."
 
 (set -x; /usr/local/bin/brew update;)
