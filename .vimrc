@@ -11,6 +11,7 @@ set mouse=a
 set incsearch
 set autoread
 au CursorHold * checktime
+set omnifunc=syntaxcomplete#Complete
 
 filetype off
 
