@@ -3,3 +3,5 @@
     name = William Yang
 [core]
     excludesfile = /home/william/.gitignore_global
+[credential]
+    helper = cache --timeout=3600
