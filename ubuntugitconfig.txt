@@ -2,4 +2,4 @@
     email = willy.h.yang@gmail.com
     name = William Yang
 [core]
-	excludesfile = /home/william/.gitignore_global
+    excludesfile = /home/william/.gitignore_global
