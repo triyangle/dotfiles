@@ -1,5 +1,3 @@
 [user]
 	email = willy.h.yang@gmail.com
 	name = William Yang
-[core]
-	excludesfile = /Users/William/.gitignore_global

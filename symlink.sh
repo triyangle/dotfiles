@@ -4,7 +4,7 @@ echo -e "\nInitializing symlinking..."
 
 dir=~/dotfiles
 # olddir=~/dotfiles_old
-files=".vimrc, .gitconfig, .gitignore_global"
+files=".vimrc .gitignore_global"
 
 # echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 # mkdir -p $olddir
@@ -20,4 +20,12 @@ for file in $files; do
     echo -e "\nCreating symlink to $file in home directory..."
     ln -s $dir/$file ~/$file
 done
+
+OS=`uname`
+
+if [ "$OS" == "Darwin" ]; then
+    cat macgitconfig.txt > ~/.gitconfig
+elif [ "$OS" == "Linux" ]; then
+    cat ubuntugitconfig.txt > ~/.gitconfig
+fi
 
