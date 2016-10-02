@@ -72,6 +72,8 @@ let g:syntastic_python_python_exec = 'python3'
 
 let g:airline#extensions#tabline#enabled = 1
 
+let g:ycm_python_binary_path = 'python3'
+
 "Easy buffer switching
 let mapleader = "\<Space>"
 map <leader>n :bn<cr>
