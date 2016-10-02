@@ -9,7 +9,7 @@ echo ""
 (set -x; brew cask cleanup;)
 echo ""
 
-(set -x; brew upgrade vim --with-python3;)
+(set -x; brew upgrade vim --with-custom-python;)
 
 echo ""
 

@@ -11,7 +11,7 @@ echo -e "\nCleaning up cask..."
 (set -x; /usr/local/bin/brew cask cleanup;)
 echo -e "\nUpgrading brews..."
 
-(set -x; /usr/local/bin/brew upgrade vim --with-python3;)
+(set -x; /usr/local/bin/brew upgrade vim --with-custom-python;)
 (set -x; /usr/local/bin/brew upgrade;)
 
 echo -e "\nUpgrading casks..."
