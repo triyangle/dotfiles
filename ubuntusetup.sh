@@ -55,4 +55,7 @@ sudo apt install oracle-java8-installer
 echo -e "\nSetting up crontab file..."
 crontab ubuntucrontab.txt
 
+echo -e "\nInstalling redshift..."
+sudo apt-get install redshift-gtk
+
 echo ""
