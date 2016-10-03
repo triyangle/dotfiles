@@ -1,5 +1,7 @@
 #!/bin/bash
 
+bash symlink.sh
+
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then

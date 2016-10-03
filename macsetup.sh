@@ -40,7 +40,7 @@ brew install zsh zsh-completions
 echo -e "\nInstalling prezto..."
 zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-zsh prezto.zsh
+zsh ~/dotfiles/prezto.zsh
 chsh -s /usr/local/bin/zsh
 
 echo -e "\nInstalling Powerline fonts..."
