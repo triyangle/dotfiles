@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/local/bin/zsh
 
 (set -x; brew update;)
 
@@ -35,6 +35,14 @@ do
         echo "${red}${cask}${reset} is ${green}up-to-date${reset}."
     fi
 done
+
+echo -e "\nUpdating prezto..."
+cd ~/.zprezto
+git pull && git submodule update --init --recursive
+
+echo -e "\nUpdating Powerline fonts..."
+cd ~/fonts
+git pull
 
 echo -e "\nUpdating vim plugins..."
 vim +PluginUpdate

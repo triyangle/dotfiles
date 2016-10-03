@@ -4,7 +4,7 @@ echo -e "\nInitializing symlinking..."
 
 dir=~/dotfiles
 # olddir=~/dotfiles_old
-files=".vimrc .gitignore_global"
+files=".vimrc .gitignore_global .zpreztorc"
 
 # echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 # mkdir -p $olddir
