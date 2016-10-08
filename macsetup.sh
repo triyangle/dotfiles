@@ -38,7 +38,6 @@ echo -e "\nInstalling zsh..."
 brew install zsh zsh-completions
 
 echo -e "\nInstalling prezto..."
-zsh
 git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 zsh ~/dotfiles/prezto.zsh
 chsh -s /usr/local/bin/zsh
