@@ -58,4 +58,18 @@ crontab ubuntucrontab.txt
 echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk
 
+echo -e "\nInstalling zsh..."
+sudo apt-get install zsh
+
+echo -e "\nInstalling prezto..."
+zsh
+git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+zsh ~/dotfiles/prezto.zsh
+chsh -s /usr/local/bin/zsh
+
+echo -e "\nInstalling Powerline fonts..."
+git clone https://github.com/powerline/fonts.git
+cd ~/fonts
+./install.sh
+
 echo ""
