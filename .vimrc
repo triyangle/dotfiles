@@ -22,6 +22,7 @@ Plugin 'bling/vim-airline'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'junegunn/rainbow_parentheses.vim'
 
 call vundle#end()
 
@@ -43,6 +44,10 @@ filetype plugin indent on
 autocmd FileType html setlocal shiftwidth=2 tabstop=2 softtabstop=2 
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType scheme setlocal shiftwidth=2 tabstop=2 softtabstop=2 
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
 :iabbrev </ </<C-X><C-O>
 
 nnoremap j gj
