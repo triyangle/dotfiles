@@ -8,6 +8,7 @@ cd ~/vim
 git pull
 
 sudo make uninstall
+make distclean
 
 ./configure --with-features=huge \
             --enable-multibyte \
