@@ -23,6 +23,7 @@ Plugin 'altercation/vim-colors-solarized'
 Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/rainbow_parentheses.vim'
+Plugin 'majutsushi/tagbar'
 
 call vundle#end()
 
@@ -78,6 +79,8 @@ let g:syntastic_python_python_exec = 'python3'
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ycm_python_binary_path = 'python3'
+
+nmap <F8> :TagbarToggle<CR>
 
 "Easy buffer switching
 let mapleader = "\<Space>"

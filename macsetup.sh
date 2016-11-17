@@ -25,6 +25,9 @@ brew link git
 echo -e "\nInstalling cmake..."
 brew install cmake
 
+echo -e "\nInstalling ctags..."
+brew install ctags
+
 echo -e "\nInstalling Java..."
 brew cask install java
 
