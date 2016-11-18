@@ -59,6 +59,7 @@ vnoremap j gj
 vnoremap k gk
 vnoremap 0 g0
 vnoremap $ g$
+nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 "Solarized dark
 syntax enable
