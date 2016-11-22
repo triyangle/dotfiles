@@ -46,6 +46,9 @@ sudo update-alternatives --set vi /usr/bin/vim
 echo -e "\nInstalling cmake..."
 sudo apt-get install build-essential cmake
 
+echo -e "\nInstalling exuberant-ctags..."
+sudo apt-get install exuberant-ctags
+
 echo -e "\nInstalling Python headers..."
 sudo apt-get install python-dev python3-dev
 
