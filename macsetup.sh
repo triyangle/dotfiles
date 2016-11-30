@@ -31,8 +31,9 @@ brew install ctags
 echo -e "\nInstalling Java..."
 brew cask install java
 
-echo -e "\nInstalling Eclipse..."
-brew cask install eclipse-installer
+echo -e "\nInstalling IntelliJ..."
+brew tap caskroom/versions
+brew cask install intellij-idea-ce
 
 echo -e "\nSetting up crontab file..."
 crontab crontab.txt
