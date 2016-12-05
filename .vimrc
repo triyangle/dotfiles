@@ -43,7 +43,7 @@ set cursorline
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,scheme,sql setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,scheme,sql,vim setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
 augroup rainbow_lisp
   autocmd!
@@ -60,6 +60,7 @@ vnoremap j gj
 vnoremap k gk
 vnoremap 0 g0
 vnoremap $ g$
+
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
 "Solarized dark
@@ -89,3 +90,20 @@ let mapleader = "\<Space>"
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 map <leader>d :bd<cr>
+
+nnoremap o o<esc>i
+nnoremap O O<esc>i
+
+function! OpenLines(nrlines, dir)
+  let nrlines = a:nrlines < 3 ? 3 : a:nrlines
+  let start = line('.') + a:dir
+  call append(start, repeat([''], nrlines))
+  if a:dir < 0
+    normal! 2k
+  else
+    normal! 2j
+  endif
+endfunction
+" Mappings to open multiple lines and enter insert mode.
+nnoremap <Leader>o :<C-U>call OpenLines(v:count, 0)<CR>S
+nnoremap <Leader>O :<C-U>call OpenLines(v:count, -1)<CR>S
