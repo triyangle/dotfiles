@@ -104,3 +104,6 @@ endfunction
 " Mappings to open multiple lines and enter insert mode.
 nnoremap <Leader>o :<C-U>call OpenLines(v:count, 0)<CR>S
 nnoremap <Leader>O :<C-U>call OpenLines(v:count, -1)<CR>S
+
+nnoremap o o<esc>S
+nnoremap O O<esc>S
