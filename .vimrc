@@ -91,9 +91,6 @@ map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 map <leader>d :bd<cr>
 
-nnoremap o o<esc>i
-nnoremap O O<esc>i
-
 function! OpenLines(nrlines, dir)
   let nrlines = a:nrlines < 3 ? 3 : a:nrlines
   let start = line('.') + a:dir
