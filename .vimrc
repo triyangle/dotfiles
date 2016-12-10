@@ -82,6 +82,7 @@ let g:syntastic_python_python_exec = 'python3'
 let g:airline#extensions#tabline#enabled = 1
 
 let g:ycm_python_binary_path = 'python3'
+let g:ycm_autoclose_preview_window_after_completion = 1
 
 nmap <F8> :TagbarToggle<CR>
 
