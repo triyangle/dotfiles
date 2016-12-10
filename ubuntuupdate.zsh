@@ -28,11 +28,6 @@ sudo update-alternatives --set editor /usr/bin/vim
 sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 
-echo -e "\nYouCompleteMe setup..."
-cd ~/.vim/bundle/YouCompleteMe
-
-./install.py --clang-completer
-
 echo -e "\nUpdating vim plugins..."
 /usr/bin/vim +PluginUpdate +qall
 
