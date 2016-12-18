@@ -63,7 +63,7 @@ sudo apt-get install redshift-gtk
 
 echo -e "\nInstalling gibo..."
 curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-    -so ~/bin/gibo && chmod +x ~/bin/gibo && gibo -u
+    -so ~/usr/bin/gibo && chmod +x ~/usr/bin/gibo && gibo -u
 
 echo -e "\nInstalling zsh..."
 sudo apt-get install zsh
