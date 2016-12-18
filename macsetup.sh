@@ -11,6 +11,9 @@ brew tap caskroom/cask
 echo -e "\nUpdating homebrew and homebrew cask..."
 brew update
 
+echo -e "\nInstalling iTerm 2..."
+brew cask install iterm2
+
 echo -e "\nInstalling Python3..."
 brew install python3
 brew linkapps python3
