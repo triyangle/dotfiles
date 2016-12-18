@@ -39,6 +39,9 @@ echo -e "\nUpdating Powerline fonts..."
 cd ~/fonts
 git pull
 
+echo -e "\nUpdating gibo..."
+gibo -u
+
 echo -e "\nCleaning..."
 sudo apt-get autoclean
 sudo apt-get autoremove
