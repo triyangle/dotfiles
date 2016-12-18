@@ -24,8 +24,8 @@ done
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    cat macgitconfig.txt > ~/.gitconfig
+    cat macgitconfig > ~/.gitconfig
 elif [ "$OS" == "Linux" ]; then
-    cat ubuntugitconfig.txt > ~/.gitconfig
+    cat ubuntugitconfig > ~/.gitconfig
 fi
 
