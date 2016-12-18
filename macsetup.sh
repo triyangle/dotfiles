@@ -35,6 +35,9 @@ echo -e "\nInstalling IntelliJ..."
 brew tap caskroom/versions
 brew cask install intellij-idea-ce
 
+echo -e "\nInstalling flux..."
+brew cask install flux
+
 echo -e "\nSetting up crontab file..."
 crontab crontab.txt
 
