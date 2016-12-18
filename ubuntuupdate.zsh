@@ -46,3 +46,4 @@ echo -e "\nCleaning..."
 sudo apt-get autoclean
 sudo apt-get autoremove
 sudo apt-get clean
+sudo purge-old-kernels

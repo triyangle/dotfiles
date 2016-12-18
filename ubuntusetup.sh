@@ -56,7 +56,7 @@ echo -e "\nInstalling Java..."
 sudo apt install oracle-java8-installer
 
 echo -e "\nSetting up crontab file..."
-crontab ubuntucrontab.txt
+crontab ubuntucrontab
 
 echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk
