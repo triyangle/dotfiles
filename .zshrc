@@ -21,3 +21,7 @@ bindkey '^h' backward-delete-char
 bindkey '^w' backward-kill-word
 bindkey '^r' history-incremental-search-backward
 bindkey '^k' backward-kill-line
+bindkey '^e' end-of-line
+bindkey '^a' beginning-of-line
+bindkey '^[b' backward-word
+bindkey '^[f' forward-word
