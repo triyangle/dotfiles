@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "Initializing macOS setup..."
+echo -e "\nInitializing macOS setup..."
 
 echo -e "\nInstalling homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
