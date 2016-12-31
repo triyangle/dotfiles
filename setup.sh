@@ -10,5 +10,5 @@ elif [ "$OS" == "Linux" ]; then
     bash ubuntu/setup.sh
 fi
 
-bash zsh_setup.sh
+bash prezto_setup.sh
 bash vimsetup.sh
