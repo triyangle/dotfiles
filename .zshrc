@@ -34,5 +34,5 @@ elif [[ "$OS" == "Linux" ]]; then
   bindkey '^[[1;5C' forward-word
 
   fpath=(~/.zsh $fpath)
-  autoload -U compinit && compinit 
+  autoload -U compinit && compinit
 fi
