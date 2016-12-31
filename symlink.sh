@@ -37,3 +37,4 @@ done
 
 echo -e "\nSetting up crontab..."
 crontab $specific_dir/crontab
+echo "Done"
