@@ -1,6 +1,6 @@
 #!/bin/bash
 
-echo -e "Initializing Ubuntu setup..."
+echo -e "\nInitializing Ubuntu setup..."
 
 sudo add-apt-repository ppa:webupd8team/java
 sudo add-apt-repository ppa:git-core/ppa
