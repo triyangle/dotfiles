@@ -1,1 +1,1 @@
-0 0 * * * zsh /Users/William/dotfiles/cronmacupdate.zsh > /tmp/stdout.log 2>/tmp/stderr.log
+0 0 * * * zsh /Users/William/dotfiles/macOS/cronupdate.zsh > /tmp/stdout.log 2>/tmp/stderr.log

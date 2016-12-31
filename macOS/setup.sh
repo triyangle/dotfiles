@@ -44,9 +44,6 @@ brew cask install flux
 echo -e "\nInstalling gibo..."
 brew install gibo
 
-echo -e "\nSetting up crontab file..."
-crontab maccrontab
-
 echo -e "\nInstalling zsh..."
 brew install zsh zsh-completions
 

@@ -34,3 +34,6 @@ for specific_file in $specific_files; do
     echo -e "\nCreating symlink to $specific_file in home directory..."
     ln -s $specific_dir/$specific_file ~/$specific_file
 done
+
+echo -e "\nSetting up crontab..."
+crontab $specific_dir/crontab
