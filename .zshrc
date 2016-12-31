@@ -32,4 +32,7 @@ if [[ "$OS" == "Darwin" ]]; then
 elif [[ "$OS" == "Linux" ]]; then
   bindkey '^[[1;5D' backward-word
   bindkey '^[[1;5C' forward-word
+
+  fpath=(~/.zsh $fpath)
+  autoload -U compinit && compinit 
 fi

@@ -59,8 +59,11 @@ echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk
 
 echo -e "\nInstalling gibo..."
-curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
-    -so ~/usr/bin/gibo && chmod +x ~/usr/bin/gibo && gibo -u
+sudo curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo -so /usr/bin/gibo && sudo chmod +x /usr/bin/gibo && gibo -u
+
+echo -e "\nInstalling gibo zsh completions..."
+mkdir ~/.zsh
+sudo curl -L https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo-completion.zsh -so ~/.zsh/_gibo
 
 echo -e "\nInstalling zsh..."
 sudo apt-get install zsh
