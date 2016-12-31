@@ -23,5 +23,13 @@ bindkey '^r' history-incremental-search-backward
 bindkey '^k' backward-kill-line
 bindkey '^e' end-of-line
 bindkey '^a' beginning-of-line
-bindkey '^[b' backward-word
-bindkey '^[f' forward-word
+
+# OS specific settings
+OS=`uname`
+if [[ "$OS" == "Darwin" ]]; then
+  bindkey '^[b' backward-word
+  bindkey '^[f' forward-word
+elif [[ "$OS" == "Linux" ]]; then
+  bindkey '^[[1;5D' backward-word
+  bindkey '^[[1;5C' forward-word
+fi

@@ -68,15 +68,4 @@ curl -L https://raw.github.com/simonwhitaker/gibo/master/gibo \
 echo -e "\nInstalling zsh..."
 sudo apt-get install zsh
 
-echo -e "\nInstalling prezto..."
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-zsh ~/dotfiles/prezto.zsh
-chsh -s /usr/bin/zsh
-
-echo -e "\nInstalling Powerline fonts..."
-cd ~
-git clone https://github.com/powerline/fonts.git
-cd ~/fonts
-./install.sh
-
 echo ""

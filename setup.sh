@@ -5,9 +5,10 @@ bash symlink.sh
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    bash macsetup.sh
+    bash macOS/setup.sh
 elif [ "$OS" == "Linux" ]; then
-    bash ubuntusetup.sh
+    bash ubuntu/setup.sh
 fi
 
+bash zsh_setup.sh
 bash vimsetup.sh

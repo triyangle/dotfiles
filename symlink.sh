@@ -22,10 +22,15 @@ for file in $files; do
 done
 
 OS=`uname`
+specific_files=".gitconfig"
 
 if [ "$OS" == "Darwin" ]; then
-    cat macgitconfig > ~/.gitconfig
+    specific_dir=~/dotfiles/macOS
 elif [ "$OS" == "Linux" ]; then
-    cat ubuntugitconfig > ~/.gitconfig
+    specific_dir=~/dotfiles/ubuntu
 fi
 
+for specific_file in $specific_files; do
+    echo -e "\nCreating symlink to $specific_file in home directory..."
+    ln -s $specific_dir/$specific_file ~/$specific_file
+done
