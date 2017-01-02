@@ -69,10 +69,4 @@ sudo curl -L https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo-co
 echo -e "\nInstalling zsh..."
 sudo apt-get install zsh
 
-echo -e "\nInstalling Ubuntu Make..."
-sudo apt install ubuntu-make
-
-echo -e "\nInstalling IntelliJ..."
-umake ide idea
-
 echo ""
