@@ -43,6 +43,9 @@ echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/fonts
 git pull
 
+echo -e "\nUpdating gibo..."
+gibo -u
+
 echo -e "\nUpdating vim plugins..."
 (set -x; /usr/local/bin/vim +PluginUpdate +qall;)
 
