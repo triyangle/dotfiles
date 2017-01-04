@@ -6,7 +6,7 @@ set nocompatible
 set autoindent
 set smartindent
 set ruler
-set clipboard=unnamed
+set clipboard=unnamedplus
 set mouse=a
 set incsearch
 set autoread
