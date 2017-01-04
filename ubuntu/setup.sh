@@ -9,6 +9,9 @@ sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install synaptic byobu
 sudo purge-old-kernels
 
+echo -e "\nInstalling tmux..."
+sudo apt-get install tmux
+
 echo -e "\nInstalling git..."
 sudo apt-get install git
 

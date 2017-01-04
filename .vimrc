@@ -25,6 +25,8 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tmux-plugins/vim-tmux'
 
 call vundle#end()
 
