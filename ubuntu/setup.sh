@@ -4,7 +4,6 @@ echo -e "\nInitializing Ubuntu setup..."
 
 sudo add-apt-repository ppa:webupd8team/java
 sudo add-apt-repository ppa:git-core/ppa
-sudo add-apt-repository ppa:ubuntu-desktop/ubuntu-make
 sudo apt-get update && sudo apt-get upgrade
 sudo apt-get install synaptic byobu
 sudo purge-old-kernels
