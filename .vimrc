@@ -69,6 +69,8 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
+hi Normal ctermbg=none
+highlight NonText ctermbg=none
 
 "Recommended syntastic settings
 set statusline+=%#warningmsg#
