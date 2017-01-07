@@ -1,3 +1,5 @@
+let os = substitute(system('uname'), '\n', '', '')
+
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -25,8 +27,12 @@ Plugin 'scrooloose/syntastic'
 Plugin 'Valloric/YouCompleteMe'
 Plugin 'junegunn/rainbow_parentheses.vim'
 Plugin 'majutsushi/tagbar'
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'tmux-plugins/vim-tmux'
+
+" OS specific plugins... for now
+if os == 'Linux'
+  Plugin 'edkolev/tmuxline.vim'
+  Plugin 'tmux-plugins/vim-tmux'
+endif
 
 call vundle#end()
 
