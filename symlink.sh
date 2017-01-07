@@ -4,7 +4,7 @@ echo -e "\nInitializing symlinking..."
 
 dir=~/dotfiles
 # olddir=~/dotfiles_old
-files=".vimrc .vim .ideavimrc .gitignore_global .zpreztorc .zprofile .zshrc .tmux.conf"
+files=".vimrc .vim .ideavimrc .gitignore_global .zpreztorc .zprofile .zshrc"
 
 # echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 # mkdir -p $olddir
@@ -22,11 +22,12 @@ for file in $files; do
 done
 
 OS=`uname`
-specific_files=".gitconfig"
 
 if [ "$OS" == "Darwin" ]; then
+    specific_files=".gitconfig .tmux.conf"
     specific_dir=~/dotfiles/macOS
 elif [ "$OS" == "Linux" ]; then
+    specific_files=".gitconfig"
     specific_dir=~/dotfiles/ubuntu
 fi
 
