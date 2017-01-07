@@ -11,30 +11,29 @@ set ruler
 set clipboard=unnamedplus
 set mouse=a
 set incsearch
+set ignorecase
+set smartcase
 set autoread
 au CursorHold * checktime
 set omnifunc=syntaxcomplete#Complete
-filetype off
 
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
+call plug#begin()
 
-Plugin 'VundleVim/Vundle.vim'
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
-Plugin 'altercation/vim-colors-solarized'
-Plugin 'scrooloose/syntastic'
-Plugin 'Valloric/YouCompleteMe'
-Plugin 'junegunn/rainbow_parentheses.vim'
-Plugin 'majutsushi/tagbar'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
+Plug 'altercation/vim-colors-solarized'
+Plug 'scrooloose/syntastic'
+Plug 'Valloric/YouCompleteMe'
+Plug 'junegunn/rainbow_parentheses.vim', { 'do': './install.py --clang-completer' }
+Plug 'majutsushi/tagbar'
 
 " OS specific plugins... for now
 if os == 'Linux'
-  Plugin 'edkolev/tmuxline.vim'
-  Plugin 'tmux-plugins/vim-tmux'
+  Plug 'edkolev/tmuxline.vim'
+  Plug 'tmux-plugins/vim-tmux'
 endif
 
-call vundle#end()
+call plug#end()
 
 "Show airline bar
 set laststatus=2
@@ -93,6 +92,7 @@ let g:airline#extensions#tabline#enabled = 1
 
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_autoclose_preview_window_after_completion = 1
+let g:ycm_seed_identifiers_with_syntax = 1
 
 nmap <F8> :TagbarToggle<CR>
 
