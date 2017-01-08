@@ -37,16 +37,16 @@ done
 
 echo -e "\nUpdating prezto..."
 cd /Users/William/.zprezto
-git pull && git submodule update --init --recursive
+/usr/local/bin/git pull && /usr/local/bin/git submodule update --init --recursive
 
 echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/fonts
-git pull
+/usr/local/bin/git pull
 
 echo -e "\nUpdating gibo..."
-gibo -u
+/usr/local/bin/gibo -u
 
 echo -e "\nUpdating vim plugins..."
-(set -x; /usr/local/bin/vim +PluginUpdate +qall;)
+(set -x; /usr/local/bin/vim +"PlugUpdate YouCompleteMe" +PlugUpdate +qall;)
 
 echo ""
