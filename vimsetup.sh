@@ -2,14 +2,10 @@
 
 echo -e "Initiliazing vim setup..."
 
-echo -e "\nRetrieving Vundle from GitHub..."
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+echo -e "\nRetrieving vim-plug from GitHub..."
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
 echo -e "\nInstalling vim plugins..."
-vim +PluginInstall +qall
-
-echo -e "\nYouCompleteMe setup..."
-cd ~/.vim/bundle/YouCompleteMe
-./install.py --clang-completer
+vim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
 echo ""
