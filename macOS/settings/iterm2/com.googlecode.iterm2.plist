@@ -2,6 +2,8 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
+	<key>AllowClipboardAccess</key>
+	<false/>
 	<key>AppleAntiAliasingThreshold</key>
 	<integer>1</integer>
 	<key>AppleScrollAnimationEnabled</key>
@@ -1773,7 +1775,7 @@
 	<key>ShowFullScreenTabBar</key>
 	<true/>
 	<key>SmartPlacement</key>
-	<true/>
+	<false/>
 	<key>SwitchPaneModifier</key>
 	<integer>5</integer>
 	<key>SwitchTabModifier</key>
@@ -1787,7 +1789,7 @@
 	<key>UseLionStyleFullscreen</key>
 	<true/>
 	<key>WordCharacters</key>
-	<string></string>
+	<string>/-+\~_.</string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findRegex_iTerm</key>
