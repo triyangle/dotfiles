@@ -70,5 +70,6 @@ sudo curl -L https://raw.githubusercontent.com/simonwhitaker/gibo/master/gibo-co
 
 echo -e "\nInstalling zsh..."
 sudo apt-get install zsh
+sudo chsh -s /usr/bin/zsh
 
 echo ""
