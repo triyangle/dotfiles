@@ -39,7 +39,7 @@
 	<key>LoadPrefsFromCustomFolder</key>
 	<true/>
 	<key>NSNavLastRootDirectory</key>
-	<string>~/dotfiles/macOS/iterm2</string>
+	<string>~/dotfiles/macOS/settings/iterm2</string>
 	<key>NSNavPanelExpandedSizeForOpenMode</key>
 	<string>{712, 448}</string>
 	<key>NSQuotedKeystrokeBinding</key>
@@ -1753,7 +1753,7 @@
 		</dict>
 	</dict>
 	<key>PrefsCustomFolder</key>
-	<string>/Users/William/dotfiles/macOS/iterm2</string>
+	<string>/Users/William/dotfiles/macOS/settings/iterm2</string>
 	<key>Print In Black And White</key>
 	<true/>
 	<key>SUEnableAutomaticChecks</key>
@@ -1772,6 +1772,8 @@
 	<false/>
 	<key>ShowFullScreenTabBar</key>
 	<true/>
+	<key>SmartPlacement</key>
+	<true/>
 	<key>SwitchPaneModifier</key>
 	<integer>5</integer>
 	<key>SwitchTabModifier</key>
@@ -1785,7 +1787,7 @@
 	<key>UseLionStyleFullscreen</key>
 	<true/>
 	<key>WordCharacters</key>
-	<string>/-+\~_.</string>
+	<string></string>
 	<key>findIgnoreCase_iTerm</key>
 	<true/>
 	<key>findRegex_iTerm</key>

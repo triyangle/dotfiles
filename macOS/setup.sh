@@ -48,4 +48,10 @@ echo -e "\nInstalling zsh..."
 brew install zsh zsh-completions
 chsh -s /usr/local/bin/zsh
 
+echo -e "\nSyncing settings..."
+bash ~/dotfiles/macOS/settings/macOS.sh
+bash ~/dotfiles/macOS/settings/flux.sh
+bash ~/dotfiles/macOS/settings/safari.sh
+echo -e "\nDone"
+
 echo ""

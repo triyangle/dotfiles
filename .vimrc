@@ -8,7 +8,7 @@ set nocompatible
 set autoindent
 set smartindent
 set ruler
-set clipboard=unnamedplus
+set clipboard=unnamed
 set mouse=a
 set incsearch
 set ignorecase
