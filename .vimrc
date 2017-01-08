@@ -8,7 +8,6 @@ set nocompatible
 set autoindent
 set smartindent
 set ruler
-set clipboard=unnamed
 set mouse=a
 set incsearch
 set ignorecase
@@ -74,8 +73,6 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
 
 "Recommended syntastic settings
 set statusline+=%#warningmsg#
@@ -116,3 +113,12 @@ nnoremap <Leader>O :<C-U>call OpenLines(v:count, -1)<CR>S
 
 nnoremap o o<esc>S
 nnoremap O O<esc>S
+
+" OS specific settings
+if os == 'Linux'
+  set clipboard=unnamedplus
+  hi Normal ctermbg=none
+  highlight NonText ctermbg=none
+else
+  set clipboard=unnamed
+endif
