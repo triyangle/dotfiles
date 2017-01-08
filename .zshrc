@@ -36,6 +36,3 @@ elif [[ "$OS" == "Linux" ]]; then
   fpath=(~/.zsh $fpath)
   autoload -U compinit && compinit
 fi
-export PATH="/home/william/.linuxbrew/bin:$PATH"
-export MANPATH="/home/william/.linuxbrew/share/man:$MANPATH"
-export INFOPATH="/home/william/.linuxbrew/share/info:$INFOPATH"

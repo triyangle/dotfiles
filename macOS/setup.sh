@@ -46,5 +46,6 @@ brew install gibo
 
 echo -e "\nInstalling zsh..."
 brew install zsh zsh-completions
+chsh -s /usr/local/bin/zsh
 
 echo ""

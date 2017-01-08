@@ -24,10 +24,10 @@ done
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    specific_files=".gitconfig .tmux.conf"
+    specific_files=".gitconfig"
     specific_dir=~/dotfiles/macOS
 elif [ "$OS" == "Linux" ]; then
-    specific_files=".gitconfig"
+    specific_files=".gitconfig .tmux.conf"
     specific_dir=~/dotfiles/ubuntu
 fi
 
