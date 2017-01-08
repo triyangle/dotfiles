@@ -23,8 +23,8 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'scrooloose/syntastic'
-Plug 'Valloric/YouCompleteMe'
-Plug 'junegunn/rainbow_parentheses.vim', { 'do': './install.py --clang-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
+Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
 
 " OS specific plugins... for now
