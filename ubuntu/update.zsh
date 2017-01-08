@@ -29,7 +29,7 @@ sudo update-alternatives --install /usr/bin/vi vi /usr/bin/vim 1
 sudo update-alternatives --set vi /usr/bin/vim
 
 echo -e "\nUpdating vim plugins..."
-/usr/bin/vim +PluginUpdate +qall
+/usr/bin/vim +"PlugUpdate YouCompleteMe" +PlugUpdate +qall
 
 echo -e "\nUpdating prezto..."
 cd ~/.zprezto
