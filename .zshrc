@@ -36,3 +36,8 @@ elif [[ "$OS" == "Linux" ]]; then
   fpath=(~/.zsh $fpath)
   autoload -U compinit && compinit
 fi
+
+# Uncomment to add newline after every command
+#precmd() {
+#  print ""
+#}
