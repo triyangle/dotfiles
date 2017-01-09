@@ -15,6 +15,7 @@ set smartcase
 set autoread
 au CursorHold * checktime
 set omnifunc=syntaxcomplete#Complete
+set showcmd
 
 call plug#begin()
 
