@@ -16,6 +16,8 @@ set autoread
 au CursorHold * checktime
 set omnifunc=syntaxcomplete#Complete
 set showcmd
+set modeline
+set modelines=5
 
 call plug#begin()
 
