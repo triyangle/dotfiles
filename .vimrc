@@ -31,6 +31,7 @@ Plug 'majutsushi/tagbar'
 if os == 'Linux'
   Plug 'edkolev/tmuxline.vim'
   Plug 'tmux-plugins/vim-tmux'
+  Plug 'christoomey/vim-tmux-navigator'
 endif
 
 call plug#end()
