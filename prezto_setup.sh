@@ -1,5 +1,5 @@
 echo -e "\nInstalling prezto..."
-git clone --recursive https://github.com/sorin-ionescu/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 zsh ~/dotfiles/prezto.zsh
 
 echo -e "\nInstalling Powerline fonts..."
