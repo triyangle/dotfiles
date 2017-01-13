@@ -28,6 +28,8 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
+Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+Plug 'junegunn/fzf.vim'
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -95,6 +97,21 @@ let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_seed_identifiers_with_syntax = 1
 
 nmap <F8> :TagbarToggle<CR>
+
+" fzf settings
+let g:fzf_colors =
+\ { 'fg':      ['fg', 'Normal'],
+  \ 'bg':      ['bg', 'Normal'],
+  \ 'hl':      ['fg', 'Comment'],
+  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+  \ 'hl+':     ['fg', 'Statement'],
+  \ 'info':    ['fg', 'PreProc'],
+  \ 'prompt':  ['fg', 'Conditional'],
+  \ 'pointer': ['fg', 'Exception'],
+  \ 'marker':  ['fg', 'Keyword'],
+  \ 'spinner': ['fg', 'Label'],
+  \ 'header':  ['fg', 'Comment'] }
 
 "Easy buffer switching
 let mapleader = "\<Space>"
