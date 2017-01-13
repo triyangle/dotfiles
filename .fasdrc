@@ -1,8 +1,0 @@
-# vim: set ft=sh :
-OS=`uname`
-
-if [[ "$OS" == "Darwin" ]]; then
-  export _FASD_BACKENDS="spotlight current viminfo"
-else
-  export _FASD_BACKENDS="recently-used current viminfo"
-fi
