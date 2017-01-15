@@ -1,10 +1,12 @@
 echo -e "\nInstalling prezto..."
 git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
 zsh ~/dotfiles/prezto.zsh
 cd ~/.zprezto
 git remote add upstream https://github.com/zsh-users/prezto.git
 
 cd ~/.zprezto/modules/prompt/external/statusline
+git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/statusline.git
 git remote add upstream https://github.com/el1t/statusline.git
 
 echo -e "\nInstalling Powerline fonts..."
