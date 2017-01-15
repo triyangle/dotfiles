@@ -29,14 +29,13 @@ Plug 'scrooloose/syntastic'
 Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
 Plug 'junegunn/rainbow_parentheses.vim'
 Plug 'majutsushi/tagbar'
-Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim'
 
 " OS specific plugins... for now
 if os == 'Linux'
-  Plug 'junegunn/fzf', { 'dir': '~/.fzf', 'do': './install --all' }
+  Plug '/home/william/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
   Plug 'edkolev/tmuxline.vim'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'christoomey/vim-tmux-navigator'
