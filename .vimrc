@@ -141,7 +141,7 @@ map <C-p> :Files<cr>
 nmap <C-p> :Files<cr>
 
 " View commits in fzf
-"nmap <Leader>c :Commits<cr>
+nmap <Leader>c :Commits<cr>
 
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
