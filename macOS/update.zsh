@@ -1,12 +1,9 @@
 #!/usr/local/bin/zsh
 
-(set -x; brew update;)
+zsh ~/dotfiles/brew_update.zsh
 
-echo ""
-
-(set -x; brew cleanup;)
-echo ""
 (set -x; brew cask cleanup;)
+
 echo ""
 
 (set -x; brew upgrade vim --with-custom-python;)
@@ -36,18 +33,6 @@ do
     fi
 done
 
-echo -e "\nUpdating prezto..."
-cd ~/.zprezto
-git pull && git submodule update --init --recursive
-
-echo -e "\nUpdating Powerline fonts..."
-cd ~/fonts
-git pull
-
-echo -e "\nUpdating gibo..."
-gibo -u
-
-echo -e "\nUpdating vim plugins..."
-vim +"PlugUpdate YouCompleteMe" +PlugUpdate
+zsh ~/dotfiles/common_update.zsh
 
 echo ""
