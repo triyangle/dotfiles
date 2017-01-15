@@ -32,7 +32,6 @@ Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['scheme', 'lisp', 'clojure'] 
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'mileszs/ack.vim'
 Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
@@ -250,11 +249,6 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
-
-"Use ag to search
-if executable('ag')
-  let g:ackprg = 'ag --vimgrep'
-endif
 
 "Easy buffer switching
 map <leader>n :bn<cr>
