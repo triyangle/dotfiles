@@ -22,9 +22,6 @@ gibo -u
 echo -e "\nInstalling fzf..."
 brew install fzf
 
-echo -e "\nInstalling ag..."
-brew install the_silver_searcher
-
 echo -e "\nInstalling fasd..."
 brew install fasd
 
