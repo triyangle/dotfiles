@@ -1,3 +1,4 @@
+let mapleader = "\<Space>"
 let os = substitute(system('uname'), '\n', '', '')
 
 set tabstop=4
@@ -33,6 +34,7 @@ Plug 'junegunn/fzf.vim'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'mileszs/ack.vim'
+"Plug 'tpope/vim-fugitive'
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -120,6 +122,16 @@ let g:fzf_colors =
   \ 'spinner': ['fg', 'Label'],
   \ 'header':  ['fg', 'Comment'] }
 
+" Fuzzy-find with fzf
+map \ :FZF ~<cr>
+nmap \ :FZF ~<cr>
+
+map <C-p> :Files<cr>
+nmap <C-p> :Files<cr>
+
+" View commits in fzf
+nmap <Leader>c :Commits<cr>
+
 " Mapping selecting mappings
 nmap <leader><tab> <plug>(fzf-maps-n)
 xmap <leader><tab> <plug>(fzf-maps-x)
@@ -154,8 +166,6 @@ if executable('ag')
 endif
 
 "Easy buffer switching
-
-let mapleader = "\<Space>"
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
 map <leader>d :bd<cr>
