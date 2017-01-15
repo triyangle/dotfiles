@@ -17,6 +17,16 @@ brew install ctags
 
 echo -e "\nInstalling gibo..."
 brew install gibo
+gibo -u
+
+echo -e "\nInstalling fzf..."
+brew install fzf
+
+echo -e "\nInstalling ag..."
+brew install the_silver_searcher
+
+echo -e "\nInstalling fasd..."
+brew install fasd
 
 echo -e "\nInstalling zsh..."
 brew install zsh

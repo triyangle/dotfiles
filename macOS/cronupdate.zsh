@@ -38,10 +38,17 @@ done
 echo -e "\nUpdating prezto..."
 cd /Users/William/.zprezto
 /usr/local/bin/git pull && /usr/local/bin/git submodule update --init --recursive
+/usr/local/bin/git pull upstream master
+/usr/local/bin/git submodule foreach /usr/local/bin/git pull origin master
+
+echo -e "\nUpdating statusline..."
+cd /Users/William/.zprezto/modules/prompt/external/statusline
+/usr/local/bin/git pull upstream master
 
 echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/fonts
 /usr/local/bin/git pull
+./install.sh
 
 echo -e "\nUpdating gibo..."
 /usr/local/bin/gibo -u

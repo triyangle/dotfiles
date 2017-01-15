@@ -3,6 +3,10 @@
 echo -e "Updating system packages..."
 sudo apt-get update && sudo apt-get upgrade
 
+echo -e "\nUpdating brews..."
+zsh ~/dotfiles/brew_update.zsh
+brew upgrade
+
 echo -e "\nUpdating vim..."
 cd ~/vim
 git pull
