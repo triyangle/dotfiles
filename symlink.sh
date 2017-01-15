@@ -29,6 +29,7 @@ if [ "$OS" == "Darwin" ]; then
 elif [ "$OS" == "Linux" ]; then
     specific_files=".gitconfig .tmux.conf"
     specific_dir=~/dotfiles/ubuntu
+    ln -s ~/dotfiles/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
 fi
 
 for specific_file in $specific_files; do
