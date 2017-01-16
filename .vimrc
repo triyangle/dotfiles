@@ -23,7 +23,7 @@ set hidden
 
 set wildmenu
 set wildignorecase
-set wildmode=full
+set wildmode=longest:full,full
 
 call plug#begin()
 
