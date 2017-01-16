@@ -36,7 +36,7 @@ echo -e "\nInstalling Java..."
 sudo apt install oracle-java8-installer
 
 echo -e "\nInstalling IntelliJ..."
-brew install athrunsun/linuxbinary/intellij-idea-ce
+brew install athrunsun/linuxbinary/intellij-idea
 
 echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk

@@ -27,8 +27,7 @@ echo -e "\nInstalling Java..."
 brew cask install java
 
 echo -e "\nInstalling IntelliJ..."
-brew tap caskroom/versions
-brew cask install intellij-idea-ce
+brew cask install intellij-idea
 
 echo -e "\nInstalling flux..."
 brew cask install flux
