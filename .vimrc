@@ -133,8 +133,11 @@ let g:fzf_colors =
   \ 'header':  ['fg', 'Comment'] }
 
 " Fuzzy-find with fzf
-map \ :FZF ~<cr>
-nmap \ :FZF ~<cr>
+map <C-_> :FZF ~<cr>
+nmap <C-_> :FZF ~<cr>
+
+map \ :FZF /<cr>
+nmap \ :FZF /<cr>
 
 map <C-p> :Files<cr>
 nmap <C-p> :Files<cr>
