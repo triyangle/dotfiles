@@ -1,3 +1,4 @@
+set nocompatible
 let mapleader = "\<Space>"
 let os = substitute(system('uname'), '\n', '', '')
 
@@ -5,7 +6,6 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 set expandtab
-set nocompatible
 set autoindent
 set smartindent
 set ruler
@@ -20,6 +20,10 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
+
+set wildmenu
+set wildignorecase
+set wildmode=full
 
 call plug#begin()
 
