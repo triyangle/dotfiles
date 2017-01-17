@@ -1,3 +1,9 @@
 [submodule "dircolors-solarized"]
 	path = dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
+[submodule "intellij-colors-solarized"]
+	path = intellij-colors-solarized
+	url = https://github.com/jkaving/intellij-colors-solarized.git
+[submodule "fonts"]
+	path = fonts
+	url = https://github.com/powerline/fonts.git
