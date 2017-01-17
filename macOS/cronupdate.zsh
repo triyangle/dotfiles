@@ -45,9 +45,12 @@ echo -e "\nUpdating statusline..."
 cd /Users/William/.zprezto/modules/prompt/external/statusline
 /usr/local/bin/git pull upstream master
 
+echo -e "\nUpdating submodules..."
+cd /Users/William/dotfiles
+/usr/local/bin/git submodule foreach /usr/local/bin/git pull origin master
+
 echo -e "\nUpdating Powerline fonts..."
-cd /Users/William/fonts
-/usr/local/bin/git pull
+cd /Users/William/dotfiles/fonts
 ./install.sh
 
 echo -e "\nUpdating gibo..."

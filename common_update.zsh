@@ -10,9 +10,12 @@ echo -e "\nUpdating statusline..."
 cd ~/.zprezto/modules/prompt/external/statusline
 git pull upstream master
 
-echo -e "\nUpdating Powerline fonts..."
-cd ~/fonts
-git pull
+echo -e "\nUpdating submodules..."
+cd ~/dotfiles
+git submodule foreach git pull origin master
+
+echo -e "\nUpdating powerline fonts..."
+cd ~/dotfiles/fonts
 ./install.sh
 
 echo -e "\nUpdating gibo..."

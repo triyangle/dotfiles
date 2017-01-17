@@ -10,7 +10,5 @@ git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/status
 git remote add upstream https://github.com/el1t/statusline.git
 
 echo -e "\nInstalling Powerline fonts..."
-cd ~
-git clone https://github.com/powerline/fonts.git
-cd ~/fonts
+cd ~/dotfiles/fonts
 ./install.sh
