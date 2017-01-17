@@ -17,6 +17,9 @@ brew cask install iterm2
 echo -e "\nFinishing Python 3 setup..."
 brew linkapps python3
 
+echo -e "\nInstalling Anaconda..."
+brew install anaconda
+
 echo -e "\nInstalling vim..."
 brew install vim --with-custom-python
 
