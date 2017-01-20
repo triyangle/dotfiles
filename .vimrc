@@ -49,6 +49,8 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
+Plug 'xolox/vim-notes'
+Plug 'xolox/vim-misc'
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -101,6 +103,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
+highlight Comment cterm=italic
 
 "Recommended syntastic settings
 set statusline+=%#warningmsg#
