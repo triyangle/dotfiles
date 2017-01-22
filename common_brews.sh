@@ -6,6 +6,9 @@ brew update
 echo -e "\nInstalling Python3..."
 brew install python3
 
+echo -e "\nInstalling node..."
+brew install node
+
 echo -e "\nInstalling git..."
 brew install git
 
