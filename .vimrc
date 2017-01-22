@@ -51,6 +51,7 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'xolox/vim-notes'
 Plug 'xolox/vim-misc'
+Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 
 " OS specific plugins... for now
 if os == 'Linux'
