@@ -20,6 +20,13 @@ brew linkapps python3
 echo -e "\nInstalling Anaconda..."
 brew install anaconda
 
+echo -e "\nSetting up Jupyter notebook..."
+conda install -c conda-forge jupyter_contrib_nbextensions
+mkdir -p $(jupyter --data-dir)/nbextensions
+cd $(jupyter --data-dir)/nbextensions
+git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
+chmod -R go-w vim_binding
+
 echo -e "\nInstalling vim..."
 brew install vim --with-custom-python
 
