@@ -4,3 +4,6 @@
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts.git
+[submodule ".zprezto"]
+	path = .zprezto
+	url = https://github.com/triyangle/prezto.git
