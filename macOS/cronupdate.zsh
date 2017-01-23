@@ -53,6 +53,15 @@ echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/dotfiles/fonts
 ./install.sh
 
+echo -e "\nUpdating anaconda..."
+/Users/William/anaconda3/bin/conda update anaconda
+
+echo -e "\nUpdating conda packages..."
+/Users/William/anaconda3/bin/conda update --all
+
+echo -e "\nUpdating pip packages..."
+/Users/William/anaconda3/bin/pip list --outdated | /usr/bin/cut -d' ' -f1 | /usr/bin/xargs /Users/William/anaconda3/bin/pip install --upgrade
+
 echo -e "\nUpdating gibo..."
 /usr/local/bin/gibo -u
 

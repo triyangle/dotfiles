@@ -18,6 +18,15 @@ echo -e "\nUpdating powerline fonts..."
 cd ~/dotfiles/fonts
 ./install.sh
 
+echo -e "\nUpdating anaconda..."
+conda update anaconda
+
+echo -e "\nUpdating conda packages..."
+conda update --all
+
+echo -e "\nUpdating pip packages..."
+pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade
+
 echo -e "\nUpdating gibo..."
 gibo -u
 
