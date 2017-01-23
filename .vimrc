@@ -259,6 +259,20 @@ let g:UltiSnipsJumpBackwardTrigger="<c-z>"
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
 
+" Markdown fenced code syntax highlighting
+au BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['java',
+      \ 'scheme',
+      \ 'python',
+      \ 'bash=sh',
+      \ 'zsh',
+      \ 'html',
+      \ 'css',
+      \ 'javascript',
+      \ 'json=javascript',
+      \ 'ruby'
+      \ ]
+
 "Easy buffer switching
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
