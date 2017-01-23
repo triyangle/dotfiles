@@ -261,17 +261,18 @@ nnoremap <Leader>u :GundoToggle<CR>
 
 " Markdown fenced code syntax highlighting
 au BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['java',
+let g:markdown_fenced_languages =
+      \ ['java',
       \ 'scheme',
       \ 'python',
+      \ 'sql',
       \ 'bash=sh',
       \ 'zsh',
       \ 'html',
       \ 'css',
       \ 'javascript',
-      \ 'json=javascript',
-      \ 'ruby'
-      \ ]
+      \ 'js=javascript',
+      \ 'json=javascript']
 
 "Easy buffer switching
 map <leader>n :bn<cr>
