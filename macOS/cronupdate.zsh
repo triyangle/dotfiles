@@ -54,10 +54,10 @@ cd /Users/William/dotfiles/fonts
 ./install.sh
 
 echo -e "\nUpdating anaconda..."
-/Users/William/anaconda3/bin/conda update anaconda
+/Users/William/anaconda3/bin/conda update anaconda -y
 
 echo -e "\nUpdating conda packages..."
-/Users/William/anaconda3/bin/conda update --all
+/Users/William/anaconda3/bin/conda update --all -y
 
 echo -e "\nUpdating pip packages..."
 /Users/William/anaconda3/bin/pip freeze --local | grep -v '^\-e' | /usr/bin/cut -d = -f 1  | /usr/bin/xargs -n1 /Users/William/anaconda3/bin/pip install -U
