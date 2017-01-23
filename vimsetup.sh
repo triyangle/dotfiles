@@ -9,7 +9,9 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 echo -e "\nInstalling vim plugins..."
 vim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
+echo -e "\nInstalling instant-markdown..."
 npm -g install instant-markdown-d
+
 if [[ "$OS" == "Linux" ]]; then
   sudo apt-get install xdg-utils curl nodejs-legacy
 fi
