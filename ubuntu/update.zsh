@@ -17,10 +17,6 @@ bash ~/dotfiles/ubuntu/vim_install.sh
 
 zsh ~/dotfiles/common_update.zsh
 
-echo -e "\nUpdating dircolors..."
-cd ~/dotfiles
-git submodule foreach git pull origin master
-
 echo -e "\nCleaning..."
 sudo apt-get autoclean
 sudo apt-get autoremove
