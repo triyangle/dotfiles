@@ -60,7 +60,7 @@ echo -e "\nUpdating conda packages..."
 /Users/William/anaconda3/bin/conda update --all
 
 echo -e "\nUpdating pip packages..."
-/Users/William/anaconda3/bin/pip list --outdated | /usr/bin/cut -d' ' -f1 | /usr/bin/xargs /Users/William/anaconda3/bin/pip install --upgrade
+/Users/William/anaconda3/bin/pip freeze --local | grep -v '^\-e' | /usr/bin/cut -d = -f 1  | /usr/bin/xargs -n1 /Users/William/anaconda3/bin/pip install -U
 
 echo -e "\nUpdating gibo..."
 /usr/local/bin/gibo -u

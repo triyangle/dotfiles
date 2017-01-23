@@ -25,7 +25,7 @@ echo -e "\nUpdating conda packages..."
 conda update --all
 
 echo -e "\nUpdating pip packages..."
-pip list --outdated | cut -d' ' -f1 | xargs pip install --upgrade
+pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
 
 echo -e "\nUpdating gibo..."
 gibo -u
