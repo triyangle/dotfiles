@@ -51,7 +51,6 @@ cd /Users/William/dotfiles
 
 echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/dotfiles/fonts
-/usr/local/bin/git pull
 ./install.sh
 
 echo -e "\nUpdating jupyter vim mode..."

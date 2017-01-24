@@ -16,7 +16,6 @@ git submodule foreach git pull origin master
 
 echo -e "\nUpdating powerline fonts..."
 cd ~/dotfiles/fonts
-git pull
 ./install.sh
 
 echo -e "\nUpdating jupyter vim mode..."
