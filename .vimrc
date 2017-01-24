@@ -53,6 +53,7 @@ Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
+Plug 'lvht/tagbar-markdown', { 'for': ['markdown'] }
 
 " OS specific plugins... for now
 if os == 'Linux'
