@@ -21,6 +21,8 @@ set modeline
 set modelines=5
 set hidden
 set breakindent
+set spell spelllang=en_us
+set complete+=kspell
 
 set wildmenu
 set wildignorecase

@@ -37,6 +37,9 @@ for specific_file in $specific_files; do
     ln -s $specific_dir/$specific_file ~/$specific_file
 done
 
+echo -e "\nSymlinking vim spell"
+ln -s ~/dotfiles/.vim/spell ~/.vim/
+
 echo -e "\nSetting up crontab..."
 crontab $specific_dir/crontab
 echo "Done"
