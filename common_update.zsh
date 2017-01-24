@@ -21,6 +21,8 @@ cd ~/dotfiles/fonts
 echo -e "\nUpdating jupyter vim mode..."
 cd $(jupyter --data-dir)/nbextensions/vim_binding
 git pull
+cd ~/vim_binding
+git pull
 
 echo -e "\nUpdating gibo..."
 gibo -u

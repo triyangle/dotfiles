@@ -56,6 +56,8 @@ cd /Users/William/dotfiles/fonts
 echo -e "\nUpdating jupyter vim mode..."
 cd /Users/William/Library/Jupyter/nbextensions/vim_binding
 /usr/local/bin/git pull
+cd /Users/William/vim_binding
+/usr/local/bin/git pull
 
 echo -e "\nUpdating gibo..."
 /usr/local/bin/gibo -u
