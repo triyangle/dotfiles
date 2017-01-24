@@ -20,6 +20,7 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
+set breakindent
 
 set wildmenu
 set wildignorecase
