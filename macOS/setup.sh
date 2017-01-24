@@ -18,7 +18,7 @@ echo -e "\nFinishing Python 3 setup..."
 brew linkapps python3
 
 echo -e "\nInstalling Anaconda..."
-brew install anaconda
+brew cask install anaconda
 
 echo -e "\nSetting up Jupyter notebook..."
 conda install -c conda-forge jupyter_contrib_nbextensions

@@ -19,17 +19,8 @@ cd ~/dotfiles/fonts
 git pull
 ./install.sh
 
-echo -e "\nUpdating anaconda..."
-conda update anaconda
-
-echo -e "\nUpdating conda packages..."
-conda update --all
-
-echo -e "\nUpdating pip packages..."
-pip freeze --local | grep -v '^\-e' | cut -d = -f 1  | xargs -n1 pip install -U
-
 echo -e "\nUpdating jupyter vim mode..."
-cd ~/vim_binding
+cd $(jupyter --data-dir)/nbextensions/vim_binding
 git pull
 
 echo -e "\nUpdating gibo..."

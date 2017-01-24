@@ -54,17 +54,8 @@ cd /Users/William/dotfiles/fonts
 /usr/local/bin/git pull
 ./install.sh
 
-echo -e "\nUpdating anaconda..."
-/Users/William/anaconda3/bin/conda update anaconda -y
-
-echo -e "\nUpdating conda packages..."
-/Users/William/anaconda3/bin/conda update --all -y
-
-echo -e "\nUpdating pip packages..."
-/Users/William/anaconda3/bin/pip freeze --local | /usr/bin/grep -v '^\-e' | /usr/bin/cut -d = -f 1  | /usr/bin/xargs -n1 /Users/William/anaconda3/bin/pip install -U
-
 echo -e "\nUpdating jupyter vim mode..."
-cd /Users/William/vim_binding
+cd /Users/William/Library/Jupyter/nbextensions/vim_binding
 /usr/local/bin/git pull
 
 echo -e "\nUpdating gibo..."
