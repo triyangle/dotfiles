@@ -225,8 +225,8 @@ map *  <Plug>(incsearch-nohl-*)
 map #  <Plug>(incsearch-nohl-#)
 map g* <Plug>(incsearch-nohl-g*)
 map g# <Plug>(incsearch-nohl-g#)
-noremap gD gD:nohl<CR>
-noremap gd gd:nohl<CR>
+nnoremap gD gD:nohl<CR>
+nnoremap gd gd:nohl<CR>
 nnoremap <silent> <ESC><ESC> :nohl<CR>
 
 " insearch easymotion
