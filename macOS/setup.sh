@@ -45,6 +45,9 @@ brew cask install intellij-idea
 echo -e "\nInstalling flux..."
 brew cask install flux
 
+echo -e "\nInstalling Skype..."
+brew cask install skype
+
 echo -e "\nFinishing zsh setup..."
 chsh -s /usr/local/bin/zsh
 echo "Done"
