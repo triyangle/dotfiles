@@ -63,6 +63,6 @@ echo -e "\nUpdating gibo..."
 /usr/local/bin/gibo -u
 
 echo -e "\nUpdating vim plugins..."
-(set -x; /usr/local/bin/vim +"PlugUpdate YouCompleteMe" +PlugUpdate +qall;)
+(set -x; /usr/local/bin/vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall;)
 
 echo ""
