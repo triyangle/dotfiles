@@ -28,4 +28,4 @@ echo -e "\nUpdating gibo..."
 gibo -u
 
 echo -e "\nUpdating vim plugins..."
-vim +"PlugUpdate YouCompleteMe" +PlugUpdate
+vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean!
