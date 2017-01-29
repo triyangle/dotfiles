@@ -18,10 +18,13 @@ echo -e "\nUpdating powerline fonts..."
 cd ~/dotfiles/fonts
 ./install.sh
 
-echo -e "\nUpdating conda & anaconda..."
+echo -e "\nUpdating conda packages & anaconda..."
 conda update conda
 conda update anaconda
-conda update --all
+conda update jupyter_contrib_nbextensions
+
+echo -e "\nUpdating pip packages..."
+pip install jupyterthemes --upgrade
 
 echo -e "\nUpdating jupyter theme..."
 bash ~/dotfiles/jupyter_theme.sh
