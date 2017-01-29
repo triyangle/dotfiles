@@ -4,7 +4,7 @@ echo -e "\nInitializing symlinking..."
 
 dir=~/dotfiles
 # olddir=~/dotfiles_old
-files=".vimrc .ideavimrc .gitignore_global"
+files=".vimrc .ideavimrc .gitignore_global .jupyter"
 
 # echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 # mkdir -p $olddir
@@ -24,7 +24,7 @@ done
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    specific_files=".gitconfig .jupyter"
+    specific_files=".gitconfig"
     specific_dir=~/dotfiles/macOS
 elif [ "$OS" == "Linux" ]; then
     specific_files=".gitconfig .tmux.conf .jupyter"
