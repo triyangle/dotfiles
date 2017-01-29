@@ -4,7 +4,7 @@ echo -e "\nInitializing symlinking..."
 
 dir=~/dotfiles
 # olddir=~/dotfiles_old
-files=".vimrc .ideavimrc .gitignore_global .jupyter"
+files=".vimrc .ideavimrc .gitignore_global"
 
 # echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
 # mkdir -p $olddir
@@ -24,17 +24,17 @@ done
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    specific_files=".gitconfig"
+    specific_files=".gitconfig .jupyter"
     specific_dir=~/dotfiles/macOS
 elif [ "$OS" == "Linux" ]; then
-    specific_files=".gitconfig .tmux.conf"
+    specific_files=".gitconfig .tmux.conf .jupyter"
     specific_dir=~/dotfiles/ubuntu
     ln -s ~/dotfiles/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
 fi
 
 for specific_file in $specific_files; do
     echo -e "\nCreating symlink to $specific_file in home directory..."
-    ln -s $specific_dir/$specific_file ~/$specific_file
+    ln -s $specific_dir/$specific_file ~
 done
 
 echo -e "\nSymlinking vim spell"
