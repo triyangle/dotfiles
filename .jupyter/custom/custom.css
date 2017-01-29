@@ -1,10 +1,4 @@
 @font-face {
- font-family: 'Exo_2';
- font-weight: normal;
- font-style: normal;
- src: local('Exo_2'), url('fonts/exo-II-regular.ttf') format('truetype');
-}
-@font-face {
  font-family: 'Droid Sans Mono';
  font-weight: normal;
  font-style: normal;
@@ -15,6 +9,12 @@
  font-weight: normal;
  font-style: normal;
  src: local('Fira Code'), url('fonts/firacode.otf') format('opentype');
+}
+@font-face {
+ font-family: 'Exo_2';
+ font-weight: normal;
+ font-style: normal;
+ src: local('Exo_2'), url('fonts/exo-II-regular.ttf') format('truetype');
 }
 @font-face {
  font-family: 'Lora';
