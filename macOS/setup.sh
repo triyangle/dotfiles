@@ -56,7 +56,7 @@ echo -e "\nSyncing settings..."
 bash ~/dotfiles/macOS/settings/macOS.sh
 bash ~/dotfiles/macOS/settings/flux.sh
 bash ~/dotfiles/macOS/settings/safari.sh
-tic ~/dotfiles/macOS/settings/xterm-256color-italic.terminfo
+tic -o ~/.terminfo ~/dotfiles/macOS/settings/xterm-256color.terminfo
 echo -e "\nDone"
 
 echo ""

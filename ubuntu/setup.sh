@@ -46,4 +46,7 @@ sudo cp ~/.linuxbrew/bin/zsh /usr/bin/zsh
 sudo chsh -s /usr/bin/zsh
 echo "Done"
 
+echo -e "\nSyncing settings..."
+tic -o ~/.terminfo ~/dotfiles/tmux-256color.terminfo
+
 echo ""
