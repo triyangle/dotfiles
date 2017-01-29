@@ -24,7 +24,7 @@ conda update anaconda
 conda update jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
-pip install jupyterthemes --upgrade
+pip install --upgrade jupyterthemes
 
 echo -e "\nUpdating jupyter theme..."
 bash ~/dotfiles/jupyter_theme.sh

@@ -59,7 +59,7 @@ echo -e "\nUpdating conda packages & anaconda..."
 /Users/William/anaconda3/bin/conda update jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
-/Users/William/anaconda3/bin/pip install jupyterthemes --upgrade
+/Users/William/anaconda3/bin/pip install --upgrade jupyterthemes
 
 echo -e "\nUpdating jupyter theme..."
 /Users/William/anaconda3/bin/jt -t onedork -vim -T -N
