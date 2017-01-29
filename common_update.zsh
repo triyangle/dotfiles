@@ -18,6 +18,14 @@ echo -e "\nUpdating powerline fonts..."
 cd ~/dotfiles/fonts
 ./install.sh
 
+echo -e "\nUpdating conda & anaconda..."
+conda update conda
+conda update anaconda
+conda update --all
+
+echo -e "\nUpdating jupyter theme..."
+bash ~/dotfiles/jupyter_theme.sh
+
 echo -e "\nUpdating jupyter vim mode..."
 cd $(jupyter --data-dir)/nbextensions/vim_binding
 git pull
