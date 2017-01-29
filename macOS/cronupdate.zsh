@@ -53,6 +53,17 @@ echo -e "\nUpdating Powerline fonts..."
 cd /Users/William/dotfiles/fonts
 ./install.sh
 
+echo -e "\nUpdating conda packages & anaconda..."
+/Users/William/anaconda3/bin/conda update conda
+/Users/William/anaconda3/bin/conda update anaconda
+/Users/William/anaconda3/bin/conda update jupyter_contrib_nbextensions
+
+echo -e "\nUpdating pip packages..."
+/Users/William/anaconda3/bin/pip install jupyterthemes --upgrade
+
+echo -e "\nUpdating jupyter theme..."
+/Users/William/anaconda3/bin/jt -t onedork -vim -T -N
+
 echo -e "\nUpdating jupyter vim mode..."
 cd /Users/William/Library/Jupyter/nbextensions/vim_binding
 /usr/local/bin/git pull
