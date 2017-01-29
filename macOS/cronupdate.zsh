@@ -54,9 +54,9 @@ cd /Users/William/dotfiles/fonts
 ./install.sh
 
 echo -e "\nUpdating conda packages & anaconda..."
-/Users/William/anaconda3/bin/conda update conda
-/Users/William/anaconda3/bin/conda update anaconda
-/Users/William/anaconda3/bin/conda update jupyter_contrib_nbextensions
+/Users/William/anaconda3/bin/conda update -y conda
+/Users/William/anaconda3/bin/conda update -y anaconda
+/Users/William/anaconda3/bin/conda update -y jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
 /Users/William/anaconda3/bin/pip install --upgrade jupyterthemes

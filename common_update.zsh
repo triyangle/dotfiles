@@ -19,9 +19,9 @@ cd ~/dotfiles/fonts
 ./install.sh
 
 echo -e "\nUpdating conda packages & anaconda..."
-conda update conda
-conda update anaconda
-conda update jupyter_contrib_nbextensions
+conda update -y conda
+conda update -y anaconda
+conda update -y jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
 pip install --upgrade jupyterthemes
