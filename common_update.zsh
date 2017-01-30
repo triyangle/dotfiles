@@ -42,4 +42,4 @@ echo -e "\nUpdating npm packages..."
 npm update -g
 
 echo -e "\nUpdating vim plugins..."
-vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean!
+vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall

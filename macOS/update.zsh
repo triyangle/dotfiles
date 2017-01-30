@@ -3,7 +3,7 @@
 source /Users/William/.zprofile
 source /Users/William/.zshrc
 
-zsh ~/dotfiles/brew_update.zsh
+source ~/dotfiles/brew_update.zsh
 
 (set -x; brew cask cleanup;)
 
@@ -36,6 +36,6 @@ do
     fi
 done
 
-zsh ~/dotfiles/common_update.zsh
+source ~/dotfiles/common_update.zsh
 
 echo ""
