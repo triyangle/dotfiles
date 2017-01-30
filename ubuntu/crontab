@@ -1,1 +1,1 @@
-0 0 * * * source /home/william/.zshrc; zsh /home/william/dotfiles/ubuntu/update.zsh > /tmp/stdout.log  2>/tmp/stderr.log
+0 0 * * * zsh /home/william/dotfiles/ubuntu/update.zsh > /tmp/stdout.log  2>/tmp/stderr.log

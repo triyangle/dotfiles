@@ -1,5 +1,8 @@
 #!/usr/bin/zsh
 
+source /home/william/.zprofile
+source /home/william/.zshrc
+
 echo -e "Updating system packages..."
 sudo apt-get update && sudo apt-get upgrade
 

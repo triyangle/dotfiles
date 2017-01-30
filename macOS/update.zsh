@@ -1,5 +1,8 @@
 #!/usr/local/bin/zsh
 
+source /Users/William/.zprofile
+source /Users/William/.zshrc
+
 zsh ~/dotfiles/brew_update.zsh
 
 (set -x; brew cask cleanup;)
