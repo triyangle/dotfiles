@@ -46,9 +46,6 @@ sudo cp ~/.linuxbrew/bin/zsh /usr/bin/zsh
 sudo chsh -s /usr/bin/zsh
 echo "Done"
 
-echo -e "\nInstalling restricted extras..."
-sudo apt-get install ubuntu-restricted-extras
-
 echo -e "\nSyncing settings..."
 tic -o ~/.terminfo ~/dotfiles/tmux-256color.terminfo
 
