@@ -1,16 +1,16 @@
 #!/bin/bash
 
-bash ~/dotfiles/symlink.sh
+source ~/dotfiles/symlink.sh
 
 OS=`uname`
 
 if [ "$OS" == "Darwin" ]; then
-    bash ~/dotfiles/macOS/setup.sh
+    source ~/dotfiles/macOS/setup.sh
 elif [ "$OS" == "Linux" ]; then
-    bash ~/dotfiles/ubuntu/setup.sh
+    source ~/dotfiles/ubuntu/setup.sh
 fi
 
-bash ~/dotfiles/jupyter_setup.sh
+source ~/dotfiles/jupyter_setup.sh
 
-bash ~/dotfiles/prezto_setup.sh
-bash ~/dotfiles/vimsetup.sh
+source ~/dotfiles/prezto_setup.sh
+source ~/dotfiles/vimsetup.sh

@@ -8,4 +8,4 @@ git clone https://github.com/lambdalisue/jupyter-vim-binding vim_binding
 chmod -R go-w vim_binding
 
 pip install jupyterthemes
-bash ~/dotfiles/jupyter_theme.sh
+source ~/dotfiles/jupyter_theme.sh

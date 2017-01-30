@@ -7,7 +7,7 @@ sudo apt-get install build-essential curl git python-setuptools ruby
 ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
 
 echo -e "\nInstalling common brews..."
-bash ~/dotfiles/common_brews.sh
+source ~/dotfiles/common_brews.sh
 
 sudo add-apt-repository ppa:webupd8team/java
 sudo apt-get update && sudo apt-get upgrade
@@ -30,7 +30,7 @@ sudo apt-get remove vim-tiny vim-common vim-gui-common vim-nox
 echo -e "\nInstalling vim..."
 cd ~
 git clone https://github.com/vim/vim.git
-bash ~/dotfiles/ubuntu/vim_install.sh
+source ~/dotfiles/ubuntu/vim_install.sh
 
 echo -e "\nInstalling Java..."
 sudo apt install oracle-java8-installer
