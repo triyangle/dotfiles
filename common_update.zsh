@@ -38,5 +38,8 @@ git pull
 echo -e "\nUpdating gibo..."
 gibo -u
 
+echo -e "\nUpdating npm packages..."
+npm update -g
+
 echo -e "\nUpdating vim plugins..."
 vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean!
