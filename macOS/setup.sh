@@ -35,6 +35,9 @@ brew cask install intellij-idea
 echo -e "\nInstalling flux..."
 brew cask install flux
 
+echo -e "\nInstalling Google Chrome..."
+brew cask install google-chrome
+
 echo -e "\nInstalling Skype..."
 brew cask install skype
 
