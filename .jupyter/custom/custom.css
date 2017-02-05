@@ -1,8 +1,8 @@
 @font-face {
- font-family: 'Droid Sans Mono';
+ font-family: 'Lora';
  font-weight: normal;
  font-style: normal;
- src: local('Droid Sans Mono'), url('fonts/droid-sans-mono.woff') format('woff');
+ src: local('Lora'), url('fonts/lora-regular.ttf') format('truetype');
 }
 @font-face {
  font-family: 'Fira Code';
@@ -17,10 +17,10 @@
  src: local('Exo_2'), url('fonts/exo-II-regular.ttf') format('truetype');
 }
 @font-face {
- font-family: 'Lora';
+ font-family: 'Droid Sans Mono';
  font-weight: normal;
  font-style: normal;
- src: local('Lora'), url('fonts/lora-regular.ttf') format('truetype');
+ src: local('Droid Sans Mono'), url('fonts/droid-sans-mono.woff') format('woff');
 }
 div#notebook {
  font-family: "Exo_2", sans-serif;
