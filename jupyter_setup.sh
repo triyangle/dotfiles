@@ -11,3 +11,4 @@ pip install jupyterthemes
 source ~/dotfiles/jupyter_theme.sh
 
 pip install datascience
+pip install okpy
