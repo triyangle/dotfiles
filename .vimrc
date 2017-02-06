@@ -2,6 +2,7 @@ set nocompatible
 let mapleader = "\<Space>"
 let os = substitute(system('uname'), '\n', '', '')
 
+set timeoutlen=1000 ttimeoutlen=0
 set tabstop=4
 set softtabstop=4
 set shiftwidth=4
@@ -310,6 +311,26 @@ if os == 'Linux'
   set clipboard=unnamedplus
   hi Normal ctermbg=none
   highlight NonText ctermbg=none
+
+  " test cursor change
+  if has("autocmd")
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+      \ if v:insertmode == 'i' |
+      \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+      \ elseif v:insertmode == 'r' |
+      \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+      \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+  endif
 else
   set clipboard=unnamed
+  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
+  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+
+  " for tmux iterm2 cursor
+  " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+  " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
+  " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 endif
