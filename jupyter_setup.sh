@@ -9,3 +9,5 @@ chmod -R go-w vim_binding
 
 pip install jupyterthemes
 source ~/dotfiles/jupyter_theme.sh
+
+pip install datascience

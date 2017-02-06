@@ -25,6 +25,7 @@ conda update -yc conda-forge jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
 pip install --upgrade jupyterthemes
+pip install --upgrade datascience
 
 echo -e "\nUpdating jupyter theme..."
 bash ~/dotfiles/jupyter_theme.sh
