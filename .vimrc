@@ -287,7 +287,7 @@ let g:markdown_fenced_languages =
       \ 'js=javascript',
       \ 'json=javascript']
 
-" vIm-markdown settings
+" vim-markdown settings
 let g:vim_markdown_folding_style_pythonic = 1
 set conceallevel=2
 let g:vim_markdown_math = 1
