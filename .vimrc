@@ -55,6 +55,8 @@ Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': ['markdown'] }
+Plug 'godlygeek/tabular'
+Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -275,6 +277,7 @@ let g:markdown_fenced_languages =
       \ 'python',
       \ 'sql',
       \ 'vim',
+      \ 'viml=vim',
       \ 'bash=sh',
       \ 'tex',
       \ 'zsh',
@@ -283,6 +286,48 @@ let g:markdown_fenced_languages =
       \ 'javascript',
       \ 'js=javascript',
       \ 'json=javascript']
+
+" vIm-markdown settings
+let g:vim_markdown_folding_style_pythonic = 1
+set conceallevel=2
+let g:vim_markdown_math = 1
+let g:vim_markdown_autowrite = 1
+let g:vim_markdown_toc_autofit = 1
+
+let g:vim_markdown_fenced_languages =
+      \ ['java',
+      \ 'scheme',
+      \ 'python',
+      \ 'sql',
+      \ 'vim',
+      \ 'viml=vim',
+      \ 'bash=sh',
+      \ 'tex',
+      \ 'zsh',
+      \ 'html',
+      \ 'css',
+      \ 'javascript',
+      \ 'js=javascript',
+      \ 'json=javascript']
+
+" Tabularize mappings
+nmap <Leader>a= :Tabularize /=<CR>
+vmap <Leader>a= :Tabularize /=<CR>
+nmap <Leader>a: :Tabularize /:\zs<CR>
+vmap <Leader>a: :Tabularize /:\zs<CR>
+
+inoremap <silent> <Bar>   <Bar><Esc>:call <SID>align()<CR>a
+
+function! s:align()
+  let p = '^\s*|\s.*\s|\s*$'
+  if getline('.') =~# '^\s*|' && (getline(line('.')-1) =~# p || getline(line('.')+1) =~# p)
+    let column = strlen(substitute(getline('.')[0:col('.')],'[^|]','','g'))
+    let position = strlen(matchstr(getline('.')[0:col('.')],'.*|\s*\zs.*'))
+    Tabularize/|/l1
+    normal! 0
+    call search(repeat('[^|]*|',column).'\s\{-\}'.repeat('.',position),'ce',line('.'))
+  endif
+endfunction
 
 "Easy buffer switching
 map <leader>n :bn<cr>
