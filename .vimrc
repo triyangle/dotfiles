@@ -57,6 +57,8 @@ Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': ['markdown'] }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
+Plug 'yuttie/comfortable-motion.vim'
+Plug 'tpope/vim-rsi'
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -69,6 +71,9 @@ else
 endif
 
 call plug#end()
+
+" OP visual mode .
+vnoremap . :norm.<CR>
 
 "Show airline bar
 set laststatus=2
@@ -222,15 +227,23 @@ map <Leader>k <Plug>(easymotion-k)
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+map n  <Plug>(incsearch-nohl-n)zz
+map N  <Plug>(incsearch-nohl-N)zz
+map *  <Plug>(incsearch-nohl-*)zz
+map #  <Plug>(incsearch-nohl-#)zz
+map g* <Plug>(incsearch-nohl-g*)zz
+map g# <Plug>(incsearch-nohl-g#)zz
 nnoremap gD gD:nohl<CR>
 nnoremap gd gd:nohl<CR>
 nnoremap <silent> <ESC><ESC> :nohl<CR>
+
+noremap [[ [[zz
+noremap ]] ]]zz
+noremap {{ {{zz
+noremap }} }}zz
+
+map [s [szz
+map ]s ]szz
 
 " insearch easymotion
 map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
