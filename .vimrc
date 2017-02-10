@@ -2,6 +2,7 @@ set nocompatible
 let mapleader = "\<Space>"
 let os = substitute(system('uname'), '\n', '', '')
 
+set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
 set tabstop=4
 set softtabstop=4
@@ -227,23 +228,15 @@ map <Leader>k <Plug>(easymotion-k)
 " :h g:incsearch#auto_nohlsearch
 set hlsearch
 let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)zz
-map N  <Plug>(incsearch-nohl-N)zz
-map *  <Plug>(incsearch-nohl-*)zz
-map #  <Plug>(incsearch-nohl-#)zz
-map g* <Plug>(incsearch-nohl-g*)zz
-map g# <Plug>(incsearch-nohl-g#)zz
+map n  <Plug>(incsearch-nohl-n)
+map N  <Plug>(incsearch-nohl-N)
+map *  <Plug>(incsearch-nohl-*)
+map #  <Plug>(incsearch-nohl-#)
+map g* <Plug>(incsearch-nohl-g*)
+map g# <Plug>(incsearch-nohl-g#)
 nnoremap gD gD:nohl<CR>
 nnoremap gd gd:nohl<CR>
 nnoremap <silent> <ESC><ESC> :nohl<CR>
-
-noremap [[ [[zz
-noremap ]] ]]zz
-noremap {{ {{zz
-noremap }} }}zz
-
-map [s [szz
-map ]s ]szz
 
 " insearch easymotion
 map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
