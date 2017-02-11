@@ -121,8 +121,8 @@ vnoremap k gk
 vnoremap 0 g0
 vnoremap $ g$
 vnoremap ^ g^
-vnoremap I g^i
-vnoremap A g$a
+" vnoremap I g^i
+" vnoremap A g$a
 
 vnoremap gj j
 vnoremap gk k
