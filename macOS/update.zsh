@@ -2,6 +2,7 @@
 
 source /Users/William/.zprofile
 source /Users/William/.zshrc
+source /Users/William/.zlogin
 
 source ~/dotfiles/brew_update.zsh
 
