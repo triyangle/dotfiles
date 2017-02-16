@@ -4,3 +4,6 @@
 [submodule "fonts"]
 	path = fonts
 	url = https://github.com/powerline/fonts.git
+[submodule "k"]
+	path = k
+	url = https://github.com/supercrabtree/k.git
