@@ -81,7 +81,7 @@
 		<integer>1</integer>
 	</dict>
 	<key>NSWindow Frame NSFontPanel</key>
-	<string>1184 37 445 77 0 0 1680 1027 </string>
+	<string>1197 179 445 77 0 0 1680 1027 </string>
 	<key>NSWindow Frame Preferences</key>
 	<string>269 182 606 456 0 0 1280 777 </string>
 	<key>NSWindow Frame SUUpdateAlert</key>
@@ -89,7 +89,7 @@
 	<key>NSWindow Frame SessionsPreferences</key>
 	<string>269 139 606 456 0 0 1680 1050 </string>
 	<key>NSWindow Frame SharedPreferences</key>
-	<string>676 97 937 465 0 0 1680 1027 </string>
+	<string>635 117 796 473 0 0 1680 1027 </string>
 	<key>NSWindow Frame UKCrashReporter</key>
 	<string>80 193 592 584 0 0 1280 777 </string>
 	<key>NSWindow Frame iTerm Window 0</key>
@@ -327,6 +327,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1093,6 +1095,8 @@
 				<key>Red Component</key>
 				<real>0.0</real>
 			</dict>
+			<key>Cursor Type</key>
+			<integer>2</integer>
 			<key>Custom Command</key>
 			<string>No</string>
 			<key>Custom Directory</key>
@@ -1771,13 +1775,13 @@
 	<key>SUHasLaunchedBefore</key>
 	<true/>
 	<key>SULastCheckTime</key>
-	<date>2017-02-04T03:24:54Z</date>
+	<date>2017-02-17T03:06:13Z</date>
 	<key>SUSendProfileInfo</key>
 	<false/>
 	<key>Selection Respects Soft Boundaries</key>
 	<false/>
 	<key>ShowFullScreenTabBar</key>
-	<true/>
+	<false/>
 	<key>SmartPlacement</key>
 	<false/>
 	<key>SwitchPaneModifier</key>
@@ -1799,6 +1803,6 @@
 	<key>findRegex_iTerm</key>
 	<false/>
 	<key>iTerm Version</key>
-	<string>3.0.13</string>
+	<string>3.0.14</string>
 </dict>
 </plist>
