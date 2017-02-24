@@ -10,5 +10,8 @@ chmod -R go-w vim_binding
 pip install jupyterthemes
 source ~/dotfiles/jupyter_theme.sh
 
-pip install datascience
-pip install okpy
+# data8
+pip install datascience okpy
+
+# ee16a
+pip install mpld3 plotly

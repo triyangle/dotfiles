@@ -24,9 +24,7 @@ conda update -y anaconda
 conda update -yc conda-forge jupyter_contrib_nbextensions
 
 echo -e "\nUpdating pip packages..."
-pip install --upgrade jupyterthemes
-pip install --upgrade datascience
-pip install --upgrade okpy
+pip install --upgrade jupyterthemes datascience okpy mpld3 plotly
 
 echo -e "\nUpdating jupyter theme..."
 bash ~/dotfiles/jupyter_theme.sh
