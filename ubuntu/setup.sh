@@ -38,6 +38,9 @@ sudo apt install oracle-java8-installer
 echo -e "\nInstalling IntelliJ..."
 brew install athrunsun/linuxbinary/intellij-idea
 
+echo -e "\nInstalling zathura..."
+sudo apt-get install zathura
+
 echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk
 
