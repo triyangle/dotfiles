@@ -60,6 +60,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
+Plug 'lervag/vimtex'
 
 " OS specific plugins... for now
 if os == 'Linux'

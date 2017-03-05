@@ -44,6 +44,9 @@ sudo apt-get install zathura
 echo -e "\nInstalling redshift..."
 sudo apt-get install redshift-gtk
 
+echo -e "\nInstalling TexLive..."
+brew install texlive
+
 echo -e "\nFinishing zsh setup..."
 sudo cp ~/.linuxbrew/bin/zsh /usr/bin/zsh
 sudo chsh -s /usr/bin/zsh

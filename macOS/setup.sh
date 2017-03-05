@@ -38,6 +38,9 @@ brew cask install flux
 echo -e "\nInstalling Google Chrome..."
 brew cask install google-chrome
 
+echo -e "\nInstalling MacTeX..."
+brew cask install mactex
+
 echo -e "\nInstalling Skype..."
 brew cask install skype
 
