@@ -1,10 +1,4 @@
 @font-face {
- font-family: 'Lora';
- font-weight: normal;
- font-style: normal;
- src: local('Lora'), url('fonts/Lora-Regular.ttf') format('truetype');
-}
-@font-face {
  font-family: 'Fira Code';
  font-weight: normal;
  font-style: normal;
@@ -21,6 +15,12 @@
  font-weight: normal;
  font-style: normal;
  src: local('Exo_2'), url('fonts/exo-II-regular.ttf') format('truetype');
+}
+@font-face {
+ font-family: 'Lora';
+ font-weight: normal;
+ font-style: normal;
+ src: local('Lora'), url('fonts/Lora-Regular.ttf') format('truetype');
 }
 div#notebook {
  font-family: "Exo_2", sans-serif;
