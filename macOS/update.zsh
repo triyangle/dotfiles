@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/usr/bin/env zsh
 
 source /Users/William/.zprofile
 source /Users/William/.zshrc

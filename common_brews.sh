@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo -e "\nUpdating homebrew and homebrew cask..."
 brew update
