@@ -26,6 +26,11 @@ set breakindent
 set spell spelllang=en_us
 set complete+=kspell
 
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
 set wildmenu
 set wildignorecase
 set wildmode=longest:full,full
@@ -101,6 +106,12 @@ augroup rainbow_lisp
 augroup END
 :iabbrev </ </<C-X><C-O>
 
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+nnoremap <leader>s :mksession<CR>
+
 nnoremap j gj
 nnoremap k gk
 nnoremap 0 g0
@@ -162,18 +173,18 @@ nmap <F8> :TagbarToggle<CR>
 
 " fzf settings
 let g:fzf_colors =
-\ { 'fg':      ['fg', 'Normal'],
-  \ 'bg':      ['bg', 'Normal'],
-  \ 'hl':      ['fg', 'Comment'],
-  \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-  \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-  \ 'hl+':     ['fg', 'Statement'],
-  \ 'info':    ['fg', 'PreProc'],
-  \ 'prompt':  ['fg', 'Conditional'],
-  \ 'pointer': ['fg', 'Exception'],
-  \ 'marker':  ['fg', 'Keyword'],
-  \ 'spinner': ['fg', 'Label'],
-  \ 'header':  ['fg', 'Comment'] }
+      \ { 'fg':      ['fg', 'Normal'],
+      \ 'bg':      ['bg', 'Normal'],
+      \ 'hl':      ['fg', 'Comment'],
+      \ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+      \ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+      \ 'hl+':     ['fg', 'Statement'],
+      \ 'info':    ['fg', 'PreProc'],
+      \ 'prompt':  ['fg', 'Conditional'],
+      \ 'pointer': ['fg', 'Exception'],
+      \ 'marker':  ['fg', 'Keyword'],
+      \ 'spinner': ['fg', 'Label'],
+      \ 'header':  ['fg', 'Comment'] }
 
 " Fuzzy-find with fzf
 map <C-_> :FZF ~<cr>
@@ -269,11 +280,11 @@ map <Leader><Leader>g/ <Plug>(incsearch-easymotion-stay)
 
 function! s:config_fuzzyall(...) abort
   return extend(copy({
-  \   'converters': [
-  \     incsearch#config#fuzzy#converter(),
-  \     incsearch#config#fuzzyspell#converter()
-  \   ],
-  \ }), get(a:, 1, {}))
+        \   'converters': [
+        \     incsearch#config#fuzzy#converter(),
+        \     incsearch#config#fuzzyspell#converter()
+        \   ],
+        \ }), get(a:, 1, {}))
 endfunction
 
 noremap <silent><expr> f/ incsearch#go(<SID>config_fuzzyall())
@@ -282,12 +293,12 @@ noremap <silent><expr> fg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1})) vi
 
 function! s:config_easyfuzzymotion(...) abort
   return extend(copy({
-  \   'converters': [incsearch#config#fuzzy#converter()],
-  \   'modules': [incsearch#config#easymotion#module()],
-  \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-  \   'is_expr': 0,
-  \   'is_stay': 1
-  \ }), get(a:, 1, {}))
+        \   'converters': [incsearch#config#fuzzy#converter()],
+        \   'modules': [incsearch#config#easymotion#module()],
+        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+        \   'is_expr': 0,
+        \   'is_stay': 1
+        \ }), get(a:, 1, {}))
 endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
@@ -387,15 +398,23 @@ if os == 'Linux'
   hi Normal ctermbg=none
   highlight NonText ctermbg=none
 
-  " test cursor change
+  " tmux cursor change?
+"  if exists('$TMUX')
+"    let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
+"    let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+"  else
+"    let &t_SI = "\<Esc>]50;CursorShape=1\x7"
+"    let &t_EI = "\<Esc>]50;CursorShape=0\x7"
+"  endif
+
   if has("autocmd")
     au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
     au InsertEnter,InsertChange *
-      \ if v:insertmode == 'i' |
-      \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-      \ elseif v:insertmode == 'r' |
-      \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-      \ endif
+          \ if v:insertmode == 'i' |
+          \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+          \ elseif v:insertmode == 'r' |
+          \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+          \ endif
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
   endif
 else
