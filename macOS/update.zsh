@@ -10,7 +10,7 @@ source ~/dotfiles/brew_update.zsh
 
 echo ""
 
-(set -x; brew upgrade vim --with-custom-python;)
+(set -x; brew upgrade vim --with-python3;)
 
 echo ""
 
