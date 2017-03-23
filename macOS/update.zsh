@@ -18,7 +18,8 @@ echo ""
 
 echo ""
 
-brew cu -y
+echo -e "\nUpgrading casks..."
+source ~/dotfiles/cask_upgrade/cask_upgrade.sh
 
 source ~/dotfiles/common_update.zsh
 
