@@ -11,6 +11,9 @@ bash ~/dotfiles/common_brews.sh
 echo -e "\nInstalling homebrew cask..."
 brew tap caskroom/cask
 
+echo -e "\nInstalling brew-cask-upgrade..."
+brew tap buo/cask-upgrade
+
 echo -e "\nInstalling iTerm 2..."
 brew cask install iterm2
 
