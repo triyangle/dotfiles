@@ -1,3 +1,5 @@
+#!/usr/bin/env bash
+
 echo -e "\nInstalling prezto..."
 git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 source ~/dotfiles/prezto.zsh

@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
 echo -e "\nSetting up Jupyter notebook..."
 conda install -c conda-forge jupyter_contrib_nbextensions

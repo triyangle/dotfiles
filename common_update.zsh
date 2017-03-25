@@ -1,4 +1,4 @@
-#!/usr/local/bin/zsh
+#!/usr/bin/env zsh
 
 echo -e "\nUpdating prezto..."
 cd ~/.zprezto
@@ -31,8 +31,6 @@ bash ~/dotfiles/jupyter_theme.sh
 
 echo -e "\nUpdating jupyter vim mode..."
 cd $(jupyter --data-dir)/nbextensions/vim_binding
-git pull
-cd ~/vim_binding
 git pull
 
 echo -e "\nUpdating gibo..."

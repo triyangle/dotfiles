@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/usr/bin/env bash
 OS=`uname`
 
 echo -e "Initiliazing vim setup..."
