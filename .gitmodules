@@ -10,3 +10,6 @@
 [submodule "cask_upgrade"]
 	path = cask_upgrade
 	url = https://gist.github.com/9c72e469b1cbec35c7c430ce03de2a6b.git
+[submodule "zsh-interactive-cd"]
+	path = zsh-interactive-cd
+	url = https://github.com/changyuheng/zsh-interactive-cd.git
