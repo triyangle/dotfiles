@@ -5,7 +5,7 @@ git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}
 source ~/dotfiles/prezto.zsh
 cd ~/.zprezto
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
-git remote add upstream https://github.com/zsh-users/prezto.git
+git remote add upstream https://github.com/sorin-ionescu/prezto.git
 
 cd ~/.zprezto/modules/prompt/external/statusline
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/statusline.git

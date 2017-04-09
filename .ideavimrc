@@ -27,6 +27,11 @@ set breakindent
 set spell spelllang=en_us
 set complete+=kspell
 
+set foldenable
+set foldlevelstart=10
+set foldnestmax=10
+set foldmethod=indent
+
 set wildmenu
 set wildignorecase
 set wildmode=longest:full,full
@@ -54,6 +59,12 @@ autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text setlocal wrap linebreak nolist
 
 :iabbrev </ </<C-X><C-O>
+
+nnoremap <leader>ev :vsp $MYVIMRC<CR>
+nnoremap <leader>ez :vsp ~/.zshrc<CR>
+nnoremap <leader>sv :source $MYVIMRC<CR>
+
+nnoremap <leader>s :mksession<CR>
 
 nnoremap j gj
 nnoremap k gk
@@ -142,11 +153,11 @@ if os == 'Linux'
   if has("autocmd")
     au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
     au InsertEnter,InsertChange *
-      \ if v:insertmode == 'i' |
-      \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-      \ elseif v:insertmode == 'r' |
-      \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-      \ endif
+          \ if v:insertmode == 'i' |
+          \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+          \ elseif v:insertmode == 'r' |
+          \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+          \ endif
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
   endif
 else
