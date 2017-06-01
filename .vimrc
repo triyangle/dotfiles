@@ -69,7 +69,7 @@ Plug 'lervag/vimtex'
 
 " OS specific plugins... for now
 if os == 'Linux'
-  Plug '/home/will/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+  Plug '/home/william/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
   Plug 'edkolev/tmuxline.vim'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'christoomey/vim-tmux-navigator'
@@ -97,7 +97,7 @@ set cursorline
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,vim,zsh,sh,bash setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
@@ -398,16 +398,16 @@ if os == 'Linux'
   hi Normal ctermbg=none
   highlight NonText ctermbg=none
 
-  "if has("autocmd")
-  "  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  "  au InsertEnter,InsertChange *
-  "        \ if v:insertmode == 'i' |
-  "        \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-  "        \ elseif v:insertmode == 'r' |
-  "        \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-  "        \ endif
-  "  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-  "endif
+  if has("autocmd")
+    au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+    au InsertEnter,InsertChange *
+          \ if v:insertmode == 'i' |
+          \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+          \ elseif v:insertmode == 'r' |
+          \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+          \ endif
+    au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+  endif
 else
   set clipboard=unnamed
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
