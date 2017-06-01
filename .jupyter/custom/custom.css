@@ -153,7 +153,7 @@ div.running_list_info.toolbar_info {
  content: "\f15b";
  position: relative;
  top: 0px;
- color: transparent !important;
+ color: #292d3a !important;
 }
 #project_name {
  display: inline-flex;
@@ -259,6 +259,15 @@ body > #header {
  width: 20%;
  margin: 6px 0 0;
  margin-top: 1px;
+}
+.list_header > div .item_link,
+.list_item > div .item_link {
+ margin-left: -1px;
+ vertical-align: middle;
+ line-height: 22px;
+ font-size: 10.5pt;
+ display: inline-table;
+ position: static;
 }
 #button-select-all {
  height: 34px;
@@ -518,34 +527,25 @@ div.notification_widget.info,
 .notification_widget.info {
  display: none !important;
 }
-#notification_trusted {
- font-family: sans-serif;
- font-size: 13pt;
- color: #4c8be2;
- border: none;
- background: transparent;
- background-color: transparent;
- margin-bottom: 0px !important;
- margin-top: 6px !important;
-}
 .edit_mode .modal_indicator:before {
- font-size: 19px;
- color: #33517c;
+ font-size: 18px;
+ color: #7aa05d;
  content: "E";
+ opacity: 0.35;
  padding-bottom: 0px;
  vertical-align: -webkit-baseline-middle;
  margin-left: 1px;
- margin-bottom: 2px;
+ margin-bottom: 0px;
 }
 .command_mode .modal_indicator:before {
  font-family: sans-serif;
- font-size: 19px;
- color: #4c8be2;
+ font-size: 18px;
+ color: #7aa05d;
  content: "C";
  padding-bottom: 0px;
  vertical-align: -webkit-baseline-middle;
  margin-left: 1px;
- margin-bottom: 2px;
+ margin-bottom: 0px;
 }
 .item_icon {
  color: #4c8be2;
@@ -563,6 +563,8 @@ div.notification_widget.info,
  -moz-osx-font-smoothing: grayscale;
  content: "\f10c";
  vertical-align: middle;
+ position: static;
+ display: inherit;
 }
 .item_buttons .running-indicator {
  padding-top: 4px;
@@ -571,40 +573,51 @@ div.notification_widget.info,
  text-rendering: auto;
  -webkit-font-smoothing: antialiased;
 }
+#notification_trusted {
+ font-family: sans-serif;
+ font-size: 17px;
+ color: #4c8be2;
+ border: none;
+ background: transparent;
+ background-color: transparent;
+ margin-bottom: 0px !important;
+ margin-top: 8px !important;
+ vertical-align: -webkit-baseline-middle !important;
+}
 #modal_indicator {
  float: right !important;
  color: #4c8be2;
  background: #1c1f28;
  background-color: #1c1f28;
- margin-top: 6px !important;
- margin-left: 1px;
+ margin-top: 5px !important;
+ margin-left: 0px;
 }
 #kernel_indicator {
- font-size: 13pt;
+ font-size: 15px;
  float: right !important;
  color: #7aa05d;
  background: #1c1f28;
  background-color: #1c1f28;
  border-left: 2px solid #7aa05d;
- padding-bottom: 2px;
+ padding-bottom: 4px;
  margin-top: 5px !important;
  margin-left: -2px;
 }
 #kernel_indicator .kernel_indicator_name {
- font-size: 13pt;
+ font-size: 17px;
  color: #7aa05d;
  background: #1c1f28;
  background-color: #1c1f28;
  padding-left: 5px;
  padding-right: 5px;
- margin-top: 5px;
+ margin-top: 4px;
  vertical-align: -webkit-baseline-middle;
  padding-bottom: 0px;
 }
 .kernel_idle_icon:before {
  display: inline-block;
- font: normal normal normal 20px/1 FontAwesome;
- font-size: 19px;
+ font: normal normal normal 16px/1 FontAwesome;
+ font-size: 16px;
  text-rendering: auto;
  -webkit-font-smoothing: antialiased;
  -moz-osx-font-smoothing: grayscale;
@@ -614,8 +627,8 @@ div.notification_widget.info,
 }
 .kernel_busy_icon:before {
  display: inline-block;
- font: normal normal normal 20px/1 FontAwesome;
- font-size: 19px;
+ font: normal normal normal 16px/1 FontAwesome;
+ font-size: 16px;
  text-rendering: auto;
  -webkit-font-smoothing: antialiased;
  -moz-osx-font-smoothing: grayscale;
@@ -1132,21 +1145,24 @@ div.output.output_scroll {
  box-shadow: none;
 }
 ::-webkit-scrollbar {
- width: 10px;
- height: 9px;
- background-color: transparent;
+ width: 11px;
+ max-height: 9px;
+ background-color: #292d3a;
  border-radius: 3px;
+ border: none;
 }
 ::-webkit-scrollbar-track {
- background: transparent;
+ background: #292d3a;
+ border: none;
+ width: 11px;
+ max-height: 9px;
 }
 ::-webkit-scrollbar-thumb {
  border-radius: 2px;
- border: 2px solid #3f4555;
+ border: none;
  background: #3f4555;
  background-clip: content-box;
- min-height: 100px;
- width: 10px;
+ width: 11px;
 }
 HTML,
 body,
@@ -2198,7 +2214,7 @@ body > div.modal.cmd-palette.typeahead-field {
 .typeahead-container button {
  font-family: sans-serif;
  font-size: 28pt;
- background-color: transparent;
+ background-color: #292d3a;
  border: none;
  display: inline-block;
  line-height: inherit;
@@ -2429,6 +2445,41 @@ div#short-key-bindings-intro.well,
  outline: 1px solid #7aa05d;
  outline-offset: -1px;
 }
+.kernel_idle_icon:before {
+ display: inline-block;
+ font: normal normal normal 20px/1 FontAwesome;
+ font-size: 20px;
+ text-rendering: auto;
+ -webkit-font-smoothing: antialiased;
+ cursor: pointer;
+ margin-left: 2px !important;
+ opacity: .5;
+}
+.kernel_busy_icon:before {
+ display: inline-block;
+ font: normal normal normal 20px/1 FontAwesome;
+ font-size: 20px;
+ -webkit-animation: pulsate 2s infinite ease-out;
+ animation: pulsate 2s infinite ease-out;
+ text-rendering: auto;
+ -webkit-font-smoothing: antialiased;
+ cursor: pointer;
+ margin-left: 2px !important;
+}
+@-webkit-keyframes pulsate {
+ 0% {
+  -webkit-transform: scale(0.75,.75);
+  opacity: 0.3;
+ }
+ 50% {
+  -webkit-transform: scale(1.05,1.05);
+  opacity: 1.0;
+ }
+ 100% {
+  -webkit-transform: scale(.75,.75);
+  opacity: 0.3;
+ }
+}
 div.CodeMirror,
 div.CodeMirror pre {
  font-family: monospace, monospace;
@@ -2437,10 +2488,10 @@ div.CodeMirror pre {
  color: #b5c2d9;
 }
 div.CodeMirror-lines {
- padding-bottom: .6em;
+ padding-bottom: .9em;
  padding-left: .5em;
  padding-right: 1.5em;
- padding-top: 4px;
+ padding-top: .7em;
 }
 span.ansiblack,
 .ansi-black-fg {
@@ -2592,7 +2643,7 @@ div.CodeMirror-linenumber,
  color: #94c273;
 }
 .cm-s-ipython span.cm-meta {
- color: #51b6c3;
+ color: #ddd7a3;
 }
 .cm-s-ipython span.cm-operator {
  color: #61afef;
@@ -2607,7 +2658,7 @@ div.CodeMirror-linenumber,
  color: #ea8080;
 }
 .cm-s-ipython span.cm-variable-3 {
- color: #51b6c3;
+ color: #cc89e0;
 }
 .cm-s-ipython span.cm-def {
  color: #61afef;
@@ -2668,7 +2719,7 @@ div.cell.text_cell .cm-s-default span.cm-variable-2 {
  color: #abb7ce;
 }
 div.cell.text_cell .cm-s-default span.cm-variable-3 {
- color: #51b6c3;
+ color: #cc89e0;
 }
 .cm-s-default span.cm-comment {
  color: #526488;
@@ -2768,7 +2819,7 @@ span.save_widget span.filename:hover {
     MathJax.Hub.Config({
         "HTML-CSS": {
             /*preferredFont: "TeX",*/
-            availableFonts: ["TeX", "STIX"],
+            /*availableFonts: ["TeX", "STIX"],*/
             styles: {
                 scale: 110,
                 ".MathJax_Display": {
