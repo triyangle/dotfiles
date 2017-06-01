@@ -12,12 +12,7 @@ source ~/dotfiles/brew_update.zsh
 brew upgrade
 
 echo -e "\nUpdating vim..."
-cd ~/vim
-git pull
-
-sudo make uninstall
-make distclean
-source ~/dotfiles/ubuntu/vim_install.sh
+source ~/dotfiles/ubuntu/vim_update.zsh
 
 source ~/dotfiles/common_update.zsh
 
