@@ -1,6 +1,7 @@
 #!/usr/bin/env zsh
 
 cd ~/vim
+
 git remote update
 
 UPSTREAM=${1:-'@{u}'}
