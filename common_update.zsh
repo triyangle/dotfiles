@@ -26,7 +26,7 @@ echo -e "\nUpdating pip packages..."
 pip install --upgrade datascience okpy mpld3 plotly
 
 echo -e "\nUpdating jupyter theme..."
-source ~/dotfiles/jupyter_themes_update.sh
+source ~/dotfiles/jupyter_themes_update.zsh
 
 echo -e "\nUpdating jupyter vim mode..."
 cd $(jupyter --data-dir)/nbextensions/vim_binding
