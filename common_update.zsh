@@ -17,20 +17,20 @@ echo -e "\nUpdating submodules..."
 cd ~/dotfiles
 git submodule foreach git pull origin master
 
-echo -e "\nUpdating conda packages & anaconda..."
-conda update -y conda
-conda update -y anaconda
-conda update -yc conda-forge jupyter_contrib_nbextensions
+#echo -e "\nUpdating conda packages & anaconda..."
+#conda update -y conda
+#conda update -y anaconda
+#conda update -yc conda-forge jupyter_contrib_nbextensions
 
-echo -e "\nUpdating pip packages..."
-pip install --upgrade datascience okpy mpld3 plotly
+#echo -e "\nUpdating pip packages..."
+#pip install --upgrade datascience okpy mpld3 plotly
 
-echo -e "\nUpdating jupyter theme..."
-source ~/dotfiles/jupyter_themes_update.zsh
+#echo -e "\nUpdating jupyter theme..."
+#source ~/dotfiles/jupyter_themes_update.zsh
 
-echo -e "\nUpdating jupyter vim mode..."
-cd $(jupyter --data-dir)/nbextensions/vim_binding
-git pull
+#echo -e "\nUpdating jupyter vim mode..."
+#cd $(jupyter --data-dir)/nbextensions/vim_binding
+#git pull
 
 echo -e "\nUpdating gibo..."
 gibo -u
