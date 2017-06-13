@@ -14,6 +14,7 @@ set ruler
 set mouse=a
 set incsearch
 set ignorecase
+set infercase
 set smartcase
 set autoread
 au CursorHold * checktime
@@ -34,6 +35,12 @@ set foldmethod=indent
 set wildmenu
 set wildignorecase
 set wildmode=longest:full,full
+
+if has('unnamedplus')
+    set clipboard=unnamed,unnamedplus
+else
+    set clipboard=unnamed
+endif
 
 call plug#begin()
 
@@ -81,6 +88,11 @@ call plug#end()
 
 " OP visual mode .
 vnoremap . :norm.<CR>
+xnoremap . :norm.<CR>
+
+xnoremap Q :'<,'>:normal @q<CR>
+
+autocmd VimResized * wincmd =
 
 "Show airline bar
 set laststatus=2
@@ -112,37 +124,44 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 nnoremap <leader>s :mksession<CR>
 
-nnoremap j gj
-nnoremap k gk
+nnoremap <expr> j v:count ? 'j' : 'gj'
+nnoremap <expr> k v:count ? 'k' : 'gk'
+
 nnoremap 0 g0
 nnoremap $ g$
 nnoremap ^ g^
 nnoremap I g^i
 nnoremap A g$a
 
-nnoremap gj j
-nnoremap gk k
+nnoremap <expr> gj v:count ? 'gj' : 'j'
+nnoremap <expr> gk v:count ? 'gk' : 'k'
+
 nnoremap g0 0
 nnoremap g$ $
 nnoremap g^ ^
 nnoremap gI I
 nnoremap gA A
 
-vnoremap j gj
-vnoremap k gk
+vnoremap <expr> j v:count ? 'j' : 'gj'
+vnoremap <expr> k v:count ? 'k' : 'gk'
+
 vnoremap 0 g0
 vnoremap $ g$
 vnoremap ^ g^
 " vnoremap I g^i
 " vnoremap A g$a
 
-vnoremap gj j
-vnoremap gk k
+vnoremap <expr> gj v:count ? 'gj' : 'j'
+vnoremap <expr> gk v:count ? 'gk' : 'k'
+
 vnoremap g0 0
 vnoremap g$ $
 vnoremap g^ ^
 vnoremap gI I
 vnoremap gA A
+
+noremap <F3> :call Spelling()<CR>
+noremap <leader>3 :call Spelling()<CR>
 
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
@@ -394,7 +413,6 @@ nnoremap O O<esc>S
 
 " OS specific settings
 if os == 'Linux'
-  set clipboard=unnamedplus
   hi Normal ctermbg=none
   highlight NonText ctermbg=none
 
@@ -409,7 +427,6 @@ if os == 'Linux'
   "  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
   "endif
 else
-  set clipboard=unnamed
   let &t_SI = "\<Esc>]50;CursorShape=1\x7"
   let &t_SR = "\<Esc>]50;CursorShape=2\x7"
   let &t_EI = "\<Esc>]50;CursorShape=0\x7"
@@ -419,3 +436,27 @@ else
   " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
   " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
 endif
+
+function! Spelling()
+    setlocal spell!
+    if &spell
+        set complete+=kspell
+        echo "Spell mode enabled"
+    else
+        set complete-=kspell
+        echo "Spell mode disabled"
+    endif
+endfunction
+
+" Automatically install vim-plug and run PlugInstall if vim-plug is not found.
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+augroup autoSaveAndRead
+    autocmd!
+    autocmd TextChanged,InsertLeave,FocusLost * silent! wall
+    autocmd CursorHold * silent! checktime
+augroup END
