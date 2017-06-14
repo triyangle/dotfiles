@@ -37,9 +37,9 @@ set wildignorecase
 set wildmode=longest:full,full
 
 if has('unnamedplus')
-    set clipboard=unnamed,unnamedplus
+  set clipboard=unnamed,unnamedplus
 else
-    set clipboard=unnamed
+  set clipboard=unnamed
 endif
 
 call plug#begin()
@@ -438,25 +438,25 @@ else
 endif
 
 function! Spelling()
-    setlocal spell!
-    if &spell
-        set complete+=kspell
-        echo "Spell mode enabled"
-    else
-        set complete-=kspell
-        echo "Spell mode disabled"
-    endif
+  setlocal spell!
+  if &spell
+    set complete+=kspell
+    echo "Spell mode enabled"
+  else
+    set complete-=kspell
+    echo "Spell mode disabled"
+  endif
 endfunction
 
 " Automatically install vim-plug and run PlugInstall if vim-plug is not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
   silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
-    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
   autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 augroup autoSaveAndRead
-    autocmd!
-    autocmd TextChanged,InsertLeave,FocusLost * silent! wall
-    autocmd CursorHold * silent! checktime
+  autocmd!
+  autocmd TextChanged,InsertLeave,FocusLost * silent! wall
+  autocmd CursorHold * silent! checktime
 augroup END
