@@ -76,8 +76,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 nnoremap <leader>s :mksession<CR>
 
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+" nnoremap <expr> j v:count ? 'j' : 'gj'
+" nnoremap <expr> k v:count ? 'k' : 'gk'
 
 nnoremap 0 g0
 nnoremap $ g$
@@ -85,8 +85,8 @@ nnoremap ^ g^
 nnoremap I g^i
 nnoremap A g$a
 
-nnoremap <expr> gj v:count ? 'gj' : 'j'
-nnoremap <expr> gk v:count ? 'gk' : 'k'
+" nnoremap <expr> gj v:count ? 'gj' : 'j'
+" nnoremap <expr> gk v:count ? 'gk' : 'k'
 
 nnoremap g0 0
 nnoremap g$ $
@@ -94,8 +94,8 @@ nnoremap g^ ^
 nnoremap gI I
 nnoremap gA A
 
-vnoremap <expr> j v:count ? 'j' : 'gj'
-vnoremap <expr> k v:count ? 'k' : 'gk'
+" vnoremap <expr> j v:count ? 'j' : 'gj'
+" vnoremap <expr> k v:count ? 'k' : 'gk'
 
 vnoremap 0 g0
 vnoremap $ g$
@@ -103,8 +103,8 @@ vnoremap ^ g^
 " vnoremap I g^i
 " vnoremap A g$a
 
-vnoremap <expr> gj v:count ? 'gj' : 'j'
-vnoremap <expr> gk v:count ? 'gk' : 'k'
+" vnoremap <expr> gj v:count ? 'gj' : 'j'
+" vnoremap <expr> gk v:count ? 'gk' : 'k'
 
 vnoremap g0 0
 vnoremap g$ $
