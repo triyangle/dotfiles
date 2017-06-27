@@ -186,6 +186,7 @@ let g:airline_powerline_fonts = 1
 
 let g:ycm_autoclose_preview_window_after_completion = 1
 let g:ycm_seed_identifiers_with_syntax = 1
+let g:ycm_python_binary_path = 'python3'
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -456,6 +457,6 @@ endif
 
 augroup autoSaveAndRead
   autocmd!
-  autocmd TextChanged,InsertLeave,FocusLost * silent! wall
+  " autocmd TextChanged,InsertLeave,FocusLost * silent! wall
   autocmd CursorHold * silent! checktime
 augroup END
