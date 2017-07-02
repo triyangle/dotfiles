@@ -3,11 +3,11 @@
 cd ~/vim
 ./configure --with-features=huge \
             --enable-multibyte \
-            --enable-rubyinterp \
-            --enable-pythoninterp \
-            --enable-python3interp \
-            --enable-perlinterp \
-            --enable-luainterp \
+            --enable-rubyinterp=yes \
+            --enable-pythoninterp=yes \
+            --enable-python3interp=yes \
+            --enable-perlinterp=yes \
+            --enable-luainterp=yes \
             --enable-gui=gtk2 --enable-cscope --prefix=/usr
 make && sudo make install
 
