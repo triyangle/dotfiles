@@ -6,7 +6,7 @@ echo -e "\nInstalling homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo -e "\nInstalling common brews..."
-bash ~/dotfiles/common_brews.sh
+source ~/dotfiles/common_brews.sh
 
 echo -e "\nInstalling homebrew cask..."
 brew tap caskroom/cask
@@ -21,7 +21,7 @@ echo -e "\nInstalling Anaconda..."
 brew cask install anaconda
 
 echo -e "\nInstalling vim..."
-brew install vim --with-custom-python
+brew install vim --with-python3
 
 echo -e "\nFinishing git setup..."
 brew link git
@@ -49,9 +49,9 @@ chsh -s /usr/local/bin/zsh
 echo "Done"
 
 echo -e "\nSyncing settings..."
-bash ~/dotfiles/macOS/settings/macOS.sh
-bash ~/dotfiles/macOS/settings/flux.sh
-bash ~/dotfiles/macOS/settings/safari.sh
+source ~/dotfiles/macOS/settings/macOS.sh
+source ~/dotfiles/macOS/settings/flux.sh
+source ~/dotfiles/macOS/settings/safari.sh
 tic -o ~/.terminfo ~/dotfiles/macOS/settings/xterm-256color.terminfo
 echo -e "\nDone"
 
