@@ -11,7 +11,7 @@ pip install jupyterthemes
 source ~/dotfiles/jupyter_theme.sh
 
 # data8
-pip install datascience okpy
+# pip install datascience okpy
 
 # ee16a
-pip install mpld3 plotly
+# pip install mpld3 plotly

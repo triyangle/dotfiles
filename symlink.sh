@@ -27,7 +27,7 @@ if [[ "$OS" == "Darwin" ]]; then
     specific_files=(.gitconfig)
     specific_dir=~/dotfiles/macOS
 elif [[ "$OS" == "Linux" ]]; then
-    specific_files=(.gitconfig .tmux.conf .curlrc)
+    specific_files=(.gitconfig .tmux.conf)
     specific_dir=~/dotfiles/ubuntu
     ln -s ~/dotfiles/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
 fi
