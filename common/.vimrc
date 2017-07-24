@@ -41,6 +41,8 @@ else
   set clipboard=unnamed
 endif
 
+set ffs=dos,unix
+
 call plug#begin()
 
 Plug 'vim-airline/vim-airline'
