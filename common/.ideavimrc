@@ -42,6 +42,8 @@ else
   set clipboard=unnamed
 endif
 
+set ffs=dos,unix
+
 " OP visual mode .
 vnoremap . :norm.<CR>
 xnoremap . :norm.<CR>
