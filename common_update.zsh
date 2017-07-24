@@ -15,6 +15,7 @@ source ~/dotfiles/fonts_update.zsh
 
 echo -e "\nUpdating submodules..."
 cd ~/dotfiles
+git pull && git submodule update --init --recursive
 git submodule foreach git pull origin master
 
 echo -e "\nUpdating conda packages & anaconda..."
