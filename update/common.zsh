@@ -11,7 +11,7 @@ cd ~/.zprezto/modules/prompt/external/statusline
 git pull upstream master
 
 echo -e "\nUpdating powerline fonts..."
-source ~/dotfiles/fonts_update.zsh
+source ~/dotfiles/update/fonts.zsh
 
 echo -e "\nUpdating submodules..."
 cd ~/dotfiles
@@ -27,7 +27,7 @@ conda update -yc conda-forge jupyter_contrib_nbextensions
 # pip install --upgrade datascience okpy mpld3 plotly
 
 echo -e "\nUpdating jupyter theme..."
-source ~/dotfiles/jupyter_themes_update.zsh
+source ~/dotfiles/update/jupyter_themes.zsh
 
 echo -e "\nUpdating jupyter vim mode..."
 cd $(jupyter --data-dir)/nbextensions/vim_binding
