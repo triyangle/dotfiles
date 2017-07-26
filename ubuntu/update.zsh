@@ -1,20 +1,20 @@
 #!/usr/bin/env zsh
 
-source /home/will/.zprofile
-source /home/will/.zshrc
-source /home/will/.zlogin
+source $HOME/.zprofile
+source $HOME/.zshrc
+source $HOME/.zlogin
 
 echo -e "Updating system packages..."
 sudo apt-get update && sudo apt-get upgrade
 
 echo -e "\nUpdating brews..."
-source ~/dotfiles/brew_update.zsh
+source ~/dotfiles/update/brew.zsh
 brew upgrade
 
 echo -e "\nUpdating vim..."
-source ~/dotfiles/ubuntu/vim_update.zsh
+source ~/dotfiles/ubuntu/vim/update.zsh
 
-source ~/dotfiles/common_update.zsh
+source ~/dotfiles/update/common.zsh
 
 echo -e "\nCleaning..."
 sudo apt-get autoclean

@@ -1,10 +1,10 @@
 #!/usr/bin/env zsh
 
-source /Users/William/.zprofile
-source /Users/William/.zshrc
-source /Users/William/.zlogin
+source $HOME/.zprofile
+source $HOME/.zshrc
+source $HOME/.zlogin
 
-source ~/dotfiles/brew_update.zsh
+source ~/dotfiles/update/brew.zsh
 
 (set -x; brew cask cleanup;)
 
@@ -19,8 +19,8 @@ echo ""
 echo ""
 
 echo -e "\nUpgrading casks..."
-source ~/dotfiles/cask_upgrade/cask_upgrade.sh
+source ~/dotfiles/submodules/cask_upgrade/cask_upgrade.sh
 
-source ~/dotfiles/common_update.zsh
+source ~/dotfiles/update/common.zsh
 
 echo ""

@@ -1,15 +1,15 @@
-[submodule "dircolors-solarized"]
-	path = dircolors-solarized
+[submodule "submodules/dircolors-solarized"]
+	path = submodules/dircolors-solarized
 	url = https://github.com/seebi/dircolors-solarized.git
-[submodule "fonts"]
-	path = fonts
+[submodule "submodules/fonts"]
+	path = submodules/fonts
 	url = https://github.com/powerline/fonts.git
-[submodule "k"]
-	path = k
+[submodule "submodules/k"]
+	path = submodules/k
 	url = https://github.com/supercrabtree/k.git
-[submodule "cask_upgrade"]
-	path = cask_upgrade
+[submodule "submodules/cask_upgrade"]
+	path = submodules/cask_upgrade
 	url = https://gist.github.com/9c72e469b1cbec35c7c430ce03de2a6b.git
-[submodule "zsh-interactive-cd"]
-	path = zsh-interactive-cd
+[submodule "submodules/zsh-interactive-cd"]
+	path = submodules/zsh-interactive-cd
 	url = https://github.com/changyuheng/zsh-interactive-cd.git

@@ -1,6 +1,6 @@
 #!/usr/bin/env zsh
 
-cd ~/dotfiles/fonts
+cd ~/vim
 
 git remote update
 
@@ -13,7 +13,9 @@ if [[ $LOCAL = $REMOTE ]]; then
   echo "Up-to-date"
 elif [[ $LOCAL = $BASE ]]; then
   git pull
-  ./install.sh
+  sudo make uninstall
+  make distclean
+  source ~/dotfiles/ubuntu/vim/install.sh
 elif [[ $REMOTE = $BASE ]]; then
   echo "Need to push"
 else

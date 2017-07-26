@@ -6,7 +6,7 @@ echo -e "\nInstalling homebrew..."
 /usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
 
 echo -e "\nInstalling common brews..."
-source ~/dotfiles/common_brews.sh
+source ~/dotfiles/setup/brews.sh
 
 echo -e "\nInstalling homebrew cask..."
 brew tap caskroom/cask
@@ -49,10 +49,11 @@ chsh -s /usr/local/bin/zsh
 echo "Done"
 
 echo -e "\nSyncing settings..."
-source ~/dotfiles/macOS/settings/macOS.sh
-source ~/dotfiles/macOS/settings/flux.sh
-source ~/dotfiles/macOS/settings/safari.sh
-tic -o ~/.terminfo ~/dotfiles/macOS/settings/xterm-256color.terminfo
+cd ~/dotfiles/macOS/settings
+source macOS.sh
+source flux.sh
+source safari.sh
+tic -o ~/.terminfo xterm-256color.terminfo
 echo -e "\nDone"
 
 echo ""

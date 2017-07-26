@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-source ~/dotfiles/symlink.sh
+source ~/dotfiles/setup/symlink.sh
 
 OS=`uname`
 
@@ -10,7 +10,7 @@ elif [ "$OS" == "Linux" ]; then
     source ~/dotfiles/ubuntu/setup.sh
 fi
 
-source ~/dotfiles/jupyter_setup.sh
+source ~/dotfiles/setup/jupyter/setup.sh
 
-source ~/dotfiles/prezto_setup.sh
-source ~/dotfiles/vimsetup.sh
+source ~/dotfiles/setup/prezto/setup.sh
+source ~/dotfiles/setup/vim.sh

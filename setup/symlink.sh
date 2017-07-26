@@ -14,7 +14,7 @@ echo -e "\nChanging to the $dir directory..."
 cd $dir
 echo "Done"
 
-ln -s ~/dotfiles/common/.* ~/
+ln -s ~/dotfiles/config/home/.* ~/
 
 # for file in "${files[@]}"; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
@@ -27,11 +27,11 @@ OS=`uname`
 
 if [[ "$OS" == "Darwin" ]]; then
     # specific_files=(.gitconfig)
-    specific_dir=~/dotfiles/macOS
+    specific_dir=~/dotfiles/macOS/config
 elif [[ "$OS" == "Linux" ]]; then
-    ln -s ~/dotfiles/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
+    ln -s ~/dotfiles/submodules/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
     # specific_files=(.gitconfig .tmux.conf)
-    specific_dir=~/dotfiles/ubuntu
+    specific_dir=~/dotfiles/ubuntu/config
 fi
 
 # for specific_file in "${specific_files[@]}"; do
@@ -42,10 +42,10 @@ fi
 ln -s $specific_dir/.* ~/
 
 echo -e "\nSymlinking vim spell"
-ln -s ~/dotfiles/.vim/spell ~/.vim/
+ln -s ~/dotfiles/config/.vim/spell ~/.vim/
 
 echo -e "\nSymlinking ipython profile"
-ln -s ~/dotfiles/.ipython/profile_default/* ~/.ipython/profile_default/
+ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
 echo -e "\nSetting up crontab..."
 crontab $specific_dir/crontab
