@@ -46,7 +46,6 @@ call plug#begin()
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
-Plug 'vim-syntastic/syntastic'
 Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['scheme', 'lisp', 'clojure'] }
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree'
@@ -71,16 +70,18 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
 Plug 'lervag/vimtex'
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer' }
+Plug 'sheerun/vim-polyglot'
+Plug 'w0rp/ale'
+Plug 'tpope/vim-unimpaired'
 
 " OS specific plugins... for now
 if os == 'Linux'
-  Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer' }
   Plug '/home/william/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
   Plug 'edkolev/tmuxline.vim'
   Plug 'tmux-plugins/vim-tmux'
   Plug 'christoomey/vim-tmux-navigator'
 else
-  Plug 'Valloric/YouCompleteMe', { 'do': './install.py --clang-completer' }
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 endif
 
@@ -170,17 +171,6 @@ syntax enable
 set background=dark
 colorscheme solarized
 highlight Comment cterm=italic
-
-"Recommended syntastic settings
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_python_python_exec = 'python3'
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
