@@ -1,3 +1,3 @@
 #!/usr/bin/env bash
 
-jt -t onedork -vim -T -N
+jt -t monokai -vim -T -N

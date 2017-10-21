@@ -70,10 +70,13 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
 Plug 'lervag/vimtex'
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer' }
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
+Plug 'ludovicchabant/vim-gutentags'
+
+" YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
 
 " OS specific plugins... for now
 if os == 'Linux'
