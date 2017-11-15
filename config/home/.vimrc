@@ -74,6 +74,9 @@ Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
+Plug 'tpope/vim-obsession'
+Plug 'edkolev/tmuxline.vim'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
 Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
@@ -81,8 +84,6 @@ Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer -
 " OS specific plugins... for now
 if os == 'Linux'
   Plug '/home/william/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
-  Plug 'edkolev/tmuxline.vim'
-  Plug 'tmux-plugins/vim-tmux'
   Plug 'christoomey/vim-tmux-navigator'
 else
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -407,6 +408,7 @@ nnoremap o o<esc>S
 nnoremap O O<esc>S
 
 " OS specific settings
+" can replace w/ new VTE settings?
 if os == 'Linux'
   hi Normal ctermbg=none
   highlight NonText ctermbg=none
@@ -422,14 +424,10 @@ if os == 'Linux'
     au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
   endif
 else
-  let &t_SI = "\<Esc>]50;CursorShape=1\x7"
-  let &t_SR = "\<Esc>]50;CursorShape=2\x7"
-  let &t_EI = "\<Esc>]50;CursorShape=0\x7"
-
   " for tmux iterm2 cursor
-  " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=1\x7\<Esc>\\"
-  " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=2\x7\<Esc>\\"
-  " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>]50;CursorShape=0\x7\<Esc>\\"
+  " let &t_SI = "\<Esc>Ptmux;\<Esc>\<Esc>[6 q\<Esc>\\"
+  " let &t_SR = "\<Esc>Ptmux;\<Esc>\<Esc>[4 q\<Esc>\\"
+  " let &t_EI = "\<Esc>Ptmux;\<Esc>\<Esc>[2 q\<Esc>\\"
 endif
 
 function! Spelling()

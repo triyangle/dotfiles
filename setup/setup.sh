@@ -11,6 +11,6 @@ elif [ "$OS" == "Linux" ]; then
 fi
 
 source ~/dotfiles/setup/jupyter/setup.sh
-
 source ~/dotfiles/setup/prezto/setup.sh
 source ~/dotfiles/setup/vim.sh
+source ~/dotfiles/setup/tmux.sh

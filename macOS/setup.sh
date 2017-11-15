@@ -50,7 +50,6 @@ cd ~/dotfiles/macOS/settings
 source macOS.sh
 source flux.sh
 source safari.sh
-tic -o ~/.terminfo xterm-256color.terminfo
 echo -e "\nDone"
 
 echo ""

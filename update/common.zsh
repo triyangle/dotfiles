@@ -45,3 +45,7 @@ tlmgr update --all
 
 echo -e "\nUpdating vim plugins..."
 vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall
+
+echo -e "\nUpdating tmux plugins..."
+~/.tmux/plugins/tpm/bin/clean_plugins
+~/.tmux/plugins/tpm/bin/update_plugins all
