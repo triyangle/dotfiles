@@ -385,6 +385,8 @@ function! s:align()
   endif
 endfunction
 
+let g:polyglot_disabled = ['python']
+
 "Easy buffer switching
 map <leader>n :bn<cr>
 map <leader>p :bp<cr>
