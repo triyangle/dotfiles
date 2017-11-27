@@ -259,6 +259,11 @@ let g:NERDCommentEmptyLines = 1
 " Enable trimming of trailing whitespace when uncommenting
 let g:NERDTrimTrailingWhitespace = 1
 
+" https://github.com/scrooloose/nerdcommenter/issues/278
+let g:NERDCustomDelimiters = {
+      \ 'python': { 'left': '#', 'right': '' }
+      \ }
+
 " Easymotion settings
 let g:EasyMotion_smartcase = 1
 map <Leader><Leader>L <Plug>(easymotion-bd-jk)
