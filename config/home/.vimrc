@@ -23,7 +23,7 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
-" set breakindent
+set breakindent
 set spelllang=en_us
 
 set foldenable
@@ -67,7 +67,7 @@ Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': ['markdown'] }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
-" Plug 'yuttie/comfortable-motion.vim'
+Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
 Plug 'lervag/vimtex'
 Plug 'sheerun/vim-polyglot'
@@ -76,10 +76,10 @@ Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
 Plug 'edkolev/tmuxline.vim'
-" Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'tmux-plugins/vim-tmux-focus-events'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-" Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
 
 " OS specific plugins... for now
 if os == 'Linux'
@@ -174,7 +174,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
-"highlight Comment cterm=italic
+highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
