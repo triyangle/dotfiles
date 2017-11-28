@@ -83,7 +83,7 @@ Plug 'edkolev/tmuxline.vim'
 
 " OS specific plugins... for now
 if os == 'Linux'
-  Plug '/home/william/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+  Plug '~/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
   Plug 'christoomey/vim-tmux-navigator'
 else
   Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
@@ -153,8 +153,8 @@ vnoremap <expr> k v:count ? 'k' : 'gk'
 vnoremap 0 g0
 vnoremap $ g$
 vnoremap ^ g^
-" vnoremap I g^i
-" vnoremap A g$a
+vnoremap I g^i
+vnoremap A g$a
 
 vnoremap <expr> gj v:count ? 'gj' : 'j'
 vnoremap <expr> gk v:count ? 'gk' : 'k'
@@ -174,7 +174,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
-"highlight Comment cterm=italic
+highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
