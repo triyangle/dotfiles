@@ -153,8 +153,8 @@ vnoremap <expr> k v:count ? 'k' : 'gk'
 vnoremap 0 g0
 vnoremap $ g$
 vnoremap ^ g^
-vnoremap I g^i
-vnoremap A g$a
+" vnoremap I g^i
+" vnoremap A g$a
 
 vnoremap <expr> gj v:count ? 'gj' : 'j'
 vnoremap <expr> gk v:count ? 'gk' : 'k'
