@@ -5,11 +5,7 @@ source ~/dotfiles/setup/prezto/setup.sh
 
 OS=`uname`
 
-if [ "$OS" == "Darwin" ]; then
-    source ~/dotfiles/macOS/setup.sh
-elif [ "$OS" == "Linux" ]; then
-    source ~/dotfiles/ubuntu/setup.sh
-fi
+source ~/dotfiles/env/setup.sh
 
 source ~/dotfiles/setup/vim.sh
 source ~/dotfiles/setup/tmux.sh
