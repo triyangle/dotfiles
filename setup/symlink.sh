@@ -23,23 +23,7 @@ ln -s ~/dotfiles/config/home/.* ~/
     # ln -s $dir/$file ~
 # done
 
-OS=`uname`
-
-if [[ "$OS" == "Darwin" ]]; then
-    # specific_files=(.gitconfig)
-    specific_dir=~/dotfiles/macOS/config
-elif [[ "$OS" == "Linux" ]]; then
-    ln -s ~/dotfiles/submodules/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
-    # specific_files=(.gitconfig .tmux.conf)
-    specific_dir=~/dotfiles/ubuntu/config
-fi
-
-# for specific_file in "${specific_files[@]}"; do
-#     echo -e "\nCreating symlink to $specific_file in home directory..."
-#     ln -s $specific_dir/$specific_file ~
-# done
-
-ln -s $specific_dir/.* ~/
+ln -s ~/dotfiles/env/config/.* ~/
 
 echo -e "\nSymlinking vim spell"
 mkdir -p ~/.vim
