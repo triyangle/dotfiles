@@ -42,9 +42,11 @@ fi
 ln -s $specific_dir/.* ~/
 
 echo -e "\nSymlinking vim spell"
+mkdir -p ~/.vim
 ln -s ~/dotfiles/config/.vim/spell ~/.vim/
 
 echo -e "\nSymlinking ipython profile"
+mkdir -p ~/.ipython/profile_default
 ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
 echo -e "\nSetting up crontab..."
