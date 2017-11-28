@@ -1,8 +1,0 @@
-[user]
-    email = willy.h.yang@gmail.com
-    name = William Yang
-[core]
-    excludesfile = ~/.gitignore_global
-    editor = vim
-[credential]
-    helper = cache --timeout=3600
