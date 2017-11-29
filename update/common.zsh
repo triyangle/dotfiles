@@ -21,6 +21,7 @@ git submodule foreach git pull origin master
 echo -e "\nUpdating conda packages & anaconda..."
 conda update -y conda
 conda update -y anaconda
+conda install -yc conda-forge jupyter_contrib_nbextensions
 conda update -yc conda-forge jupyter_contrib_nbextensions
 
 # echo -e "\nUpdating pip packages..."
