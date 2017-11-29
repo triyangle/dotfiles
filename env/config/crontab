@@ -1,1 +1,2 @@
-0 0 * * * /home/william/.linuxbrew/bin/zsh /home/william/dotfiles/ubuntu/update.zsh > /tmp/stdout.log  2>/tmp/stderr.log
+0 0 * * * zsh $HOME/dotfiles/env/update.zsh > /tmp/stdout.log 2>/tmp/stderr.log
+0 0 1 1 * cd $HOME/.tmux/resurrect && ls -A1t *.txt | tail -n +15 | xargs rm
