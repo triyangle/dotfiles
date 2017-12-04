@@ -3,8 +3,6 @@
 source ~/dotfiles/setup/symlink.sh
 source ~/dotfiles/setup/prezto/setup.sh
 
-OS=`uname`
-
 source ~/dotfiles/env/setup.sh
 
 source ~/dotfiles/setup/vim.sh
