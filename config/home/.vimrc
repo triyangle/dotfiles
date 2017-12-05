@@ -168,7 +168,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
-highlight Comment cterm=italic
+" highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -414,16 +414,16 @@ nnoremap O O<esc>S
 hi Normal ctermbg=none
 highlight NonText ctermbg=none
 
-if has("autocmd")
-  au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
-  au InsertEnter,InsertChange *
-        \ if v:insertmode == 'i' |
-        \   silent execute '!echo -ne "\e[6 q"' | redraw! |
-        \ elseif v:insertmode == 'r' |
-        \   silent execute '!echo -ne "\e[4 q"' | redraw! |
-        \ endif
-  au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
-endif
+" if has("autocmd")
+"   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
+"   au InsertEnter,InsertChange *
+"         \ if v:insertmode == 'i' |
+"         \   silent execute '!echo -ne "\e[6 q"' | redraw! |
+"         \ elseif v:insertmode == 'r' |
+"         \   silent execute '!echo -ne "\e[4 q"' | redraw! |
+"         \ endif
+"   au VimLeave * silent execute '!echo -ne "\e[ q"' | redraw!
+" endif
 
 function! Spelling()
   setlocal spell!
