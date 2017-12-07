@@ -34,7 +34,10 @@
 .Spotlight-V100
 .Trashes
 ehthumbs.db
-Thumbs.db### https://raw.github.com/github/gitignore/9a3dea4649365dc90bef39d1e6f76d2e47060d43/Global/Vim.gitignore
+Thumbs.db
+
+
+### https://raw.github.com/github/gitignore/9a3dea4649365dc90bef39d1e6f76d2e47060d43/Global/Vim.gitignore
 
 # swap
 [._]*.s[a-v][a-z]
@@ -79,55 +82,6 @@ Temporary Items
 .apdisk
 
 
-### https://raw.github.com/github/gitignore/9a3dea4649365dc90bef39d1e6f76d2e47060d43/Global/Linux.gitignore
-
-*~
-
-# temporary files which can be created if a process still has a handle open of a deleted file
-.fuse_hidden*
-
-# KDE directory preferences
-.directory
-
-# Linux trash folder which might appear on any partition or disk
-.Trash-*
-
-# .nfs files are created when an open file is removed but is still being accessed
-.nfs*
-
-
-### https://raw.github.com/github/gitignore/9a3dea4649365dc90bef39d1e6f76d2e47060d43/Global/Archives.gitignore
-
-# It's better to unpack these files and commit the raw source because
-# git has its own built in compression methods.
-*.7z
-*.jar
-*.rar
-*.zip
-*.gz
-*.tgz
-*.bzip
-*.bz2
-*.xz
-*.lzma
-*.cab
-
-#packing-only formats
-*.iso
-*.tar
-
-#package management formats
-*.dmg
-*.xpi
-*.gem
-*.egg
-*.deb
-*.rpm
-*.msi
-*.msm
-*.msp
-
-
 ### https://raw.github.com/github/gitignore/9a3dea4649365dc90bef39d1e6f76d2e47060d43/Global/Tags.gitignore
 
 # Ignore tags created by etags, ctags, gtags (GNU global) and cscope
@@ -146,3 +100,35 @@ cscope.files
 cscope.out
 cscope.in.out
 cscope.po.out
+### https://raw.github.com/github/gitignore/ea2aa40cb4620e334a87e8494e03d0e7d1ec11df/Global/Archives.gitignore
+
+# It's better to unpack these files and commit the raw source because
+# git has its own built in compression methods.
+*.7z
+*.jar
+*.rar
+*.zip
+*.gz
+*.tgz
+*.bzip
+*.bz2
+*.xz
+*.lzma
+*.cab
+
+# Packing-only formats
+*.iso
+*.tar
+
+# Package management formats
+*.dmg
+*.xpi
+*.gem
+*.egg
+*.deb
+*.rpm
+*.msi
+*.msm
+*.msp
+
+
