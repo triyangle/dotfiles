@@ -30,7 +30,7 @@ sudo apt-get remove vim-tiny vim-common vim-gui-common vim-nox
 echo -e "\nInstalling vim..."
 cd ~
 git clone https://github.com/vim/vim.git
-source ~/dotfiles/ubuntu/vim/install.sh
+source ~/dotfiles/env/vim/install.sh
 
 echo -e "\nInstalling Java..."
 sudo apt install oracle-java8-installer
