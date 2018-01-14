@@ -15,7 +15,7 @@ elif [[ $LOCAL = $BASE ]]; then
   git pull
   sudo make uninstall
   make distclean
-  source ~/dotfiles/ubuntu/vim/install.sh
+  source ~/dotfiles/env/vim/install.sh
 elif [[ $REMOTE = $BASE ]]; then
   echo "Need to push"
 else

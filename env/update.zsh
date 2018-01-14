@@ -12,7 +12,7 @@ source ~/dotfiles/update/brew.zsh
 brew upgrade
 
 echo -e "\nUpdating vim..."
-source ~/dotfiles/ubuntu/vim/update.zsh
+source ~/dotfiles/env/vim/update.zsh
 
 source ~/dotfiles/update/common.zsh
 
