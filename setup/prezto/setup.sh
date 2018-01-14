@@ -2,7 +2,7 @@
 
 echo -e "\nInstalling prezto..."
 git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
-source ~/dotfiles/setup/init.zsh
+source ~/dotfiles/setup/prezto/init.zsh
 cd ~/.zprezto
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
 git remote add upstream https://github.com/sorin-ionescu/prezto.git
