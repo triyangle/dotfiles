@@ -25,6 +25,13 @@ set hidden
 set breakindent
 set spelllang=en_us
 
+set undofile
+set undodir=$HOME/.vim/undo
+
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
+
 set foldenable
 set foldlevelstart=10
 set foldnestmax=10
@@ -42,6 +49,7 @@ endif
 
 call plug#begin()
 
+Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
@@ -74,8 +82,16 @@ Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
+Plug 'farmergreg/vim-lastplace'
+Plug 'kshenoy/vim-signature'
+Plug 'vim-scripts/matchit.zip'
+Plug 'alvan/vim-closetag', { 'for': ['html'] }
+Plug 'tpope/vim-sleuth'
+
+Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
 Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
@@ -107,7 +123,7 @@ set cursorline
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
@@ -384,7 +400,7 @@ function! s:align()
   endif
 endfunction
 
-let g:polyglot_disabled = ['python']
+" let g:polyglot_disabled = ['python']
 
 "Easy buffer switching
 map <leader>n :bn<cr>
