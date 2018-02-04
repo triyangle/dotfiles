@@ -87,6 +87,7 @@ Plug 'kshenoy/vim-signature'
 Plug 'vim-scripts/matchit.zip'
 Plug 'alvan/vim-closetag', { 'for': ['html'] }
 Plug 'tpope/vim-sleuth'
+Plug 'embear/vim-localvimrc'
 
 Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
@@ -401,6 +402,8 @@ function! s:align()
 endfunction
 
 " let g:polyglot_disabled = ['python']
+
+let g:localvimrc_ask = 0
 
 "Easy buffer switching
 map <leader>n :bn<cr>
