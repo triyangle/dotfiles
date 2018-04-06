@@ -1,0 +1,8 @@
+" python2 lvimrc
+
+let g:ycm_python_binary_path = 'python2'
+let g:ale_python_flake8_options = 'python2'
+let g:ale_python_prospector_executable = 'python2'
+let g:ale_python_prospector_use_global = 0
+let g:ale_python_pylint_executable = 'python2'
+let g:ale_python_pylint_use_global = 0

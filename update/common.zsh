@@ -41,8 +41,7 @@ echo -e "\nUpdating npm packages..."
 npm update -g
 
 echo -e "\nUpdating TeX..."
-tlmgr update --self
-tlmgr update --all
+tlmgr update --self --all --reinstall-forcibly-removed
 
 echo -e "\nUpdating vim plugins..."
 vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall

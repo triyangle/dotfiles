@@ -1,5 +1,6 @@
 set nocompatible
 let mapleader = "\<Space>"
+let maplocalleader = ","
 
 set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
@@ -22,8 +23,15 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
-" set breakindent
+set breakindent
 set spelllang=en_us
+
+set undofile
+set undodir=$HOME/.vim/undo
+
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
 
 set foldenable
 set foldlevelstart=10
@@ -42,6 +50,7 @@ endif
 
 call plug#begin()
 
+Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
@@ -68,20 +77,28 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 " Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
 " Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
+Plug 'farmergreg/vim-lastplace'
+Plug 'kshenoy/vim-signature'
+Plug 'vim-scripts/matchit.zip'
+Plug 'alvan/vim-closetag', { 'for': ['html'] }
+Plug 'tpope/vim-sleuth'
+Plug 'embear/vim-localvimrc'
+
+Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'christoomey/vim-tmux-navigator'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2.7 ./install.py --clang-completer --js-completer' }
 
 Plug '~/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
-Plug 'christoomey/vim-tmux-navigator'
 
 call plug#end()
 
@@ -108,7 +125,7 @@ set cursorline
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
@@ -168,7 +185,7 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 syntax enable
 set background=dark
 colorscheme solarized
-" highlight Comment cterm=italic
+highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -318,9 +335,9 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Ultisnips settings
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
@@ -385,7 +402,12 @@ function! s:align()
   endif
 endfunction
 
-let g:polyglot_disabled = ['python']
+" let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['latex']
+
+let g:localvimrc_ask = 0
+
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 "Easy buffer switching
 map <leader>n :bn<cr>
@@ -410,10 +432,10 @@ nnoremap o o<esc>S
 nnoremap O O<esc>S
 
 " OS specific settings
-" can replace w/ new VTE settings?
-hi Normal ctermbg=none
-highlight NonText ctermbg=none
-
+" " can replace w/ new VTE settings?
+" hi Normal ctermbg=none
+" highlight NonText ctermbg=none
+"
 " if has("autocmd")
 "   au VimEnter,InsertLeave * silent execute '!echo -ne "\e[2 q"' | redraw!
 "   au InsertEnter,InsertChange *
