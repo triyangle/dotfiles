@@ -96,7 +96,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2.7 ./install.py --clang-completer --js-completer' }
+" Plug 'Valloric/YouCompleteMe', { 'do': 'python2.7 ./install.py --clang-completer --js-completer' }
 
 Plug '~/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 
