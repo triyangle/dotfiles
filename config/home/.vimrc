@@ -1,5 +1,6 @@
 set nocompatible
 let mapleader = "\<Space>"
+let maplocalleader = ","
 
 set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
@@ -76,7 +77,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
-Plug 'lervag/vimtex'
+Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
@@ -95,7 +96,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'christoomey/vim-tmux-navigator'
 
 " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2.7 ./install.py --clang-completer --js-completer' }
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
@@ -334,9 +335,9 @@ endfunction
 noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 
 " Ultisnips settings
-let g:UltiSnipsExpandTrigger="<C-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-b>"
-let g:UltiSnipsJumpBackwardTrigger="<c-z>"
+let g:UltiSnipsExpandTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-j>"
+let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
@@ -402,8 +403,11 @@ function! s:align()
 endfunction
 
 " let g:polyglot_disabled = ['python']
+let g:polyglot_disabled = ['latex']
 
 let g:localvimrc_ask = 0
+
+let g:vimtex_compiler_latexmk = {'callback' : 0}
 
 "Easy buffer switching
 map <leader>n :bn<cr>

@@ -1,4 +1,4 @@
-ssl_verify: 'True'
+ssl_verify: true
 channels:
   - anaconda-fusion
   - defaults

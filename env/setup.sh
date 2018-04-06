@@ -35,11 +35,17 @@ brew cask install flux
 echo -e "\nInstalling Google Chrome..."
 brew cask install google-chrome
 
-echo -e "\nInstalling MacTeX..."
-brew cask install mactex
+echo -e "\nInstalling BasicTeX..."
+brew cask install basictex
+sudo tlmgr update --self
+sudo tlmgr install latexmk
+sudo tlmgr install texliveonfly
 
 echo -e "\nInstalling Skype..."
 brew cask install skype
+
+echo -e "\nInstalling Unarchiver..."
+brew cask install the-unarchiver
 
 echo -e "\nFinishing zsh setup..."
 chsh -s /usr/local/bin/zsh

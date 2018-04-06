@@ -10,10 +10,6 @@ source ~/dotfiles/update/brew.zsh
 
 echo ""
 
-(set -x; brew upgrade vim;)
-
-echo ""
-
 (set -x; brew upgrade;)
 
 echo ""
