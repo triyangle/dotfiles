@@ -25,8 +25,5 @@ gibo -u
 echo -e "\nInstalling fzf..."
 brew install fzf
 
-echo -e "\nInstalling fasd..."
-brew install fasd
-
 echo -e "\nInstalling zsh..."
 brew install zsh
