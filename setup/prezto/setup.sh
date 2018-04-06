@@ -6,6 +6,7 @@ source ~/dotfiles/setup/prezto/init.zsh
 cd ~/.zprezto
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
 git remote add upstream https://github.com/sorin-ionescu/prezto.git
+git checkout ocf
 
 cd ~/.zprezto/modules/prompt/external/statusline
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/statusline.git
