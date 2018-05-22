@@ -52,7 +52,7 @@ chsh -s /usr/local/bin/zsh
 echo "Done"
 
 echo -e "\nSyncing settings..."
-cd ~/dotfiles/macOS/settings
+cd ~/dotfiles/env/settings
 source macOS.sh
 source flux.sh
 source safari.sh
