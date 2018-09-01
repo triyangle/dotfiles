@@ -10,3 +10,6 @@
 [submodule "submodules/zsh-interactive-cd"]
 	path = submodules/zsh-interactive-cd
 	url = https://github.com/changyuheng/zsh-interactive-cd.git
+[submodule "submodules/k"]
+	path = submodules/k
+	url = https://github.com/triyangle/k.git
