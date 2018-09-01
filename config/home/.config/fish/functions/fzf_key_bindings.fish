@@ -1,1 +1,0 @@
-/home/w/wh/whyang/.linuxbrew/opt/fzf/shell/key-bindings.fish
