@@ -41,5 +41,5 @@ mkdir -p ~/.ipython/profile_default
 ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
 echo -e "\nSetting up crontab..."
-crontab ~/dotfiles/env/config/crontab
+# crontab ~/dotfiles/env/config/crontab
 echo "Done"
