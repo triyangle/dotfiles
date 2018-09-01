@@ -13,6 +13,10 @@ git pull upstream master
 echo -e "\nUpdating powerline fonts..."
 source ~/dotfiles/update/fonts.zsh
 
+echo -e "\nUpdating k..."
+cd ~/dotfiles/submodules/k
+git pull upstream master
+
 echo -e "\nUpdating submodules..."
 cd ~/dotfiles
 git pull && git submodule update --init --recursive

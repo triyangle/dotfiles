@@ -16,6 +16,8 @@ echo "Done"
 
 ln -s ~/dotfiles/config/home/.* ~/
 
+ln -s ~/dotfiles/config/nvim ~/.config/nvim
+
 # for file in "${files[@]}"; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
     # mv ~/.$file ~/dotfiles_old/
@@ -41,5 +43,5 @@ mkdir -p ~/.ipython/profile_default
 ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
 echo -e "\nSetting up crontab..."
-crontab ~/dotfiles/env/config/crontab
+# crontab ~/dotfiles/env/config/crontab
 echo "Done"

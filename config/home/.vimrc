@@ -1,6 +1,13 @@
-set nocompatible
 let mapleader = "\<Space>"
 let maplocalleader = ","
+
+set textwidth=79
+set wrap
+set formatoptions+=tcqjn
+set linebreak
+set breakindent
+
+set nrformats+=alpha
 
 set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
@@ -23,8 +30,8 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
-set breakindent
 set spelllang=en_us
+set ttyfast
 
 set undofile
 set undodir=$HOME/.vim/undo
@@ -56,16 +63,16 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'altercation/vim-colors-solarized'
 Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['scheme', 'lisp', 'clojure'] }
 Plug 'majutsushi/tagbar'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'tpope/vim-fugitive'
+Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
+Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
+" Plug 'tpope/vim-fugitive'
 Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
-Plug 'haya14busa/incsearch-easymotion.vim'
-Plug 'haya14busa/incsearch-fuzzy.vim'
+Plug 'haya14busa/is.vim'
+" Plug 'haya14busa/incsearch-easymotion.vim'
+" Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
@@ -87,16 +94,16 @@ Plug 'farmergreg/vim-lastplace'
 Plug 'kshenoy/vim-signature'
 Plug 'vim-scripts/matchit.zip'
 Plug 'alvan/vim-closetag', { 'for': ['html'] }
-Plug 'tpope/vim-sleuth'
+" Plug 'tpope/vim-sleuth'
 Plug 'embear/vim-localvimrc'
 
-Plug 'benmills/vimux'
+" Plug 'benmills/vimux'
 Plug 'edkolev/tmuxline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
-Plug 'christoomey/vim-tmux-navigator'
-
-" YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-" Plug 'Valloric/YouCompleteMe', { 'do': 'python2.7 ./install.py --clang-completer --js-completer' }
+" Plug 'christoomey/vim-tmux-navigator'
+"
+" " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
+Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
 
 Plug '~/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 
@@ -117,7 +124,8 @@ syntax on
 
 set number
 set relativenumber
-set cursorline
+" set cursorline
+" set lazyredraw
 
 "not recommended for now
 "set nobackup
@@ -127,7 +135,7 @@ set backspace=indent,eol,start
 filetype plugin indent on
 autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
-autocmd FileType markdown,text setlocal wrap linebreak nolist
+" autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
   autocmd!
   autocmd FileType lisp,clojure,scheme RainbowParentheses
@@ -188,6 +196,7 @@ colorscheme solarized
 highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
 
 let g:ycm_autoclose_preview_window_after_completion = 1
@@ -280,11 +289,6 @@ let g:EasyMotion_smartcase = 1
 map <Leader><Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
 
-" incsearch settings
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
 
@@ -292,55 +296,56 @@ nmap t <Plug>(easymotion-t2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" :h g:incsearch#auto_nohlsearch
 set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+" let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
 nnoremap gD gD:nohl<CR>
 nnoremap gd gd:nohl<CR>
 nnoremap <silent> <ESC><ESC> :nohl<CR>
 
 " insearch easymotion
-map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
-map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
-map <Leader><Leader>g/ <Plug>(incsearch-easymotion-stay)
+" map <Leader><Leader>/ <Plug>(incsearch-easymotion-/)
+" map <Leader><Leader>? <Plug>(incsearch-easymotion-?)
+" map <Leader><Leader>g/ <Plug>(incsearch-easymotion-stay)
 
-function! s:config_fuzzyall(...) abort
-  return extend(copy({
-        \   'converters': [
-        \     incsearch#config#fuzzy#converter(),
-        \     incsearch#config#fuzzyspell#converter()
-        \   ],
-        \ }), get(a:, 1, {}))
-endfunction
+" function! s:config_fuzzyall(...) abort
+"   return extend(copy({
+"         \   'converters': [
+"         \     incsearch#config#fuzzy#converter(),
+"         \     incsearch#config#fuzzyspell#converter()
+"         \   ],
+"         \ }), get(a:, 1, {}))
+" endfunction
+"
+" noremap <silent><expr> f/ incsearch#go(<SID>config_fuzzyall())
+" noremap <silent><expr> f? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
+" noremap <silent><expr> fg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1})) vim-easymotion
 
-noremap <silent><expr> f/ incsearch#go(<SID>config_fuzzyall())
-noremap <silent><expr> f? incsearch#go(<SID>config_fuzzyall({'command': '?'}))
-noremap <silent><expr> fg? incsearch#go(<SID>config_fuzzyall({'is_stay': 1})) vim-easymotion
-
-function! s:config_easyfuzzymotion(...) abort
-  return extend(copy({
-        \   'converters': [incsearch#config#fuzzy#converter()],
-        \   'modules': [incsearch#config#easymotion#module()],
-        \   'keymap': {"\<CR>": '<Over>(easymotion)'},
-        \   'is_expr': 0,
-        \   'is_stay': 1
-        \ }), get(a:, 1, {}))
-endfunction
-noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
-
-" Ultisnips settings
+" function! s:config_easyfuzzymotion(...) abort
+"   return extend(copy({
+"         \   'converters': [incsearch#config#fuzzy#converter()],
+"         \   'modules': [incsearch#config#easymotion#module()],
+"         \   'keymap': {"\<CR>": '<Over>(easymotion)'},
+"         \   'is_expr': 0,
+"         \   'is_stay': 1
+"         \ }), get(a:, 1, {}))
+" endfunction
+" noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
+"
+" " Ultisnips settings
 let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpForwardTrigger="<c-j>"
 let g:UltiSnipsJumpBackwardTrigger="<c-k>"
 
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
+
+let g:instant_markdown_autostart = 0
 
 " Markdown fenced code syntax highlighting
 au BufNewFile,BufReadPost *.md set filetype=markdown

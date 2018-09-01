@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-OS=`uname`
-
 echo -e "Initiliazing vim setup..."
 
 echo -e "\nRetrieving vim-plug from GitHub..."
@@ -11,9 +9,9 @@ nvim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
 pip install neovim
 
-echo -e "\nInstalling instant-markdown..."
-npm -g install instant-markdown-d
+# echo -e "\nInstalling instant-markdown..."
+# npm -g install instant-markdown-d
 
-sudo apt-get install xdg-utils curl nodejs-legacy
+# sudo apt-get install xdg-utils curl nodejs-legacy
 
 echo ""

@@ -4,12 +4,12 @@
 [submodule "submodules/fonts"]
 	path = submodules/fonts
 	url = https://github.com/powerline/fonts.git
-[submodule "submodules/k"]
-	path = submodules/k
-	url = https://github.com/supercrabtree/k.git
 [submodule "submodules/cask_upgrade"]
 	path = submodules/cask_upgrade
 	url = https://gist.github.com/9c72e469b1cbec35c7c430ce03de2a6b.git
 [submodule "submodules/zsh-interactive-cd"]
 	path = submodules/zsh-interactive-cd
 	url = https://github.com/changyuheng/zsh-interactive-cd.git
+[submodule "submodules/k"]
+	path = submodules/k
+	url = https://github.com/triyangle/k.git
