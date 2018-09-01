@@ -1,6 +1,4 @@
 #!/usr/bin/env bash
-OS=`uname`
-
 echo -e "Initiliazing vim setup..."
 
 echo -e "\nRetrieving vim-plug from GitHub..."
