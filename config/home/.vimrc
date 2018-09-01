@@ -88,7 +88,7 @@ Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
 Plug 'w0rp/ale'
 Plug 'tpope/vim-unimpaired'
-" Plug 'ludovicchabant/vim-gutentags'
+Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
 Plug 'farmergreg/vim-lastplace'
 Plug 'kshenoy/vim-signature'
