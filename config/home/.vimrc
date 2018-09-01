@@ -1,4 +1,3 @@
-set nocompatible
 let mapleader = "\<Space>"
 let maplocalleader = ","
 
@@ -71,7 +70,7 @@ Plug 'tpope/vim-surround'
 Plug 'scrooloose/nerdcommenter'
 Plug 'airblade/vim-gitgutter'
 Plug 'easymotion/vim-easymotion'
-Plug 'haya14busa/incsearch.vim'
+Plug 'haya14busa/is.vim'
 " Plug 'haya14busa/incsearch-easymotion.vim'
 " Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'tpope/vim-repeat'
@@ -126,7 +125,7 @@ syntax on
 set number
 set relativenumber
 " set cursorline
-set lazyredraw
+" set lazyredraw
 
 "not recommended for now
 "set nobackup
@@ -290,11 +289,6 @@ let g:EasyMotion_smartcase = 1
 map <Leader><Leader>L <Plug>(easymotion-bd-jk)
 nmap <Leader><Leader>L <Plug>(easymotion-overwin-line)
 
-" incsearch settings
-map /  <Plug>(incsearch-forward)
-map ?  <Plug>(incsearch-backward)
-map g/ <Plug>(incsearch-stay)
-
 nmap s <Plug>(easymotion-s2)
 nmap t <Plug>(easymotion-t2)
 
@@ -302,15 +296,14 @@ nmap t <Plug>(easymotion-t2)
 map <Leader>j <Plug>(easymotion-j)
 map <Leader>k <Plug>(easymotion-k)
 
-" :h g:incsearch#auto_nohlsearch
 set hlsearch
-let g:incsearch#auto_nohlsearch = 1
-map n  <Plug>(incsearch-nohl-n)
-map N  <Plug>(incsearch-nohl-N)
-map *  <Plug>(incsearch-nohl-*)
-map #  <Plug>(incsearch-nohl-#)
-map g* <Plug>(incsearch-nohl-g*)
-map g# <Plug>(incsearch-nohl-g#)
+" let g:incsearch#auto_nohlsearch = 1
+" map n  <Plug>(incsearch-nohl-n)
+" map N  <Plug>(incsearch-nohl-N)
+" map *  <Plug>(incsearch-nohl-*)
+" map #  <Plug>(incsearch-nohl-#)
+" map g* <Plug>(incsearch-nohl-g*)
+" map g# <Plug>(incsearch-nohl-g#)
 nnoremap gD gD:nohl<CR>
 nnoremap gd gd:nohl<CR>
 nnoremap <silent> <ESC><ESC> :nohl<CR>
