@@ -17,6 +17,10 @@ echo -e "\nUpdating k..."
 cd ~/dotfiles/submodules/k
 git pull upstream master
 
+echo -e "\nUpdating tmuxline..."
+cd ~/dotfiles/submodules/tmuxline.vim
+git pull upstream master
+
 echo -e "\nUpdating submodules..."
 cd ~/dotfiles
 git pull && git submodule update --init --recursive
@@ -47,8 +51,8 @@ npm update -g
 echo -e "\nUpdating TeX..."
 sudo tlmgr update --self --all --reinstall-forcibly-removed
 
-echo -e "\nUpdating vim plugins..."
-vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall
+echo -e "\nUpdating nvim plugins..."
+nvim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall
 
 echo -e "\nUpdating tmux plugins..."
 ~/.tmux/plugins/tpm/bin/clean_plugins

@@ -60,7 +60,7 @@ call plug#begin()
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
-Plug 'altercation/vim-colors-solarized'
+Plug 'morhetz/gruvbox'
 Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['scheme', 'lisp', 'clojure'] }
 Plug 'majutsushi/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
@@ -98,7 +98,7 @@ Plug 'alvan/vim-closetag', { 'for': ['html'] }
 Plug 'embear/vim-localvimrc'
 
 " Plug 'benmills/vimux'
-Plug 'edkolev/tmuxline.vim'
+Plug 'triyangle/tmuxline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'christoomey/vim-tmux-navigator'
 "
@@ -192,7 +192,11 @@ nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :noh
 "Solarized dark
 syntax enable
 set background=dark
-colorscheme solarized
+let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
+set termguicolors
+let g:gruvbox_italic=1
+colorscheme gruvbox
 highlight Comment cterm=italic
 
 let g:airline#extensions#tabline#enabled = 1

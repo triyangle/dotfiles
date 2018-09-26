@@ -1,12 +1,15 @@
 [submodule "submodules/fonts"]
 	path = submodules/fonts
 	url = https://github.com/powerline/fonts.git
-[submodule "submodules/cask_upgrade"]
-	path = submodules/cask_upgrade
-	url = https://gist.github.com/9c72e469b1cbec35c7c430ce03de2a6b.git
 [submodule "submodules/zsh-interactive-cd"]
 	path = submodules/zsh-interactive-cd
 	url = https://github.com/changyuheng/zsh-interactive-cd.git
 [submodule "submodules/k"]
 	path = submodules/k
 	url = https://github.com/triyangle/k.git
+[submodule "submodules/gruvbox-contrib"]
+	path = submodules/gruvbox-contrib
+	url = https://github.com/morhetz/gruvbox-contrib.git
+[submodule "submodules/tmuxline.vim"]
+	path = submodules/tmuxline.vim
+	url = https://github.com/triyangle/tmuxline.vim.git

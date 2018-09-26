@@ -6,16 +6,12 @@ source $HOME/.zlogin
 
 source ~/dotfiles/update/brew.zsh
 
-(set -x; brew cask cleanup;)
-
-echo ""
-
 (set -x; brew upgrade;)
 
 echo ""
 
 echo -e "\nUpgrading casks..."
-source ~/dotfiles/submodules/cask_upgrade/cask_upgrade.sh
+brew cask upgrade
 
 source ~/dotfiles/update/common.zsh
 

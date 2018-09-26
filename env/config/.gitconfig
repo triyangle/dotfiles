@@ -3,4 +3,4 @@
     name = William Yang
 [core]
     excludesfile = /Users/William/.gitignore_global
-    editor = vim
+    editor = nvim
