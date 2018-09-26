@@ -25,8 +25,6 @@ ln -s ~/dotfiles/config/nvim ~/.config/nvim
     # ln -s $dir/$file ~
 # done
 
-ln -s ~/dotfiles/submodules/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
-
 # for specific_file in "${specific_files[@]}"; do
 #     echo -e "\nCreating symlink to $specific_file in home directory..."
 #     ln -s $specific_dir/$specific_file ~
