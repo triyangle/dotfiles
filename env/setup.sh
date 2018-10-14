@@ -17,17 +17,17 @@ brew cask install iterm2
 echo -e "\nInstalling Anaconda..."
 brew cask install anaconda
 
-echo -e "\nInstalling vim..."
-brew install vim
+echo -e "\nInstalling nvim..."
+brew install nvim
 
 echo -e "\nFinishing git setup..."
 brew link git
 
-echo -e "\nInstalling Java..."
-brew cask install java
+# echo -e "\nInstalling Java..."
+# brew cask install java
 
-echo -e "\nInstalling IntelliJ..."
-brew cask install intellij-idea
+# echo -e "\nInstalling IntelliJ..."
+# brew cask install intellij-idea
 
 echo -e "\nInstalling flux..."
 brew cask install flux
@@ -45,8 +45,8 @@ sudo tlmgr install texliveonfly
 echo -e "\nInstalling Skype..."
 brew cask install skype
 
-echo -e "\nInstalling Unarchiver..."
-brew cask install the-unarchiver
+echo -e "\nInstalling keka..."
+brew cask install keka
 
 echo -e "\nFinishing zsh setup..."
 chsh -s /usr/local/bin/zsh

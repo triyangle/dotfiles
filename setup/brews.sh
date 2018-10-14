@@ -3,8 +3,8 @@
 echo -e "\nUpdating homebrew and homebrew cask..."
 brew update
 
-echo -e "\nInstalling lua..."
-brew install lua
+# echo -e "\nInstalling lua..."
+# brew install lua
 
 echo -e "\nInstalling node..."
 brew install node
