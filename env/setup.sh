@@ -37,6 +37,7 @@ brew cask install google-chrome
 
 echo -e "\nInstalling BasicTeX..."
 brew cask install basictex
+sudo chmod -R 755 /Users/William/Library/texlive
 sudo tlmgr update --self
 sudo tlmgr install latexmk
 sudo tlmgr install texliveonfly

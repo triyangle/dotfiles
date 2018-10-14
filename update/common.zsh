@@ -29,18 +29,18 @@ git submodule foreach git pull origin master
 echo -e "\nUpdating conda packages & anaconda..."
 conda update -y conda
 conda update -y anaconda
-conda install -yc conda-forge jupyter_contrib_nbextensions
-conda update -yc conda-forge jupyter_contrib_nbextensions
+# conda install -yc conda-forge jupyter_contrib_nbextensions
+# conda update -yc conda-forge jupyter_contrib_nbextensions
 
 # echo -e "\nUpdating pip packages..."
 # pip install --upgrade datascience okpy mpld3 plotly
 
-echo -e "\nUpdating jupyter theme..."
-source ~/dotfiles/update/jupyter_themes.zsh
+# echo -e "\nUpdating jupyter theme..."
+# source ~/dotfiles/update/jupyter_themes.zsh
 
-echo -e "\nUpdating jupyter vim mode..."
-cd $(jupyter --data-dir)/nbextensions/vim_binding
-git pull
+# echo -e "\nUpdating jupyter vim mode..."
+# cd $(jupyter --data-dir)/nbextensions/vim_binding
+# git pull
 
 echo -e "\nUpdating gibo..."
 gibo -u
