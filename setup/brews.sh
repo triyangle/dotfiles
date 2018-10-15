@@ -18,9 +18,9 @@ brew install cmake
 echo -e "\nInstalling ctags..."
 brew install ctags
 
-echo -e "\nInstalling gibo..."
-brew install gibo
-gibo -u
+# echo -e "\nInstalling gibo..."
+# brew install gibo
+# gibo -u
 
 echo -e "\nInstalling fzf..."
 brew install fzf

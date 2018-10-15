@@ -42,8 +42,8 @@ conda update -y anaconda
 # cd $(jupyter --data-dir)/nbextensions/vim_binding
 # git pull
 
-echo -e "\nUpdating gibo..."
-gibo -u
+# echo -e "\nUpdating gibo..."
+# gibo -u
 
 echo -e "\nUpdating npm packages..."
 npm update -g
