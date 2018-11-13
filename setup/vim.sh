@@ -9,7 +9,7 @@ nvim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
 pip install neovim
 
-echo -e "\nInstalling instant-markdown..."
-npm -g install instant-markdown-d
+# echo -e "\nInstalling instant-markdown..."
+# npm -g install instant-markdown-d
 
 echo ""

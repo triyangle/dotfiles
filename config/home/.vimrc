@@ -78,7 +78,7 @@ Plug 'honza/vim-snippets'
 Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
-Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
+" Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
 Plug 'lvht/tagbar-markdown', { 'for': ['markdown'] }
 Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
@@ -96,6 +96,8 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'alvan/vim-closetag', { 'for': ['html'] }
 " Plug 'tpope/vim-sleuth'
 Plug 'embear/vim-localvimrc'
+Plug 'iamcco/mathjax-support-for-mkdp'
+Plug 'iamcco/markdown-preview.vim'
 
 " Plug 'benmills/vimux'
 Plug 'triyangle/tmuxline.vim'
