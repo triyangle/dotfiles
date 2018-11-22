@@ -13,6 +13,14 @@ git pull upstream master
 echo -e "\nUpdating powerline fonts..."
 source ~/dotfiles/update/fonts.zsh
 
+echo -e "\nUpdating k..."
+cd ~/dotfiles/submodules/k
+git pull upstream master
+
+echo -e "\nUpdating tmuxline..."
+cd ~/dotfiles/submodules/tmuxline.vim
+git pull upstream master
+
 echo -e "\nUpdating submodules..."
 cd ~/dotfiles
 git pull && git submodule update --init --recursive
@@ -21,31 +29,30 @@ git submodule foreach git pull origin master
 echo -e "\nUpdating conda packages & anaconda..."
 conda update -y conda
 conda update -y anaconda
-conda install -yc conda-forge jupyter_contrib_nbextensions
-conda update -yc conda-forge jupyter_contrib_nbextensions
+# conda install -yc conda-forge jupyter_contrib_nbextensions
+# conda update -yc conda-forge jupyter_contrib_nbextensions
 
 # echo -e "\nUpdating pip packages..."
 # pip install --upgrade datascience okpy mpld3 plotly
 
-echo -e "\nUpdating jupyter theme..."
-source ~/dotfiles/update/jupyter_themes.zsh
+# echo -e "\nUpdating jupyter theme..."
+# source ~/dotfiles/update/jupyter_themes.zsh
 
-echo -e "\nUpdating jupyter vim mode..."
-cd $(jupyter --data-dir)/nbextensions/vim_binding
-git pull
+# echo -e "\nUpdating jupyter vim mode..."
+# cd $(jupyter --data-dir)/nbextensions/vim_binding
+# git pull
 
-echo -e "\nUpdating gibo..."
-gibo -u
+# echo -e "\nUpdating gibo..."
+# gibo -u
 
 echo -e "\nUpdating npm packages..."
 npm update -g
 
-echo -e "\nUpdating TeX..."
-tlmgr update --self
-tlmgr update --all
+# echo -e "\nUpdating TeX..."
+# sudo tlmgr update --self --all --reinstall-forcibly-removed
 
-echo -e "\nUpdating vim plugins..."
-vim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall
+echo -e "\nUpdating nvim plugins..."
+nvim +PlugUpgrade +"PlugUpdate YouCompleteMe" +PlugUpdate +PlugClean! +qall
 
 echo -e "\nUpdating tmux plugins..."
 ~/.tmux/plugins/tpm/bin/clean_plugins

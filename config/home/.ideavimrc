@@ -1,5 +1,15 @@
 set nocompatible
 let mapleader = "\<Space>"
+let maplocalleader = ","
+
+set textwidth=79
+set wrap
+set formatoptions+=tcqjn
+set linebreak
+set breakindent
+
+set nrformats+=alpha
+
 set surround
 
 set scrolloff=5
@@ -23,8 +33,15 @@ set showcmd
 set modeline
 set modelines=5
 set hidden
-set breakindent
 set spelllang=en_us
+set ttyfast
+
+set undofile
+set undodir=$HOME/.vim/undo
+
+if !isdirectory($HOME."/.vim/undo")
+    call mkdir($HOME."/.vim/undo", "", 0700)
+endif
 
 set foldenable
 set foldlevelstart=10
@@ -56,7 +73,8 @@ syntax on
 
 set number
 set relativenumber
-set cursorline
+" set cursorline
+set lazyredraw
 
 "not recommended for now
 "set nobackup
@@ -64,10 +82,13 @@ set cursorline
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,vim,zsh,sh,bash setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
-autocmd FileType markdown,text setlocal wrap linebreak nolist
-
+" autocmd FileType markdown,text setlocal wrap linebreak nolist
+augroup rainbow_lisp
+  autocmd!
+  autocmd FileType lisp,clojure,scheme RainbowParentheses
+augroup END
 :iabbrev </ </<C-X><C-O>
 
 nnoremap <leader>ev :vsp $MYVIMRC<CR>

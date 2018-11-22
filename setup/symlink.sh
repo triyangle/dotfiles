@@ -16,18 +16,13 @@ echo "Done"
 
 ln -s ~/dotfiles/config/home/.* ~/
 
+ln -s ~/dotfiles/config/nvim ~/.config/nvim
+
 # for file in "${files[@]}"; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
     # mv ~/.$file ~/dotfiles_old/
     # echo -e "\nCreating symlink to $file in home directory..."
     # ln -s $dir/$file ~
-# done
-
-ln -s ~/dotfiles/submodules/dircolors-solarized/dircolors.ansi-dark ~/.dircolors
-
-# for specific_file in "${specific_files[@]}"; do
-#     echo -e "\nCreating symlink to $specific_file in home directory..."
-#     ln -s $specific_dir/$specific_file ~
 # done
 
 ln -s ~/dotfiles/env/config/.* ~/

@@ -11,8 +11,8 @@ echo -e "\nUpdating brews..."
 source ~/dotfiles/update/brew.zsh
 brew upgrade
 
-echo -e "\nUpdating vim..."
-source ~/dotfiles/env/vim/update.zsh
+# echo -e "\nUpdating vim..."
+# source ~/dotfiles/env/vim/update.zsh
 
 source ~/dotfiles/update/common.zsh
 

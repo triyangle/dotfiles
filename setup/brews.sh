@@ -3,8 +3,8 @@
 echo -e "\nUpdating homebrew and homebrew cask..."
 brew update
 
-echo -e "\nInstalling lua..."
-brew install lua
+# echo -e "\nInstalling lua..."
+# brew install lua
 
 echo -e "\nInstalling node..."
 brew install node
@@ -18,9 +18,9 @@ brew install cmake
 echo -e "\nInstalling ctags..."
 brew install ctags
 
-echo -e "\nInstalling gibo..."
-brew install gibo
-gibo -u
+# echo -e "\nInstalling gibo..."
+# brew install gibo
+# gibo -u
 
 echo -e "\nInstalling fzf..."
 brew install fzf

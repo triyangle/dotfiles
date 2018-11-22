@@ -1,17 +1,15 @@
 #!/usr/bin/env bash
-OS=`uname`
-
-echo -e "Initiliazing vim setup..."
+echo -e "Initiliazing nvim setup..."
 
 echo -e "\nRetrieving vim-plug from GitHub..."
 curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 
-echo -e "\nInstalling vim plugins..."
-vim +"PlugInstall YouCompleteMe" +PlugInstall +qall
+echo -e "\nInstalling nvim plugins..."
+nvim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
-echo -e "\nInstalling instant-markdown..."
-npm -g install instant-markdown-d
+pip install neovim
 
-sudo apt-get install xdg-utils curl nodejs-legacy
+# echo -e "\nInstalling instant-markdown..."
+# npm -g install instant-markdown-d
 
 echo ""

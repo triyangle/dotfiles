@@ -3,6 +3,6 @@
     name = William Yang
 [core]
     excludesfile = ~/.gitignore_global
-    editor = vim
+    editor = nvim
 [credential]
     helper = cache --timeout=3600
