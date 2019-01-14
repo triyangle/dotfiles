@@ -92,12 +92,13 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
 Plug 'farmergreg/vim-lastplace'
 Plug 'kshenoy/vim-signature'
-Plug 'vim-scripts/matchit.zip'
+Plug 'andymass/vim-matchup'
 Plug 'alvan/vim-closetag', { 'for': ['html'] }
 " Plug 'tpope/vim-sleuth'
 Plug 'embear/vim-localvimrc'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
+Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 
 " Plug 'benmills/vimux'
 Plug 'triyangle/tmuxline.vim'
@@ -201,6 +202,8 @@ let g:gruvbox_italic=1
 colorscheme gruvbox
 highlight Comment cterm=italic
 
+let g:tex_flavor = 'latex'
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline#extensions#ale#enabled = 1
 let g:airline_powerline_fonts = 1
@@ -210,6 +213,11 @@ let g:ycm_seed_identifiers_with_syntax = 1
 let g:ycm_python_binary_path = 'python3'
 let g:ycm_global_ycm_extra_conf = '~/dotfiles/config/vim/ycm/.ycm_extra_conf_c.py'
 let g:ycm_confirm_extra_conf = 0
+
+if !exists('g:ycm_semantic_triggers')
+  let g:ycm_semantic_triggers = {}
+endif
+let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
 nmap <F8> :TagbarToggle<CR>
 
@@ -418,7 +426,19 @@ let g:polyglot_disabled = ['latex']
 
 let g:localvimrc_ask = 0
 
-let g:vimtex_compiler_latexmk = {'callback' : 0}
+" let g:vimtex_compiler_latexmk = {'callback' : 0}
+let g:vimtex_view_automatic = 1
+let g:vimtex_imaps_leader = ","
+let g:vimtex_view_method = "skim"
+let g:vimtex_view_general_viewer
+                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+
+let g:tex_conceal="abdgm"
+let g:vimtex_compiler_progname = 'nvr'
+
+let g:matchup_surround_enabled = 1
+let g:matchup_matchparen_deferred = 1
+let g:matchup_override_vimtex = 1
 
 "Easy buffer switching
 map <leader>n :bn<cr>
