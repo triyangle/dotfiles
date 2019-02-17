@@ -99,6 +99,7 @@ Plug 'embear/vim-localvimrc'
 Plug 'iamcco/mathjax-support-for-mkdp'
 Plug 'iamcco/markdown-preview.vim'
 Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
+Plug 'machakann/vim-highlightedyank'
 
 " Plug 'benmills/vimux'
 Plug 'triyangle/tmuxline.vim'
@@ -137,7 +138,9 @@ set backspace=indent,eol,start
 
 filetype plugin indent on
 autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType Makefile setlocal noexpandtab
 autocmd FileType crontab setlocal nowritebackup
+autocmd FileType markdown,text,tex setlocal spell complete+=kspell
 " autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
   autocmd!
@@ -220,6 +223,7 @@ endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_sort = 0
 
 " fzf settings
 let g:fzf_colors =
@@ -435,6 +439,9 @@ let g:vimtex_view_general_viewer
 
 let g:tex_conceal="abdgm"
 let g:vimtex_compiler_progname = 'nvr'
+
+let g:vimtex_quickfix_open_on_warning = 0
+let g:vimtex_quickfix_autoclose_after_keystrokes = 1
 
 let g:matchup_surround_enabled = 1
 let g:matchup_matchparen_deferred = 1
