@@ -96,6 +96,7 @@ Plug 'vim-scripts/matchit.zip'
 Plug 'alvan/vim-closetag', { 'for': ['html'] }
 " Plug 'tpope/vim-sleuth'
 Plug 'embear/vim-localvimrc'
+Plug 'machakann/vim-highlightedyank'
 
 " Plug 'benmills/vimux'
 Plug 'triyangle/tmuxline.vim'
@@ -105,7 +106,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
 Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
 
-Plug '~/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug '/home/linuxbrew/.linuxbrew/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
@@ -210,6 +211,7 @@ let g:ycm_global_ycm_extra_conf = '~/dotfiles/config/vim/ycm/.ycm_extra_conf_c.p
 let g:ycm_confirm_extra_conf = 0
 
 nmap <F8> :TagbarToggle<CR>
+let g:tagbar_sort = 0
 
 " fzf settings
 let g:fzf_colors =
