@@ -356,9 +356,10 @@ nnoremap <silent> <ESC><ESC> :nohl<CR>
 " noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "
 " " Ultisnips settings
-let g:UltiSnipsExpandTrigger="<c-l>"
-let g:UltiSnipsJumpForwardTrigger="<c-j>"
-let g:UltiSnipsJumpBackwardTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsJumpBackwardTrigger="<c-j>"
+let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 " Gundo settings
 nnoremap <Leader>u :GundoToggle<CR>
@@ -433,7 +434,7 @@ let g:localvimrc_ask = 0
 " let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:vimtex_view_automatic = 1
 let g:vimtex_imaps_leader = ","
-let g:vimtex_view_method = "skim"
+let g:vimtex_view_method = 'skim'
 let g:vimtex_view_general_viewer
                 \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 
@@ -484,6 +485,8 @@ function! Spelling()
     echo "Spell mode disabled"
   endif
 endfunction
+
+inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
 
 " Automatically install vim-plug and run PlugInstall if vim-plug is not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
