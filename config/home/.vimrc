@@ -222,6 +222,17 @@ if !exists('g:ycm_semantic_triggers')
 endif
 let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
+let g:ycm_filetype_blacklist = {
+      \ 'tagbar': 1,
+      \ 'notes': 1,
+      \ 'netrw': 1,
+      \ 'unite': 1,
+      \ 'vimwiki': 1,
+      \ 'pandoc': 1,
+      \ 'infolog': 1,
+      \ 'mail': 1
+      \}
+
 nmap <F8> :TagbarToggle<CR>
 let g:tagbar_sort = 0
 
@@ -356,9 +367,9 @@ nnoremap <silent> <ESC><ESC> :nohl<CR>
 " noremap <silent><expr> <Space>/ incsearch#go(<SID>config_easyfuzzymotion())
 "
 " " Ultisnips settings
-let g:UltiSnipsExpandTrigger="<c-k>"
+let g:UltiSnipsExpandTrigger="<c-l>"
 let g:UltiSnipsJumpBackwardTrigger="<c-j>"
-let g:UltiSnipsJumpForwardTrigger="<c-l>"
+let g:UltiSnipsJumpForwardTrigger="<c-k>"
 let g:UltiSnipsSnippetDirectories = ['~/.vim/UltiSnips', 'UltiSnips']
 
 " Gundo settings
@@ -486,7 +497,8 @@ function! Spelling()
   endif
 endfunction
 
-inoremap <C-s> <c-g>u<Esc>[s1z=`]a<c-g>u
+inoremap <C-h> <c-g>u<Esc>[s1z=`]a<c-g>u
+nnoremap <C-h> [s1z=
 
 " Automatically install vim-plug and run PlugInstall if vim-plug is not found.
 if empty(glob('~/.vim/autoload/plug.vim'))
