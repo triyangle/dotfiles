@@ -23,7 +23,14 @@ brew install ctags
 # gibo -u
 
 echo -e "\nInstalling fzf..."
+/home/linuxbrew/.linuxbrew/opt/fzf/install
 brew install fzf
 
 echo -e "\nInstalling zsh..."
 brew install zsh
+
+echo -e "\nInstalling nvim..."
+brew install neovim
+
+echo -e "\nInstalling python..."
+brew install python

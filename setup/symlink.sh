@@ -16,6 +16,7 @@ echo "Done"
 
 ln -s ~/dotfiles/config/home/.* ~/
 
+mkdir -p ~/.config
 ln -s ~/dotfiles/config/nvim ~/.config/nvim
 
 # for file in "${files[@]}"; do
