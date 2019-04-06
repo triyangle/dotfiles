@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "\nInstalling prezto..."
-git clone -b ocf --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone -b cs162vm --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 zsh ~/dotfiles/setup/prezto/init.zsh
 cd ~/.zprezto
 git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
