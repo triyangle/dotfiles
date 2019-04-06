@@ -134,7 +134,7 @@ set relativenumber
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType cpp,c,html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType crontab setlocal nowritebackup
 " autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
