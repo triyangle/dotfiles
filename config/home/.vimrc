@@ -140,7 +140,7 @@ filetype plugin indent on
 autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType Makefile setlocal noexpandtab
 autocmd FileType crontab setlocal nowritebackup
-autocmd FileType markdown,text,tex setlocal spell complete+=kspell
+autocmd FileType markdown,text,tex setlocal spell complete+=kspell,k,U,s,i,d,]
 " autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
   autocmd!
@@ -441,6 +441,8 @@ endfunction
 let g:polyglot_disabled = ['latex']
 
 let g:localvimrc_ask = 0
+let g:localvimrc_sandbox = 0
+let g:localvimrc_event = ["BufReadPre"]
 
 " let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:vimtex_view_automatic = 1
