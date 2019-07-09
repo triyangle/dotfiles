@@ -137,7 +137,7 @@ set relativenumber
 set backspace=indent,eol,start
 
 filetype plugin indent on
-autocmd FileType html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
+autocmd FileType c,cpp,html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlocal shiftwidth=2 tabstop=2 softtabstop=2
 autocmd FileType Makefile setlocal noexpandtab
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text,tex setlocal spell complete+=kspell,k,U,s,i,d,]
