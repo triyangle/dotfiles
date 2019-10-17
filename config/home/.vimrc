@@ -3,7 +3,7 @@ let maplocalleader = ","
 
 set textwidth=79
 set wrap
-set formatoptions+=tcqjn
+set formatoptions+=tcqjna
 set linebreak
 set breakindent
 
@@ -141,6 +141,7 @@ autocmd FileType c,cpp,html,javascript,css,scheme,sql,vim,zsh,sh,bash,ruby setlo
 autocmd FileType Makefile setlocal noexpandtab
 autocmd FileType crontab setlocal nowritebackup
 autocmd FileType markdown,text,tex setlocal spell complete+=kspell,k,U,s,i,d,]
+autocmd FileType * set formatoptions-=l
 " autocmd FileType markdown,text setlocal wrap linebreak nolist
 augroup rainbow_lisp
   autocmd!
