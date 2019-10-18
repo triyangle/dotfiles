@@ -48,7 +48,7 @@ bind down:cmd;alt focus behind
 bind esc:cmd hint
 
 # Corner Bindings
-bind q:ctrl;cmd corner top-left resize:screenSizeX/2;screenSizeY/2
-bind e:ctrl;cmd corner top-right resize:screenSizeX/2;screenSizeY/2
+bind a:ctrl;cmd corner top-left resize:screenSizeX/2;screenSizeY/2
+bind s:ctrl;cmd corner top-right resize:screenSizeX/2;screenSizeY/2
 bind z:ctrl;cmd corner bottom-left resize:screenSizeX/2;screenSizeY/2
-bind c:ctrl;cmd corner bottom-right resize:screenSizeX/2;screenSizeY/2
+bind x:ctrl;cmd corner bottom-right resize:screenSizeX/2;screenSizeY/2
