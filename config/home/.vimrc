@@ -3,7 +3,7 @@ let maplocalleader = ","
 
 set textwidth=79
 set wrap
-set formatoptions+=tcqjna
+set formatoptions+=tcqjn
 set linebreak
 set breakindent
 
