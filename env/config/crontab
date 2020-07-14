@@ -1,2 +1,4 @@
 # 0 0 * * 0 zsh $HOME/dotfiles/env/update.zsh > /tmp/stdout.log 2>/tmp/stderr.log
+
+# manage vim undo file size
 0 0 * * 0 find $HOME/.vim/undo -type f -mtime +90 -delete
