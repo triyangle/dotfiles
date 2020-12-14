@@ -24,6 +24,7 @@ brew install ctags
 
 echo -e "\nInstalling fzf..."
 brew install fzf
+$(brew --prefix)/opt/fzf/install
 
 echo -e "\nInstalling fasd..."
 brew install fasd

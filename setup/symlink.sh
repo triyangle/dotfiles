@@ -35,6 +35,9 @@ echo -e "\nSymlinking ipython profile"
 mkdir -p ~/.ipython/profile_default
 ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
+echo -e "\nSymlinking Rectangle config file"
+ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
+
 echo -e "\nSetting up crontab..."
-crontab $specific_dir/crontab
+crontab ~/dotfiles/env/config/crontab
 echo "Done"

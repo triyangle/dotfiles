@@ -2,5 +2,5 @@
     email = willy.h.yang@gmail.com
     name = William Yang
 [core]
-    excludesfile = /Users/William/.gitignore_global
+    excludesfile = /Users/williamyang/.gitignore_global
     editor = nvim

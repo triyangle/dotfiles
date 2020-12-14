@@ -48,6 +48,9 @@ brew cask install skype
 echo -e "\nInstalling keka..."
 brew cask install keka
 
+echo -e "\nInstalling rectangle..."
+brew cask install rectangle
+
 echo -e "\nFinishing zsh setup..."
 chsh -s /usr/local/bin/zsh
 echo "Done"
