@@ -8,7 +8,7 @@ cd ~/dotfiles/submodules/k
 git remote add upstream https://github.com/supercrabtree/k.git
 
 source ~/dotfiles/setup/symlink.sh
-source ~/dotfiles/env/setup.sh
+# source ~/dotfiles/env/setup.sh
 
 source ~/dotfiles/setup/prezto/setup.sh
 
