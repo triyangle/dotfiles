@@ -1,8 +1,8 @@
 [user]
-    email = william_yang@berkeley.edu
+    email = william.yang@mixpanel.com
     name = William Yang
 [core]
     excludesfile = ~/.gitignore_global
-    editor = nvim
+    editor = vim
 [credential]
     helper = cache --timeout=3600

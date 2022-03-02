@@ -3,8 +3,12 @@
 echo -e "\nInitializing Ubuntu setup..."
 
 echo -e "\nInstalling Linuxbrew..."
-# sudo apt-get install build-essential curl git python-setuptools ruby
-ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+sudo apt-get install build-essential curl git python-setuptools ruby
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install.sh)"
+
+# deprecated?
+# ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Linuxbrew/install/master/install)"
+
 echo 'eval $(/home/linuxbrew/.linuxbrew/bin/brew shellenv)' >>~/.profile
 source ~/.profile
 
