@@ -62,7 +62,7 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'morhetz/gruvbox'
 Plug 'junegunn/rainbow_parentheses.vim', { 'for': ['scheme', 'lisp', 'clojure'] }
-Plug 'majutsushi/tagbar'
+Plug 'preservim/tagbar'
 Plug 'scrooloose/nerdtree', { 'on':  'NERDTreeToggle' }
 Plug 'Xuyuanp/nerdtree-git-plugin', { 'on':  'NERDTreeToggle' }
 " Plug 'tpope/vim-fugitive'
@@ -86,7 +86,7 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'tpope/vim-rsi'
 Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
-Plug 'w0rp/ale'
+Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
@@ -107,7 +107,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'christoomey/vim-tmux-navigator'
 "
 " " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-Plug 'Valloric/YouCompleteMe', { 'do': 'python2 ./install.py --clang-completer --js-completer' }
+Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
@@ -221,7 +221,7 @@ let g:ycm_confirm_extra_conf = 0
 if !exists('g:ycm_semantic_triggers')
   let g:ycm_semantic_triggers = {}
 endif
-let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
+" let g:ycm_semantic_triggers.tex = g:vimtex#re#youcompleteme
 
 let g:ycm_filetype_blacklist = {
       \ 'tagbar': 1,
@@ -439,7 +439,7 @@ function! s:align()
 endfunction
 
 " let g:polyglot_disabled = ['python']
-let g:polyglot_disabled = ['latex']
+" let g:polyglot_disabled = ['latex']
 
 let g:localvimrc_ask = 0
 let g:localvimrc_sandbox = 0
@@ -515,3 +515,50 @@ augroup autoSaveAndRead
   " autocmd TextChanged,InsertLeave,FocusLost * silent! wall
   autocmd CursorHold * silent! checktime
 augroup END
+
+nnoremap <C-H> :Hexmode<CR>
+inoremap <C-H> <Esc>:Hexmode<CR>
+vnoremap <C-H> :<C-U>Hexmode<CR>
+
+" ex command for toggling hex mode - define mapping if desired
+command -bar Hexmode call ToggleHex()
+
+" helper function to toggle hex mode
+function ToggleHex()
+  " hex mode should be considered a read-only operation
+  " save values for modified and read-only for restoration later,
+  " and clear the read-only flag for now
+  let l:modified=&mod
+  let l:oldreadonly=&readonly
+  let &readonly=0
+  let l:oldmodifiable=&modifiable
+  let &modifiable=1
+  if !exists("b:editHex") || !b:editHex
+    " save old options
+    let b:oldft=&ft
+    let b:oldbin=&bin
+    " set new options
+    setlocal binary " make sure it overrides any textwidth, etc.
+    silent :e " this will reload the file without trickeries
+              "(DOS line endings will be shown entirely )
+    let &ft="xxd"
+    " set status
+    let b:editHex=1
+    " switch to hex editor
+    %!xxd
+  else
+    " restore old options
+    let &ft=b:oldft
+    if !b:oldbin
+      setlocal nobinary
+    endif
+    " set status
+    let b:editHex=0
+    " return to normal editing
+    %!xxd -r
+  endif
+  " restore values for modified and read only state
+  let &mod=l:modified
+  let &readonly=l:oldreadonly
+  let &modifiable=l:oldmodifiable
+endfunction
