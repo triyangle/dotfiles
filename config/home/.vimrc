@@ -9,6 +9,8 @@ set breakindent
 
 set nrformats+=alpha
 
+set cursorline
+set cursorcolumn
 set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
 set tabstop=4
@@ -57,6 +59,7 @@ endif
 
 call plug#begin()
 
+" Plug 'Shougo/deoplete.nvim'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
