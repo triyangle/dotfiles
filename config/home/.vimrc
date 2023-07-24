@@ -60,6 +60,21 @@ endif
 call plug#begin()
 
 " Plug 'Shougo/deoplete.nvim'
+
+" Plug 'dundalek/lazy-lsp.nvim'
+
+Plug 'neovim/nvim-lspconfig'
+Plug 'hrsh7th/cmp-nvim-lsp'
+Plug 'hrsh7th/cmp-buffer'
+Plug 'hrsh7th/cmp-path'
+Plug 'hrsh7th/cmp-cmdline'
+Plug 'hrsh7th/nvim-cmp'
+
+" For vsnip users.
+Plug 'hrsh7th/cmp-vsnip'
+Plug 'hrsh7th/vim-vsnip'
+
+Plug 'github/copilot.vim'
 Plug 'tpope/vim-sensible'
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
@@ -78,7 +93,7 @@ Plug 'haya14busa/is.vim'
 " Plug 'haya14busa/incsearch-fuzzy.vim'
 Plug 'tpope/vim-repeat'
 Plug 'honza/vim-snippets'
-Plug 'SirVer/ultisnips'
+" Plug 'SirVer/ultisnips'
 Plug 'terryma/vim-multiple-cursors'
 Plug 'sjl/gundo.vim', { 'on': 'GundoToggle' }
 " Plug 'suan/vim-instant-markdown', { 'for': ['markdown'] }
@@ -89,7 +104,7 @@ Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 Plug 'tpope/vim-rsi'
 Plug 'lervag/vimtex', { 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
-Plug 'dense-analysis/ale'
+" Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'tpope/vim-obsession'
@@ -110,11 +125,39 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'christoomey/vim-tmux-navigator'
 "
 " " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
-Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
+" Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
 
 Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
 
 call plug#end()
+
+" NOTE: You can use other key to expand snippet.
+
+" Expand
+imap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+smap <expr> <C-j>   vsnip#expandable()  ? '<Plug>(vsnip-expand)'         : '<C-j>'
+
+" Expand or jump
+imap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+smap <expr> <C-l>   vsnip#available(1)  ? '<Plug>(vsnip-expand-or-jump)' : '<C-l>'
+
+" Jump forward or backward
+imap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+smap <expr> <Tab>   vsnip#jumpable(1)   ? '<Plug>(vsnip-jump-next)'      : '<Tab>'
+imap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+smap <expr> <S-Tab> vsnip#jumpable(-1)  ? '<Plug>(vsnip-jump-prev)'      : '<S-Tab>'
+
+" Select or cut text to use as $TM_SELECTED_TEXT in the next snippet.
+" See https://github.com/hrsh7th/vim-vsnip/pull/50
+nmap        s   <Plug>(vsnip-select-text)
+xmap        s   <Plug>(vsnip-select-text)
+nmap        S   <Plug>(vsnip-cut-text)
+xmap        S   <Plug>(vsnip-cut-text)
+
+" If you want to use snippet for multiple filetypes, you can `g:vsnip_filetypes` for it.
+let g:vsnip_filetypes = {}
+let g:vsnip_filetypes.javascriptreact = ['javascript']
+let g:vsnip_filetypes.typescriptreact = ['typescript']
 
 " OP visual mode .
 vnoremap . :norm.<CR>
@@ -131,7 +174,6 @@ syntax on
 
 set number
 set relativenumber
-" set cursorline
 " set lazyredraw
 
 "not recommended for now
@@ -199,13 +241,13 @@ noremap <leader>3 :call Spelling()<CR>
 
 nnoremap <silent> <F5> :let _s=@/ <Bar> :%s/\s\+$//e <Bar> :let @/=_s <Bar> :nohl <Bar> :unlet _s <CR>
 
-"Solarized dark
 syntax enable
 set background=dark
 let &t_8f="\<Esc>[38;2;%lu;%lu;%lum"
 let &t_8b="\<Esc>[48;2;%lu;%lu;%lum"
 set termguicolors
 let g:gruvbox_italic=1
+let g:gruvbox_contrast_dark = 'hard'
 colorscheme gruvbox
 highlight Comment cterm=italic
 

@@ -1,6 +1,15 @@
-set nocompatible
+
 let mapleader = "\<Space>"
 let maplocalleader = ","
+
+set visualbell
+set noerrorbells
+
+" IdeaVim plugins
+set easymotion
+set sneak
+set quickscope
+set multicursor
 
 set textwidth=79
 set wrap
@@ -10,8 +19,8 @@ set breakindent
 
 set nrformats+=alpha
 
-set surround
-
+set cursorline
+set cursorcolumn
 set scrolloff=5
 set timeoutlen=1000 ttimeoutlen=0
 set tabstop=4
@@ -73,7 +82,6 @@ syntax on
 
 set number
 set relativenumber
-" set cursorline
 set lazyredraw
 
 "not recommended for now
@@ -97,8 +105,8 @@ nnoremap <leader>sv :source $MYVIMRC<CR>
 
 nnoremap <leader>s :mksession<CR>
 
-nnoremap <expr> j v:count ? 'j' : 'gj'
-nnoremap <expr> k v:count ? 'k' : 'gk'
+" nnoremap <expr> j v:count ? 'j' : 'gj'
+" nnoremap <expr> k v:count ? 'k' : 'gk'
 
 nnoremap 0 g0
 nnoremap $ g$
