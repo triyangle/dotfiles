@@ -102,7 +102,7 @@ Plug 'godlygeek/tabular'
 Plug 'plasticboy/vim-markdown', { 'for': ['markdown'] }
 " Plug 'yuttie/comfortable-motion.vim'
 Plug 'tpope/vim-rsi'
-Plug 'lervag/vimtex', { 'for': ['tex'] }
+Plug 'lervag/vimtex', { 'on': ['VimtexInverseSearch'], 'for': ['tex'] }
 Plug 'sheerun/vim-polyglot'
 " Plug 'dense-analysis/ale'
 Plug 'tpope/vim-unimpaired'
@@ -492,13 +492,15 @@ let g:localvimrc_event = ["BufReadPre"]
 
 " let g:vimtex_compiler_latexmk = {'callback' : 0}
 let g:vimtex_view_automatic = 1
+let g:vimtex_view_skim_sync = 1
+let g:vimtex_view_skim_skim_activate = 1
 let g:vimtex_imaps_leader = ","
 let g:vimtex_view_method = 'skim'
-let g:vimtex_view_general_viewer
-                \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
+" let g:vimtex_view_general_viewer
+"                 \ = '/Applications/Skim.app/Contents/SharedSupport/displayline'
 
 let g:tex_conceal="abdgm"
-let g:vimtex_compiler_progname = 'nvr'
+" let g:vimtex_compiler_progname = 'nvr'
 
 let g:vimtex_quickfix_open_on_warning = 0
 let g:vimtex_quickfix_autoclose_after_keystrokes = 1
