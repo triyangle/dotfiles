@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 echo -e "\nInstalling prezto..."
-git clone --recursive https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
+git clone --recurse-submodules https://github.com/triyangle/prezto.git "${ZDOTDIR:-$HOME}/.zprezto"
 source ~/dotfiles/setup/prezto/init.zsh
 cd ~/.zprezto
 git submodule update --init --recursive

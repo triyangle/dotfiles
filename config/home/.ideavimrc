@@ -1,3 +1,4 @@
+" source ~/.vimrc
 
 let mapleader = "\<Space>"
 let maplocalleader = ","
@@ -10,12 +11,22 @@ set easymotion
 set sneak
 set quickscope
 set multicursor
+set argtextobj
+set surround
+set ReplaceWithRegister
+set textobj-entire
+set exchange
+set which-key
+set matchit
+set textobj-indent
+set vim-paragraph-motion
+set argtextobj
 
-set textwidth=79
-set wrap
+"set textwidth=79
+" set wrap
 set formatoptions+=tcqjn
-set linebreak
-set breakindent
+" set linebreak
+" set breakindent
 
 set nrformats+=alpha
 

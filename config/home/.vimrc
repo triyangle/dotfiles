@@ -127,7 +127,8 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 " " YCMD notes: Need to compile with Python binary vim (brew/anaconda) was compiled with (or different Python version (2/3) )
 " Plug 'ycm-core/YouCompleteMe', { 'do': 'python3 ./install.py --all' }
 
-Plug '/usr/local/opt/fzf' | Plug 'junegunn/fzf.vim'
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
+Plug 'junegunn/fzf.vim'
 
 call plug#end()
 
