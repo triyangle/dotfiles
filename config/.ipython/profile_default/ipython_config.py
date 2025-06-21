@@ -18,6 +18,8 @@
 #    - :meth:`init_extensions`
 #    - :meth:`init_code`
 
+c.TerminalInteractiveShell.autoformatter="black"
+
 ## Execute the given command string.
 #c.InteractiveShellApp.code_to_run = ''
 
@@ -177,7 +179,7 @@
 ## Use colors for displaying information about objects. Because this information
 #  is passed through a pager (like 'less'), and some pagers get confused with
 #  color codes, this capability can be turned off.
-#c.InteractiveShell.color_info = True
+# c.InteractiveShell.color_info = True
 
 ## Set the color scheme (NoColor, Neutral, Linux, or LightBG).
 #c.InteractiveShell.colors = 'Neutral'
@@ -267,7 +269,7 @@
 
 ## Enables rich html representation of docstrings. (This requires the docrepr
 #  module).
-#c.InteractiveShell.sphinxify_docstring = False
+c.InteractiveShell.sphinxify_docstring = True
 
 ##
 #c.InteractiveShell.wildcards_case_sensitive = True
@@ -300,12 +302,12 @@ c.TerminalInteractiveShell.editor = 'vim'
 #c.TerminalInteractiveShell.extra_open_editor_shortcuts = False
 
 ## Highlight matching brackets.
-#c.TerminalInteractiveShell.highlight_matching_brackets = True
+c.TerminalInteractiveShell.highlight_matching_brackets = True
 
 ## The name or class of a Pygments style to use for syntax
 #         highlighting:
 #  default, emacs, friendly, colorful, autumn, murphy, manni, monokai, perldoc, pastie, borland, trac, native, fruity, bw, vim, vs, tango, rrt, xcode, igor, paraiso-light, paraiso-dark, lovelace, algol, algol_nu, arduino, rainbow_dash, abap
-#c.TerminalInteractiveShell.highlighting_style = traitlets.Undefined
+c.TerminalInteractiveShell.highlighting_style = 'gruvbox-dark'
 
 ## Override highlighting format for specific tokens
 #c.TerminalInteractiveShell.highlighting_style_overrides = {}
@@ -484,7 +486,7 @@ c.TerminalInteractiveShell.true_color = True
 #c.PlainTextFormatter.newline = '\n'
 
 ##
-#c.PlainTextFormatter.pprint = True
+c.PlainTextFormatter.pprint = True
 
 ##
 #c.PlainTextFormatter.verbose = False
