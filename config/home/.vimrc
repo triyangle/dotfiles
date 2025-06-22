@@ -120,7 +120,7 @@ Plug 'KeitaNakamura/tex-conceal.vim', {'for': 'tex'}
 Plug 'machakann/vim-highlightedyank'
 
 " Plug 'benmills/vimux'
-Plug 'triyangle/tmuxline.vim'
+" Plug 'triyangle/tmuxline.vim'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 " Plug 'christoomey/vim-tmux-navigator'
 "
@@ -610,3 +610,7 @@ function ToggleHex()
   let &readonly=l:oldreadonly
   let &modifiable=l:oldmodifiable
 endfunction
+
+hi statusline cterm=NONE gui=NONE
+hi tabline cterm=NONE gui=NONE
+hi winbar cterm=NONE gui=NONE
