@@ -614,3 +614,7 @@ endfunction
 hi statusline cterm=NONE gui=NONE
 hi tabline cterm=NONE gui=NONE
 hi winbar cterm=NONE gui=NONE
+
+if exists('$NVIM_LISTEN_ADDRESS')
+  unlet $NVIM_LISTEN_ADDRESS
+endif
