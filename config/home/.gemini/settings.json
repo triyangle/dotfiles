@@ -36,9 +36,15 @@
       "gallery": true
     },
     "linear": {
-      "type": "http",
-      "url": "https://mcp.linear.app/sse",
-      "gallery": true
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mcp-remote",
+        "https://mcp.linear.app/sse"
+      ],
+      "env": {},
+      "settings": {}
     },
     "sequentialthinking": {
       "type": "stdio",
