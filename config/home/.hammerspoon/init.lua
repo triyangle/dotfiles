@@ -144,3 +144,17 @@ end)
 hs.hotkey.bind({"cmd","ctrl"}, "`", function()
   if prevWin and prevWin:isVisible() then focusExactly(prevWin) end
 end)
+
+hs.loadSpoon("hs_select_window")
+
+-- customize bindings to your preference
+local SWbindings = {
+   all_windows =  { {"alt"}, "b"},
+   app_windows =  { {"alt", "shift"}, "b"}
+}   
+spoon.hs_select_window:bindHotkeys(SWbindings)
+
+local hotswitchHs = require("hotswitch-hs/hotswitch-hs")
+hotswitchHs.enableAutoUpdate() -- If you don't want to update automatically, remove this line.
+hs.hotkey.bind({"command"}, ".", hotswitchHs.openOrClose) -- Set a keybind you like to open HotSwitch-HS panel.
+hotswitchHs.enableAllSpaceWindows()

@@ -13,3 +13,9 @@
 [submodule "submodules/tmuxline.vim"]
 	path = submodules/tmuxline.vim
 	url = https://github.com/triyangle/tmuxline.vim.git
+[submodule "config/home/.hammerspoon/hotswitch-hs"]
+	path = config/home/.hammerspoon/hotswitch-hs
+	url = https://github.com/oniatsu/HotSwitch-HS.git
+[submodule "config/home/.hammerspoon/Spoons/hs_select_window.spoon"]
+	path = config/home/.hammerspoon/Spoons/hs_select_window.spoon
+	url = https://github.com/dmgerman/hs_select_window.spoon.git
