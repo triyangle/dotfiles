@@ -1,7 +1,7 @@
 ------------------------------------------------------------
 -- Minimal fast config: hints, directional focus, send-to-display
 ------------------------------------------------------------
-
+hs.application.enableSpotlightForNameSearches(true)
 -- 0) Quality-of-life
 hs.window.animationDuration = 0
 hs.hints.showTitleThresh = 9999 -- ALWAYS show titles (since count ≤ 9999)
@@ -153,6 +153,7 @@ local SWbindings = {
    app_windows =  { {"alt", "shift"}, "b"}
 }   
 spoon.hs_select_window:bindHotkeys(SWbindings)
+spoon.hs_select_window.showCurrentlySelectedWindow = true  -- or false
 
 local hotswitchHs = require("hotswitch-hs/hotswitch-hs")
 hotswitchHs.enableAutoUpdate() -- If you don't want to update automatically, remove this line.
