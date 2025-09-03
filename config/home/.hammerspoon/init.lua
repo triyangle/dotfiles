@@ -33,12 +33,12 @@ local function windowsOnScreen(scr)
 end
 
 -- Cmd+Esc: current screen
-hs.hotkey.bind({"cmd"}, "escape", function()
+hs.hotkey.bind({"alt"}, "escape", function()
   hs.hints.windowHints(windowsOnScreen(hs.screen.mainScreen()))
 end)
 
 -- Cmd+Shift+Esc: all screens
-hs.hotkey.bind({"cmd","shift"}, "escape", function()
+hs.hotkey.bind({"alt","shift"}, "escape", function()
   hs.hints.windowHints(wf:getWindows())
 end)
 
