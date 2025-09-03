@@ -154,6 +154,7 @@ local SWbindings = {
 }   
 spoon.hs_select_window:bindHotkeys(SWbindings)
 spoon.hs_select_window.showCurrentlySelectedWindow = true  -- or false
+spoon.hs_select_window.useFuzzySearch = true
 
 local hotswitchHs = require("hotswitch-hs/hotswitch-hs")
 hotswitchHs.enableAutoUpdate() -- If you don't want to update automatically, remove this line.
