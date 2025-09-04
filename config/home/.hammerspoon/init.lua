@@ -160,3 +160,53 @@ local hotswitchHs = require("hotswitch-hs/hotswitch-hs")
 hotswitchHs.enableAutoUpdate() -- If you don't want to update automatically, remove this line.
 hs.hotkey.bind({"command"}, ".", hotswitchHs.openOrClose) -- Set a keybind you like to open HotSwitch-HS panel.
 hotswitchHs.enableAllSpaceWindows()
+
+
+local spaces = require("hs.spaces")
+
+local function spacesFor(scr)
+  -- returns array of integer space IDs (or empty)
+  return spaces.spacesForScreen(scr) or {}
+end
+
+local function setify(t)
+  local s = {}
+  for _, v in ipairs(t) do s[v] = true end
+  return s
+end
+
+-- Cmd+Ctrl+N → create + switch to new Space on screen under mouse
+hs.hotkey.bind({"cmd", "ctrl"}, "n", function()
+  local scr = hs.mouse.getCurrentScreen()
+  local before = spacesFor(scr)
+  local beforeSet = setify(before)
+
+  -- request new space (return value is not reliable across versions)
+  spaces.addSpaceToScreen(scr)
+
+  -- poll for the new space to show up, then switch to it
+  local attempts, poll = 0, nil
+  poll = hs.timer.doEvery(0.12, function()
+    attempts = attempts + 1
+    local after = spacesFor(scr)
+    if #after > #before then
+      local created
+      for _, id in ipairs(after) do
+        if not beforeSet[id] then
+          created = id
+          break
+        end
+      end
+      if type(created) == "number" then
+        spaces.gotoSpace(created)            -- now it's definitely an integer ID
+        hs.alert.show("🆕 New Space on " .. (scr:name() or "display"), 1)
+      else
+        hs.alert.show("⚠️ Couldn’t identify new Space ID", 1.5)
+      end
+      poll:stop()
+    elseif attempts >= 20 then               -- ~2.4s timeout
+      poll:stop()
+      hs.alert.show("⚠️ Timeout creating Space", 1.5)
+    end
+  end)
+end)
