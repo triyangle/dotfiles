@@ -476,3 +476,62 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "S", function()
     hs.alert.show("Opened Screen Mirroring", 0.3)
   end
 end)
+
+------------------------------------------------------------
+-- Sticky audio + HUD fix: sync default output & system/effects
+------------------------------------------------------------
+local SETTINGS_KEY = "stickyAudioDevice"
+
+local function defaultOut() return hs.audiodevice.defaultOutputDevice() end
+local function defaultFx()  return hs.audiodevice.defaultEffectDevice() end
+local function byName(n)    return n and hs.audiodevice.findOutputByName(n) or nil end
+
+-- Treat AirPlay as "auto" so manual changes to other devices become sticky.
+local function isAirPlay(dev)
+  if not dev then return false end
+  local tt = dev:transportType() or ""
+  local nm = dev:name() or ""
+  return tt == "AirPlay" or nm:match("[Aa]ir[Pp]lay")
+end
+
+-- Start with saved sticky, or current default on first run
+local stickyDevice = hs.settings.get(SETTINGS_KEY) or (defaultOut() and defaultOut():name())
+
+local function enforceBoth()
+  if not stickyDevice then return end
+  local dev = byName(stickyDevice); if not dev then return end
+
+  local curOut = defaultOut()
+  if (not curOut) or (curOut:name() ~= stickyDevice) then dev:setDefaultOutputDevice() end
+
+  local curFx = defaultFx()
+  if (not curFx) or (curFx:name() ~= stickyDevice) then dev:setDefaultEffectDevice() end
+end
+
+-- Hotkey: adopt current device as sticky (Cmd+Alt+Ctrl+A)
+hs.hotkey.bind({"cmd","alt","ctrl"}, "A", function()
+  local cur = defaultOut(); if not cur then return end
+  stickyDevice = cur:name()
+  hs.settings.set(SETTINGS_KEY, stickyDevice)
+  hs.alert.show("🔒 Sticky: " .. stickyDevice, 0.8)
+  enforceBoth()
+end)
+
+-- Watch both default-output and system-output changes
+hs.audiodevice.watcher.setCallback(function(event)
+  if event == "dOut" or event == "sOut" then
+    local cur = defaultOut()
+    -- Manual change? adopt it (unless it's AirPlay)
+    if cur and not isAirPlay(cur) then
+      stickyDevice = cur:name()
+      hs.settings.set(SETTINGS_KEY, stickyDevice)
+    end
+    -- Re-apply immediately and again after the system settles
+    hs.timer.doAfter(0.05, enforceBoth)
+    hs.timer.doAfter(0.4,  enforceBoth)
+  end
+end)
+hs.audiodevice.watcher.start()
+
+-- Enforce on reload
+hs.timer.doAfter(0.1, enforceBoth)
