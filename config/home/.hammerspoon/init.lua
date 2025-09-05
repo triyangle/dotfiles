@@ -211,6 +211,94 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "n", function()
   end)
 end)
 
+-- Cmd+Ctrl+Shift+N → close (remove) the current Space on the display under the mouse
+hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "n", function()
+  local scr = hs.mouse.getCurrentScreen()
+  local list = spacesFor(scr)
+  if #list <= 1 then
+    hs.alert.show("⚠️ Can't close the only Space on this display", 1.2)
+    return
+  end
+
+  -- Active space on this screen
+  local active = nil
+  if type(spaces.activeSpaceOnScreen) == "function" then
+    active = spaces.activeSpaceOnScreen(scr)
+  elseif type(spaces.activeSpace) == "function" then
+    active = spaces.activeSpace()
+  end
+  if not active then
+    hs.alert.show("⚠️ Couldn't detect active Space", 1.2)
+    return
+  end
+
+  -- Ensure the active space is part of this screen's list
+  local idx
+  for i, id in ipairs(list) do
+    if id == active then
+      idx = i; break
+    end
+  end
+  if not idx then
+    hs.alert.show("⚠️ Active Space not on this display", 1.2)
+    return
+  end
+
+  -- Only user spaces can be removed
+  local stype = (type(spaces.spaceType) == "function") and spaces.spaceType(active) or "user"
+  if stype ~= "user" then
+    hs.alert.show("⚠️ Can't remove non-user Space (" .. tostring(stype) .. ")", 1.5)
+    return
+  end
+
+  -- Pick neighbor on same display
+  local neighbor = (idx > 1) and list[idx - 1] or list[idx + 1]
+  spaces.gotoSpace(neighbor)
+
+  -- Wait until the active space on this screen == neighbor, then remove old one
+  local tries = 0
+  local poll
+  poll = hs.timer.doEvery(0.12, function()
+    tries = tries + 1
+    local now = (type(spaces.activeSpaceOnScreen) == "function") and spaces.activeSpaceOnScreen(scr)
+        or (type(spaces.activeSpace) == "function") and spaces.activeSpace()
+        or nil
+    if now == neighbor or tries >= 40 then
+      poll:stop()
+
+      -- Re-check the type just in case the space changed state
+      local st = (type(spaces.spaceType) == "function") and spaces.spaceType(active) or "user"
+      if st ~= "user" then
+        hs.alert.show("⚠️ Space became non-user (" .. tostring(st) .. ")", 1.5)
+        return
+      end
+
+      if type(spaces.removeSpace) ~= "function" then
+        hs.alert.show("⚠️ hs.spaces.removeSpace not available in this Hammerspoon", 1.5)
+        return
+      end
+
+      -- Try a few times in case the MC daemon is busy
+      local removed = false
+      for _ = 1, 4 do
+        local ok, err = pcall(spaces.removeSpace, active)
+        if ok then
+          removed = true
+          break
+        else
+          hs.timer.usleep(80 * 1000)
+        end
+      end
+
+      if removed then
+        hs.alert.show("🗑️ Closed Space", 0.9)
+      else
+        hs.alert.show("⚠️ Couldn't close Space (busy or denied)", 1.6)
+      end
+    end
+  end)
+end)
+
 -- Sidecar toggle via UI scripting (Intel & Apple Silicon)
 -- Cmd+Ctrl+Shift+S → just open the Screen Mirroring popover (manual pick)
 -- Will move the mouse to the open popover (with multiple fallbacks).
