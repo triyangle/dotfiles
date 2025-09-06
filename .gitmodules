@@ -15,7 +15,7 @@
 	url = https://github.com/triyangle/tmuxline.vim.git
 [submodule "config/home/.hammerspoon/hotswitch-hs"]
 	path = config/home/.hammerspoon/hotswitch-hs
-	url = git@github.com:triyangle/HotSwitch-HS.git
+	url = https://github.com/oniatsu/HotSwitch-HS.git
 [submodule "config/home/.hammerspoon/Spoons/hs_select_window.spoon"]
 	path = config/home/.hammerspoon/Spoons/hs_select_window.spoon
 	url = https://github.com/triyangle/hs_select_window.spoon
