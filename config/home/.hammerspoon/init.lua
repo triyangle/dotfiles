@@ -7,6 +7,7 @@ hs.window.animationDuration = 0
 hs.hints.showTitleThresh = 9999 -- ALWAYS show titles (since count ≤ 9999)
 hs.hints.titleMaxSize = 48      -- truncate long titles to 48 characters
 hs.hints.style = "vimperator"   -- letter hints style; try "default" if you prefer
+hs.hints.fontSize = 15
 
 -- Reload hotkey: Cmd+Alt+Ctrl+r
 hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "r", function()
