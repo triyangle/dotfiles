@@ -5,7 +5,7 @@ hs.application.enableSpotlightForNameSearches(true)
 -- 0) Quality-of-life
 hs.window.animationDuration = 0
 hs.hints.showTitleThresh = 9999 -- ALWAYS show titles (since count ≤ 9999)
-hs.hints.titleMaxSize = -1      -- (optional) don't truncate long titles
+hs.hints.titleMaxSize = 48      -- truncate long titles to 48 characters
 hs.hints.style = "vimperator"   -- letter hints style; try "default" if you prefer
 
 -- Reload hotkey: Cmd+Alt+Ctrl+r
@@ -300,7 +300,7 @@ hs.hotkey.bind({ "cmd", "ctrl", "shift" }, "n", function()
 end)
 
 -- Sidecar toggle via UI scripting (Intel & Apple Silicon)
--- Cmd+Ctrl+Shift+S → just open the Screen Mirroring popover (manual pick)
+-- Cmd+Ctrl+S → just open the Screen Mirroring popover (manual pick)
 -- Will move the mouse to the open popover (with multiple fallbacks).
 local DEBUG = false
 
@@ -388,14 +388,12 @@ tell application "System Events"
       if (count of mirrItems) > 0 then
           click item 1 of mirrItems
           set opened to true
-          delay 0.04
         end if
     end try
     if opened is false then
       set ccItems to (menu bar items of menu bar 1 whose description is "Control Center")
       if (count of ccItems) = 0 then error "Control Center menu bar item not found"
   click item 1 of ccItems
-  delay 0.04
       tell window 1
         set mm to (buttons whose description contains "Screen Mirroring")
         if (count of mm) = 0 then set mm to (buttons whose title contains "Screen Mirroring")
@@ -410,7 +408,6 @@ tell application "System Events"
           click (item 1 of mm)
         end if
       end tell
-      delay 0.25
     end if
 
     -- Return rect for whatever window we got
@@ -473,20 +470,20 @@ hs.hotkey.bind({ "cmd", "ctrl" }, "S", function()
   if not ok then
     hs.alert.show("Screen Mirroring script error (see Console)", 0.6)
   else
-    hs.alert.show("Opened Screen Mirroring", 0.3)
+    hs.alert.show("Opened Screen Mirroring", 0.6)
   end
 end)
 
 ------------------------------------------------------------
--- Sticky audio + HUD fix: sync default output & system/effects
+-- Sticky audio + HUD fix (UID-based, ordered, guarded, HUD refresh)
 ------------------------------------------------------------
-local SETTINGS_KEY = "stickyAudioDevice"
+local SETTINGS_KEY = "stickyAudioDeviceUID"
 
-local function defaultOut() return hs.audiodevice.defaultOutputDevice() end
-local function defaultFx()  return hs.audiodevice.defaultEffectDevice() end
-local function byName(n)    return n and hs.audiodevice.findOutputByName(n) or nil end
+local function curOut() return hs.audiodevice.defaultOutputDevice() end
+local function curFx() return hs.audiodevice.defaultEffectDevice() end
+local function devByUID(uid) return uid and hs.audiodevice.findDeviceByUID(uid) or nil end
 
--- Treat AirPlay as "auto" so manual changes to other devices become sticky.
+-- Treat AirPlay routes as "auto" (don’t adopt as sticky on auto-switch)
 local function isAirPlay(dev)
   if not dev then return false end
   local tt = dev:transportType() or ""
@@ -494,44 +491,86 @@ local function isAirPlay(dev)
   return tt == "AirPlay" or nm:match("[Aa]ir[Pp]lay")
 end
 
--- Start with saved sticky, or current default on first run
-local stickyDevice = hs.settings.get(SETTINGS_KEY) or (defaultOut() and defaultOut():name())
+-- Start sticky as saved UID, else current default device UID
+local stickyUID = hs.settings.get(SETTINGS_KEY) or (curOut() and curOut():uid())
+local function stickyDev() return devByUID(stickyUID) end
 
-local function enforceBoth()
-  if not stickyDevice then return end
-  local dev = byName(stickyDevice); if not dev then return end
+-- Remember current volume/mute on the sticky device (for HUD refresh)
+local lastStickyVol, lastStickyMute = nil, nil
+local function snapshotStickyLevels()
+  local d = stickyDev(); if not d then return end
+  -- These cover common devices; some interfaces expose only :volume()
+  lastStickyVol  = d.outputVolume and d:outputVolume() or (d.volume and d:volume()) or nil
+  lastStickyMute = d.outputMuted and d:outputMuted() or nil
+end
 
-  local curOut = defaultOut()
-  if (not curOut) or (curOut:name() ~= stickyDevice) then dev:setDefaultOutputDevice() end
+-- Apply sticky to System/Sound-effects first, then Output (HUD tracks system output)
+local function enforceOnce()
+  local d = stickyDev(); if not d then return end
+  local fx = curFx()
+  if (not fx) or (fx:uid() ~= stickyUID) then d:setDefaultEffectDevice() end   -- system/effects
+  local out = curOut()
+  if (not out) or (out:uid() ~= stickyUID) then d:setDefaultOutputDevice() end -- main output
+end
 
-  local curFx = defaultFx()
-  if (not curFx) or (curFx:name() ~= stickyDevice) then dev:setDefaultEffectDevice() end
+-- After restore, nudge the HUD by re-applying volume/mute to the sticky device
+-- After having restored the sticky device, "poke" the HUD by re-applying saved levels:
+local function refreshHUD()
+  local d = stickyDev()
+  if not d then return end
+  if lastStickyVol and d.setOutputVolume then
+    d:setOutputVolume(lastStickyVol)
+  end
+  if type(lastStickyMute) == "boolean" and d.setOutputMuted then
+    d:setOutputMuted(lastStickyMute)
+  end
+end
+
+
+-- Guard loop to beat late system events (up to ~600 ms)
+local function enforceGuarded()
+  local attempts, t = 0, nil
+  t = hs.timer.doEvery(0.05, function()
+    attempts = attempts + 1
+    enforceOnce()
+    local outOK = (curOut() and curOut():uid() == stickyUID)
+    local fxOK  = (curFx() and curFx():uid() == stickyUID)
+    if (outOK and fxOK) or attempts >= 12 then
+      t:stop()
+      -- Small extra delay to ensure system UI catches up, then refresh HUD
+      hs.timer.doAfter(0.10, refreshHUD)
+    end
+  end)
 end
 
 -- Hotkey: adopt current device as sticky (Cmd+Alt+Ctrl+A)
-hs.hotkey.bind({"cmd","alt","ctrl"}, "A", function()
-  local cur = defaultOut(); if not cur then return end
-  stickyDevice = cur:name()
-  hs.settings.set(SETTINGS_KEY, stickyDevice)
-  hs.alert.show("🔒 Sticky: " .. stickyDevice, 0.8)
-  enforceBoth()
+hs.hotkey.bind({ "cmd", "alt", "ctrl" }, "A", function()
+  local d = curOut(); if not d then return end
+  stickyUID = d:uid()
+  hs.settings.set(SETTINGS_KEY, stickyUID)
+  snapshotStickyLevels()
+  hs.alert.show("🔒 Sticky: " .. (d:name() or stickyUID), 0.8)
+  enforceGuarded()
 end)
 
--- Watch both default-output and system-output changes
+-- Watch for output/system-output/default-device churn
 hs.audiodevice.watcher.setCallback(function(event)
-  if event == "dOut" or event == "sOut" then
-    local cur = defaultOut()
-    -- Manual change? adopt it (unless it's AirPlay)
-    if cur and not isAirPlay(cur) then
-      stickyDevice = cur:name()
-      hs.settings.set(SETTINGS_KEY, stickyDevice)
+  if event == "dOut" or event == "sOut" or (event and event:match("^dev")) then
+    local d = curOut()
+    if d and not isAirPlay(d) then
+      -- Manual change → adopt as new sticky
+      stickyUID = d:uid()
+      hs.settings.set(SETTINGS_KEY, stickyUID)
+      snapshotStickyLevels()
     end
-    -- Re-apply immediately and again after the system settles
-    hs.timer.doAfter(0.05, enforceBoth)
-    hs.timer.doAfter(0.4,  enforceBoth)
+    -- Fix immediately, again shortly, and keep fixing during negotiation
+    enforceOnce()
+    hs.timer.doAfter(0.20, enforceOnce)
+    enforceGuarded()
   end
 end)
 hs.audiodevice.watcher.start()
 
--- Enforce on reload
-hs.timer.doAfter(0.1, enforceBoth)
+-- Align on reload
+snapshotStickyLevels()
+hs.timer.doAfter(0.10, enforceGuarded)
