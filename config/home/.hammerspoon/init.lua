@@ -528,6 +528,42 @@ local function refreshHUD()
 end
 
 
+-- local function pulseSystemVolumeKey()
+--   local E = hs.eventtap.event.newSystemKeyEvent
+--   E("SOUND_UP", true):post();  E("SOUND_UP", false):post()
+--   E("SOUND_DOWN", true):post();E("SOUND_DOWN", false):post()
+-- end
+
+-- --- Icon refresh helpers ----------------------------------------------
+
+local function isRemoteVolumeDevice(dev)
+  if not dev then return false end
+  local tt = (dev:transportType() or "")
+  local nm = (dev:name() or "")
+  return tt == "AirPlay" or nm:match("[Aa]ir[Pp]lay")
+end
+
+-- Emit a minimal change to force Control Center/Sound to redraw.
+-- Uses device API (0–100 scale). Practically inaudible step.
+local function nudgeVolume(dev)
+  if not (dev and dev.outputVolume and dev.setOutputVolume) then return end
+  local v = dev:outputVolume()
+  if not v then return end
+  local down = math.max(0, v - 1)
+  dev:setOutputVolume(down)
+  hs.timer.doAfter(0.06, function() dev:setOutputVolume(v) end)
+end
+
+-- If the current default output is *not* AirPlay, poke the HUD/icon.
+local function refreshSoundIconIfNeeded()
+  local cur = hs.audiodevice.defaultOutputDevice()
+  if cur and not isRemoteVolumeDevice(cur) then
+    nudgeVolume(cur)
+  end
+end
+
+
+
 -- Guard loop to beat late system events (up to ~600 ms)
 local function enforceGuarded()
   local attempts, t = 0, nil
@@ -538,8 +574,10 @@ local function enforceGuarded()
     local fxOK  = (curFx() and curFx():uid() == stickyUID)
     if (outOK and fxOK) or attempts >= 12 then
       t:stop()
-      -- Small extra delay to ensure system UI catches up, then refresh HUD
-      hs.timer.doAfter(0.10, refreshHUD)
+      hs.timer.doAfter(0.10, function()
+        refreshHUD()                 -- your existing volume/mute restore (guarded)
+        refreshSoundIconIfNeeded()   -- NEW: force menu icon redraw (non-AirPlay only)
+      end)
     end
   end)
 end
