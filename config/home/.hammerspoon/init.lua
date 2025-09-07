@@ -613,3 +613,72 @@ hs.audiodevice.watcher.start()
 -- Align on reload
 snapshotStickyLevels()
 hs.timer.doAfter(0.10, enforceGuarded)
+
+
+-- Cmd+Ctrl+W → open Wi-Fi (ControlCenter owner) and move cursor into the panel
+do
+  local function runAS(script)
+    local ok, result, err = hs.osascript.applescript(script)
+    if not ok and err then
+      local emsg = type(err) == "table" and table.concat(err, "\n") or tostring(err)
+      hs.alert.show("Wi-Fi script error:\n" .. emsg, 2)
+    end
+    return ok, result
+  end
+
+  local function moveMouseToRect(r)
+    if type(r) == "table" and #r == 4 then
+      local x,y,w,h = r[1], r[2], r[3], r[4]
+      if (w or 0) > 0 and (h or 0) > 0 then
+        local offset = (h > 120) and math.min(100, h*0.30) or (h/2)
+        hs.mouse.absolutePosition({ x = x + (w/2), y = y + offset })
+        return true
+      end
+    end
+    return false
+  end
+
+  -- Click the Control Center Wi-Fi item; return the resulting panel window rect
+  local function asClickWiFiInControlCenter()
+    return [[
+tell application "System Events"
+  if not (exists application process "ControlCenter") then error "ControlCenter not found."
+  tell application process "ControlCenter"
+    -- Wi-Fi is a ControlCenter menu bar item in Big Sur+.
+    set wifiItems to (menu bar items of menu bar 1 whose (its description contains "Wi" and its description contains "Fi") or (its title contains "Wi" and its title contains "Fi"))
+    if (count of wifiItems) = 0 then error "Wi-Fi item not found in ControlCenter."
+    set wifiItem to item 1 of wifiItems
+    click wifiItem
+
+    -- After click, a window pops (the Wi-Fi panel). Get its rect.
+    set theWin to missing value
+    try
+      set theWin to first window whose subrole is "AXDialog"
+    end try
+    if theWin is missing value then
+      try
+        set theWin to first window whose role is "AXWindow"
+      end try
+    end if
+    if theWin is missing value then return {0,0,0,0}
+    set p to position of theWin
+    set s to size of theWin
+    return {item 1 of p, item 2 of p, item 1 of s, item 2 of s}
+  end tell
+end tell
+]]
+  end
+
+  -- As a last resort, nudge near top-right
+  local function fallbackTopRight()
+    local f = hs.screen.mainScreen():fullFrame()
+    hs.mouse.absolutePosition({ x = f.x + f.w - 80, y = f.y + 80 })
+  end
+
+  hs.hotkey.bind({ "cmd", "ctrl" }, "W", function()
+    local ok, rect = runAS(asClickWiFiInControlCenter())
+    if type(rect) ~= "table" then rect = {0,0,0,0} end
+    if not moveMouseToRect(rect) then fallbackTopRight() end
+    hs.alert.show(ok and "Opened Wi-Fi panel" or "Wi-Fi script error (see Console)", 0.6)
+  end)
+end
