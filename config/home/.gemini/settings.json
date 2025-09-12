@@ -3,6 +3,7 @@
   "selectedAuthType": "oauth-personal",
   "preferredEditor": "vscode",
   "vimMode": true,
+  "contextFileName": "AGENTS.md",
   "mcpServers": {
     "GitHub": {
       "command": "npx",
