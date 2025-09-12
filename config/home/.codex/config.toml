@@ -1,0 +1,42 @@
+model = "gpt-5"
+model_reasoning_effort = "high"
+[projects."/Users/willyang/optimization-engine-v3"]
+trust_level = "trusted"
+
+# MCP servers mirrored from ~/.gemini/settings.json
+# IMPORTANT: top-level key is `mcp_servers` (TOML), not `mcpServers` (JSON)
+[mcp_servers.GitHub]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-github"]
+env = { "GITHUB_PERSONAL_ACCESS_TOKEN" = "" }
+
+[mcp_servers.codacy]
+command = "npx"
+args = ["-y", "@codacy/codacy-mcp@latest"]
+env = { "CODACY_ACCOUNT_TOKEN" = "${input:codacy_account_token}" }
+
+[mcp_servers.context7]
+command = "npx"
+args = ["-y", "@upstash/context7-mcp@latest"]
+
+[mcp_servers.linear]
+command = "npx"
+args = ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
+
+[mcp_servers.sequentialthinking]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-sequential-thinking@latest"]
+
+[mcp_servers.memory]
+command = "npx"
+args = ["-y", "@modelcontextprotocol/server-memory@latest"]
+env = { "MEMORY_FILE_PATH" = "${input:memory_file_path}" }
+
+[mcp_servers.jetbrains]
+command = "/Applications/PyCharm.app/Contents/jbr/Contents/Home/bin/java"
+args = [
+	"-classpath",
+	"/Applications/PyCharm.app/Contents/plugins/mcpserver/lib/mcpserver-frontend.jar:/Applications/PyCharm.app/Contents/lib/util-8.jar",
+	"com.intellij.mcpserver.stdio.McpStdioRunnerKt"
+]
+env = { "IJ_MCP_SERVER_PORT" = "64342" }
