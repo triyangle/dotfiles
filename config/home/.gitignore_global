@@ -431,4 +431,8 @@ modules.xml
 .idea/misc.xml
 *.ipr
 
+docker-compose.yml
+package.json
+
 # End of https://www.toptal.com/developers/gitignore/api/jetbrains+iml
+

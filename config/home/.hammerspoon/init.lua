@@ -142,7 +142,7 @@ hs.window.filter.default:subscribe(hs.window.filter.windowFocused, function(w)
     lastWin = w
   end
 end)
-hs.hotkey.bind({ "cmd", "ctrl" }, "`", function()
+hs.hotkey.bind({ "ctrl" }, "`", function()
   if prevWin and prevWin:isVisible() then focusExactly(prevWin) end
 end)
 
