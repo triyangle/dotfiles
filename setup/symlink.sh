@@ -31,12 +31,21 @@ echo -e "\nSymlinking vim spell"
 mkdir -p ~/.vim
 ln -s ~/dotfiles/config/.vim/spell ~/.vim/
 
+echo -e "\nSymlinking gemini"
+mkdir -p ~/.gemini
+ln -s ~/dotfiles/config/.gemini/settings.json ~/.gemini/
+
+
+echo -e "\nSymlinking codex"
+mkdir -p ~/.codex
+ln -s ~/dotfiles/config/.codex/config.toml ~/.codex/
+
 echo -e "\nSymlinking ipython profile"
 mkdir -p ~/.ipython/profile_default
 ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
-echo -e "\nSymlinking Rectangle config file"
-ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
+# echo -e "\nSymlinking Rectangle config file"
+# ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
 
 echo -e "\nSetting up crontab..."
 crontab ~/dotfiles/env/config/crontab
