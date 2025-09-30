@@ -26,7 +26,7 @@ local function fw() return hs.window.focusedWindow() end
 
 -- Use window.filter to prefilter visible/standard windows in current Space
 local wf = hs.window.filter.new()
--- wf:setCurrentSpace(true) -- only current Mission Control space
+wf:setCurrentSpace(true) -- only current Mission Control space
 
 local function windowsOnScreen(scr)
   local wins = wf:getWindows() -- already standard+visible
@@ -52,7 +52,7 @@ end)
 
 -- cached window list (current Space only; standard+visible by default)
 local wf_dir = hs.window.filter.new()
--- wf_dir:setCurrentSpace(true)
+wf_dir:setCurrentSpace(true)
 
 local function center(r) return { x = r.x + r.w / 2, y = r.y + r.h / 2 } end
 
