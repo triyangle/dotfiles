@@ -159,7 +159,7 @@ spoon.hs_select_window.useFuzzySearch = true
 
 local hotswitchHs = require("hotswitch-hs/hotswitch-hs")
 hotswitchHs.enableAutoUpdate()                              -- If you don't want to update automatically, remove this line.
-hs.hotkey.bind({ "command" }, ".", hotswitchHs.openOrClose) -- Set a keybind you like to open HotSwitch-HS panel.
+hs.hotkey.bind({ "ctrl", "command" }, ".", hotswitchHs.openOrClose) -- Set a keybind you like to open HotSwitch-HS panel.
 hotswitchHs.enableAllSpaceWindows()
 
 
