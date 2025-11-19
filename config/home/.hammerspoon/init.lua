@@ -682,3 +682,103 @@ end tell
     hs.alert.show(ok and "Opened Wi-Fi panel" or "Wi-Fi script error (see Console)", 0.6)
   end)
 end
+
+-- Next screen
+hs.hotkey.bind({'ctrl','cmd'}, ']', function()
+  local s = hs.mouse.getCurrentScreen()
+  local n = s:next()
+  local c = hs.geometry.rectMidPoint(n:fullFrame())
+  hs.mouse.setAbsolutePosition(c)
+end)
+-- Previous screen
+hs.hotkey.bind({'ctrl','alt','cmd'}, '[', function()
+  local s = hs.mouse.getCurrentScreen()
+  local p = s:previous()
+  local c = hs.geometry.rectMidPoint(p:fullFrame())
+  hs.mouse.setAbsolutePosition(c)
+end)
+
+
+-- === CatchMouse-style numbered hotkeys for Hammerspoon ===
+-- ⌃⌥⌘ + 1..9 → move cursor to the center of screen #N (ordered left→right)
+-- ⌃⌥⌘⇧ + 1..9 → move cursor to your SAVED position on screen #N
+-- ⌃⌥⌘ + S     → save current cursor position for the CURRENT screen
+
+local mod       = {'ctrl','cmd'}
+local modSaved  = {'ctrl','cmd','shift'}
+local inset     = 16  -- how far from the edges for corner jumps (if you add them)
+
+-- Sort screens by physical layout: left→right, then top→bottom
+local function orderedScreens()
+  local ss = hs.screen.allScreens()
+  table.sort(ss, function(a, b)
+    local fa, fb = a:fullFrame(), b:fullFrame()
+    if fa.x == fb.x then return fa.y < fb.y end
+    return fa.x < fb.x
+  end)
+  return ss
+end
+
+local function moveToPoint(pt, label)
+  hs.mouse.setAbsolutePosition(pt)
+  if label then hs.alert.show(label, 0.3) end
+end
+
+local function moveTo(screen, where)
+  local f = screen:fullFrame()
+  local pt
+  if     where == 'center' then pt = { x = math.floor(f.x + f.w/2), y = math.floor(f.y + f.h/2) }
+  elseif where == 'tl'     then pt = { x = f.x + inset,               y = f.y + inset }
+  elseif where == 'tr'     then pt = { x = f.x + f.w - inset,         y = f.y + inset }
+  elseif where == 'bl'     then pt = { x = f.x + inset,               y = f.y + f.h - inset }
+  elseif where == 'br'     then pt = { x = f.x + f.w - inset,         y = f.y + f.h - inset }
+  else pt = { x = f.x + 10, y = f.y + 10 }
+  end
+  moveToPoint(pt, string.format("Screen %s (%s)", screen:name() or "?", where))
+end
+
+local function moveToIndex(i, where)
+  local s = orderedScreens()[i]
+  if not s then
+    hs.alert.show("No screen #"..i, 0.4)
+    return
+  end
+  moveTo(s, where or 'center')
+end
+
+-- --- SAVED POSITIONS (per display UUID) ---
+local storeKey = "catchmouse.savedPositions"
+local saved = hs.settings.get(storeKey) or {}  -- [uuid] = {x=..., y=...}
+
+local function moveToSaved(i)
+  local s = orderedScreens()[i]; if not s then return end
+  local pt = saved[s:getUUID()]
+  if pt then
+    moveToPoint(pt, string.format("Screen %s (saved)", s:name() or "?"))
+  else
+    moveTo(s, 'center')
+  end
+end
+
+-- Save the current cursor position for the CURRENT screen
+hs.hotkey.bind(mod, 'S', function()
+  local scr = hs.mouse.getCurrentScreen()
+  saved[scr:getUUID()] = hs.mouse.getAbsolutePosition()
+  hs.settings.set(storeKey, saved)
+  hs.alert.show(string.format("Saved for %s", scr:name() or "?"), 0.4)
+end)
+
+-- Numbered hotkeys: 1..9
+for i = 1, 9 do
+  hs.hotkey.bind(mod,      tostring(i), function() moveToIndex(i, 'center') end)
+  hs.hotkey.bind(modSaved, tostring(i), function() moveToSaved(i)            end)
+end
+
+-- OPTIONAL: corners (uncomment any you like)
+-- for i = 1, 9 do
+--   hs.hotkey.bind({'ctrl','alt'}, tostring(i), function() moveToIndex(i,'tl') end)
+-- end
+
+-- Keep a watcher alive (so mappings re-evaluate when displays change)
+local screenWatcher = hs.screen.watcher.new(function() end)
+screenWatcher:start()
