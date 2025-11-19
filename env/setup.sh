@@ -3,13 +3,15 @@
 echo -e "\nInitializing macOS setup..."
 
 echo -e "\nInstalling homebrew..."
-/usr/bin/ruby -e "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)"
+/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
 
+# need to fix this (after running prev. line to install homebrew, the brew cmd
+# is not yet available): /Users/williamyang/dotfiles/setup/brews.sh:4: command not found: brew
 echo -e "\nInstalling common brews..."
 source ~/dotfiles/setup/brews.sh
 
 echo -e "\nInstalling homebrew cask..."
-brew tap caskroom/cask
+brew tap homebrew/cask
 
 echo -e "\nInstalling iTerm 2..."
 brew cask install iterm2
