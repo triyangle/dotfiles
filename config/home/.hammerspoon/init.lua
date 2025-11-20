@@ -700,13 +700,77 @@ end)
 
 
 -- === CatchMouse-style numbered hotkeys for Hammerspoon ===
--- ⌃⌥⌘ + 1..9 → move cursor to the center of screen #N (ordered left→right)
--- ⌃⌥⌘⇧ + 1..9 → move cursor to your SAVED position on screen #N
--- ⌃⌥⌘ + S     → save current cursor position for the CURRENT screen
+-- ⌃⌘ + 1..9 → move cursor to the center of screen #N (ordered left→right)
+-- ⌃⌘⇧ + 1..9 → move cursor to your SAVED position on screen #N
+-- ⌃⌘ + S     → save current cursor position for the CURRENT screen
 
 local mod       = {'ctrl','cmd'}
 local modSaved  = {'ctrl','cmd','shift'}
 local inset     = 16  -- how far from the edges for corner jumps (if you add them)
+
+-- Mouse magnification effect (like CatchMouse)
+local magnifyCanvas = nil
+local function magnifyMouse(pt)
+  -- Clean up any existing canvas
+  if magnifyCanvas then
+    magnifyCanvas:delete()
+    magnifyCanvas = nil
+  end
+
+  -- Create a canvas for the magnification effect
+  local size = 200  -- starting size
+  magnifyCanvas = hs.canvas.new({
+    x = pt.x - size/2,
+    y = pt.y - size/2,
+    w = size,
+    h = size
+  })
+
+  -- Draw a pulsing circle
+  magnifyCanvas[1] = {
+    type = "circle",
+    action = "stroke",
+    strokeColor = { red = 0.2, green = 0.6, blue = 1.0, alpha = 0.8 },
+    strokeWidth = 4,
+    frame = { x = "0%", y = "0%", w = "100%", h = "100%" }
+  }
+
+  magnifyCanvas:level(hs.canvas.windowLevels.overlay)
+  magnifyCanvas:show()
+
+  -- Animate: shrink the circle to cursor size with fade
+  local steps = 12
+  local delay = 0.03
+  local step = 0
+
+  local function animate()
+    step = step + 1
+    if step > steps then
+      if magnifyCanvas then
+        magnifyCanvas:delete()
+        magnifyCanvas = nil
+      end
+      return
+    end
+
+    local progress = step / steps
+    local currentSize = size * (1 - progress * 0.85)  -- shrink to 15% of original
+    local alpha = 0.8 * (1 - progress)  -- fade out
+
+    if magnifyCanvas then
+      magnifyCanvas:frame({
+        x = pt.x - currentSize/2,
+        y = pt.y - currentSize/2,
+        w = currentSize,
+        h = currentSize
+      })
+      magnifyCanvas[1].strokeColor.alpha = alpha
+      hs.timer.doAfter(delay, animate)
+    end
+  end
+
+  animate()
+end
 
 -- Sort screens by physical layout: left→right, then top→bottom
 local function orderedScreens()
@@ -721,6 +785,7 @@ end
 
 local function moveToPoint(pt, label)
   hs.mouse.setAbsolutePosition(pt)
+  magnifyMouse(pt)  -- Add magnification effect
   if label then hs.alert.show(label, 0.3) end
 end
 
