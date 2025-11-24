@@ -703,6 +703,7 @@ end)
 -- ⌃⌘ + 1..9 → move cursor to the center of screen #N (ordered left→right)
 -- ⌃⌘⇧ + 1..9 → move cursor to your SAVED position on screen #N
 -- ⌃⌘ + S     → save current cursor position for the CURRENT screen
+-- ⌃⌘ + M     → open Screen Mirroring/Display menu
 
 local mod       = {'ctrl','cmd'}
 local modSaved  = {'ctrl','cmd','shift'}
@@ -831,6 +832,68 @@ hs.hotkey.bind(mod, 'S', function()
   saved[scr:getUUID()] = hs.mouse.getAbsolutePosition()
   hs.settings.set(storeKey, saved)
   hs.alert.show(string.format("Saved for %s", scr:name() or "?"), 0.4)
+end)
+
+-- Open Control Center and position mouse on Screen Mirroring
+hs.hotkey.bind(mod, 'M', function()
+  local ok, result = hs.osascript.applescript([[
+    tell application "System Events"
+      tell process "ControlCenter"
+        -- Find and click Control Center menu bar item
+        set ccItems to menu bar items of menu bar 1 whose description contains "Control Center"
+        if (count of ccItems) = 0 then error "Control Center not found"
+        click item 1 of ccItems
+
+        -- Get the Control Center window and find Screen Mirroring/Display button
+        set theWin to missing value
+        try
+          set theWin to first window whose subrole is "AXDialog"
+        end try
+        if theWin is missing value then
+          try
+            set theWin to first window
+          end try
+        end if
+        if theWin is missing value then return {0,0,0,0}
+
+        -- Try to find Screen Mirroring or Display button
+        tell theWin
+          try
+            set mirrorBtns to buttons whose description contains "Screen Mirroring" or description contains "Display"
+            if (count of mirrorBtns) > 0 then
+              set btnPos to position of (item 1 of mirrorBtns)
+              set btnSize to size of (item 1 of mirrorBtns)
+              return {item 1 of btnPos, item 2 of btnPos, item 1 of btnSize, item 2 of btnSize}
+            end if
+          end try
+        end tell
+
+        -- Fallback: just return window position
+        set p to position of theWin
+        set s to size of theWin
+        return {item 1 of p, item 2 of p, item 1 of s, item 2 of s}
+      end tell
+    end tell
+  ]])
+
+  if ok and type(result) == "table" and #result == 4 then
+    local x, y, w, h = result[1], result[2], result[3], result[4]
+    if w > 0 and h > 0 then
+      -- Position on right side, below media controls (where Screen Mirroring button is)
+      -- Right side: x + 75% of width, Upper area: y + 28% of height
+      local clickX = x + w * 0.75
+      local clickY = y + h * 0.28
+      hs.mouse.absolutePosition({x = clickX, y = clickY})
+
+      -- Click the Screen Mirroring button immediately
+      hs.eventtap.leftClick({x = clickX, y = clickY})
+
+      -- Move mouse to first display option in Screen Mirroring menu immediately
+      local menuX = x + w * 0.75
+      local menuY = clickY - 120  -- Move up to first display entry
+      hs.mouse.absolutePosition({x = menuX, y = menuY})
+    end
+  end
 end)
 
 -- Numbered hotkeys: 1..9
