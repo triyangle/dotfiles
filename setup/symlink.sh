@@ -31,9 +31,9 @@ echo -e "\nSymlinking vim spell"
 mkdir -p ~/.vim
 ln -s ~/dotfiles/config/.vim/spell ~/.vim/
 
-echo -e "\nSymlinking gemini"
-mkdir -p ~/.gemini
-ln -s ~/dotfiles/config/.gemini/settings.json ~/.gemini/
+# echo -e "\nSymlinking gemini"
+# mkdir -p ~/.gemini
+# ln -s ~/dotfiles/config/.gemini/settings.json ~/.gemini/
 
 
 echo -e "\nSymlinking codex"
