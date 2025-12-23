@@ -14,9 +14,9 @@ echo -e "\nChanging to the $dir directory..."
 cd $dir
 echo "Done"
 
-ln -s ~/dotfiles/config/home/.* ~/
+ln -sf ~/dotfiles/config/home/.* ~/
 
-ln -s ~/dotfiles/config/nvim ~/.config/nvim
+ln -sf ~/dotfiles/config/nvim ~/.config/nvim
 
 # for file in "${files[@]}"; do
     # echo "Moving any existing dotfiles from ~ to $olddir"
@@ -25,11 +25,11 @@ ln -s ~/dotfiles/config/nvim ~/.config/nvim
     # ln -s $dir/$file ~
 # done
 
-ln -s ~/dotfiles/env/config/.* ~/
+ln -sf ~/dotfiles/env/config/.* ~/
 
 echo -e "\nSymlinking vim spell"
 mkdir -p ~/.vim
-ln -s ~/dotfiles/config/.vim/spell ~/.vim/
+ln -sf ~/dotfiles/config/.vim/spell ~/.vim/
 
 # echo -e "\nSymlinking gemini"
 # mkdir -p ~/.gemini
@@ -38,11 +38,11 @@ ln -s ~/dotfiles/config/.vim/spell ~/.vim/
 
 echo -e "\nSymlinking codex"
 mkdir -p ~/.codex
-ln -s ~/dotfiles/config/.codex/config.toml ~/.codex/
+ln -sf ~/dotfiles/config/.codex/config.toml ~/.codex/
 
 echo -e "\nSymlinking ipython profile"
 mkdir -p ~/.ipython/profile_default
-ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
+ln -sf ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
 # echo -e "\nSymlinking Rectangle config file"
 # ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
