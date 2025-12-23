@@ -5,11 +5,11 @@ git clone --recurse-submodules https://github.com/triyangle/prezto.git "${ZDOTDI
 source ~/dotfiles/setup/prezto/init.zsh
 cd ~/.zprezto
 git submodule update --init --recursive
-git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/prezto.git
+git remote set-url origin git@github.com:triyangle/prezto.git
 git remote add upstream https://github.com/sorin-ionescu/prezto.git
 
 cd ~/.zprezto/modules/prompt/external/statusline
-git remote set-url --add origin https://triyangle@bitbucket.org/triyangle/statusline.git
+git remote set-url origin git@github.com:triyangle/statusline.git
 git remote add upstream https://github.com/el1t/statusline.git
 
 echo -e "\nInstalling Powerline fonts..."
