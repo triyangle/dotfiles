@@ -10,10 +10,11 @@ git remote add upstream https://github.com/supercrabtree/k.git
 
 source ~/dotfiles/setup/symlink.sh
 source ~/dotfiles/setup/prezto/setup.sh
+sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 # source ~/dotfiles/env/setup.sh
 
-sudo apt-get install neovim
+sudo apt-get install -y neovim eza
 source ~/dotfiles/setup/vim.sh
 source ~/dotfiles/setup/tmux.sh
 # source ~/dotfiles/setup/jupyter/setup.sh
