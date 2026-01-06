@@ -1,0 +1,15 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(mv:*)",
+      "Bash(git remote set-url:*)",
+      "Bash(git -C /home/vscode/.zprezto remote set-url:*)",
+      "Bash(git -C /home/vscode/.zprezto remote:*)",
+      "Bash(git -C /home/vscode/.zprezto config:*)",
+      "Bash(git add:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfix: use SSH remotes and remove --add flag in prezto setup\n\n- Switch prezto and statusline remotes from HTTPS to SSH\n- Remove --add flag to prevent duplicate URLs on re-run\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")",
+      "Bash(git checkout:*)",
+      "Bash(git commit -m \"$\\(cat <<''EOF''\nfeat: make setup scripts idempotent\n\n- Use ln -sf to force symlink creation \\(overwrites existing\\)\n- Skip prezto clone if directory already exists\n- Add || true to git remote add commands to ignore \"already exists\" errors\n\nSetup can now be run multiple times without failing.\n\n🤖 Generated with [Claude Code]\\(https://claude.com/claude-code\\)\n\nCo-Authored-By: Claude Opus 4.5 <noreply@anthropic.com>\nEOF\n\\)\")"
+    ]
+  }
+}

@@ -6,7 +6,7 @@ git submodule init
 git submodule update
 
 cd ~/dotfiles/submodules/k
-git remote add upstream https://github.com/supercrabtree/k.git
+git remote add upstream https://github.com/supercrabtree/k.git 2>/dev/null || true
 
 source ~/dotfiles/setup/symlink.sh
 source ~/dotfiles/setup/prezto/setup.sh
@@ -14,7 +14,8 @@ sudo chsh "$(id -un)" --shell "/usr/bin/zsh"
 
 # source ~/dotfiles/env/setup.sh
 
-sudo apt-get install -y neovim eza
+sudo apt-get update -y
+sudo apt-get install -y neovim eza fzf
 source ~/dotfiles/setup/vim.sh
 source ~/dotfiles/setup/tmux.sh
 # source ~/dotfiles/setup/jupyter/setup.sh
