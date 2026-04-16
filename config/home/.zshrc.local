@@ -1,5 +1,7 @@
 # Claude Code
-alias cc='claude --allowedTools "Bash(*)" "Git(*)" "Read" "Edit" "Write"'
+export ANTHROPIC_MODEL=opus[1m]
+export CLAUDE_CODE_EFFORT_LEVEL=max
+alias cc='claude --effort max --allowedTools "Bash(*)" "Git(*)" "Read" "Edit" "Write"'
 
 # fzf
 source /usr/share/doc/fzf/examples/key-bindings.zsh

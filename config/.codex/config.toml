@@ -6,40 +6,62 @@ trust_level = "trusted"
 [notice]
 hide_gpt5_1_migration_prompt = true
 
-# MCP servers mirrored from ~/.gemini/settings.json
+# MCP servers mirrored from Claude Code config
 # IMPORTANT: top-level key is `mcp_servers` (TOML), not `mcpServers` (JSON)
-[mcp_servers.GitHub]
-command = "npx"
-args = ["-y", "@modelcontextprotocol/server-github"]
-env = { "GITHUB_PERSONAL_ACCESS_TOKEN" = "" }
+[mcp_servers.figma]
+type = "http"
+url = "https://mcp.figma.com/mcp"
 
-[mcp_servers.codacy]
+[mcp_servers.glean_default]
+type = "http"
+url = "https://vanta-be.glean.com/mcp/default"
+
+[mcp_servers.ESLint]
 command = "npx"
-args = ["-y", "@codacy/codacy-mcp@latest"]
-env = { "CODACY_ACCOUNT_TOKEN" = "${input:codacy_account_token}" }
+args = ["@eslint/mcp@latest"]
+
+[mcp_servers.guru]
+command = "/workspaces/obsidian/scripts/ai-playground/src/guru-mcp-server-ts/run-guru-mcp-server.sh"
+args = []
 
 [mcp_servers.context7]
 command = "npx"
-args = ["-y", "@upstash/context7-mcp@latest"]
+args = ["-y", "@upstash/context7-mcp"]
 
-[mcp_servers.linear]
+[mcp_servers.datetime]
 command = "npx"
-args = ["-y", "mcp-remote", "https://mcp.linear.app/mcp"]
+args = ["-y", "@odgrim/mcp-datetime"]
 
-[mcp_servers.sequentialthinking]
+[mcp_servers.google-drive-mcp]
+command = "/workspaces/obsidian/scripts/ai-playground/src/gdrive-mcp-server-ts/run-gdrive-mcp-server.sh"
+args = []
+env = {
+	"GOOGLE_DRIVE_MCP_READONLY_ID" = "${GOOGLE_DRIVE_MCP_READONLY_ID}",
+	"GOOGLE_DRIVE_MCP_READONLY_SECRET" = "${GOOGLE_DRIVE_MCP_READONLY_SECRET}"
+}
+
+[mcp_servers.datadog]
+type = "stdio"
 command = "npx"
-args = ["-y", "@modelcontextprotocol/server-sequential-thinking@latest"]
-
-[mcp_servers.memory]
-command = "npx"
-args = ["-y", "@modelcontextprotocol/server-memory@latest"]
-env = { "MEMORY_FILE_PATH" = "${input:memory_file_path}" }
-
-[mcp_servers.jetbrains]
-command = "/Applications/PyCharm.app/Contents/jbr/Contents/Home/bin/java"
 args = [
-	"-classpath",
-	"/Applications/PyCharm.app/Contents/plugins/mcpserver/lib/mcpserver-frontend.jar:/Applications/PyCharm.app/Contents/lib/util-8.jar",
-	"com.intellij.mcpserver.stdio.McpStdioRunnerKt"
+	"datadog-mcp-server",
+	"--apiKey",
+	"${DATADOG_API_KEY}",
+	"--appKey",
+	"${DATADOG_APP_KEY}",
+	"--site",
+	"datadoghq.com",
+	"--logsSite",
+	"logs.datadoghq.com",
+	"--metricsSite",
+	"datadoghq.com"
 ]
-env = { "IJ_MCP_SERVER_PORT" = "64342" }
+
+[mcp_servers.datadog_logs]
+type = "stdio"
+command = "npx"
+args = ["-y", "@i524/datadog-mcp-server", "--stdio"]
+env = {
+	"DD_API_KEY" = "${DATADOG_API_KEY}",
+	"DD_APP_KEY" = "${DATADOG_APP_KEY}"
+}
