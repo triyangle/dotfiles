@@ -16,3 +16,7 @@
 
 - Add a `machines/<env>/zshrc.local` overlay hook documented in the README.
 - Consider chezmoi if a 3rd active env ever appears with significant overlap with an existing one.
+
+## Unrelated-but-tracked
+
+- **Auto port-forwarding for WebStorm → Ona.** Instead of `ssh -L` per session, add `LocalForward` entries to `~/.ssh/config` under the Ona host (e.g. `Host ona-*` with `LocalForward 3000 localhost:3000` etc.) + `ExitOnForwardFailure no` so conflicts don't break the connection. Open question: does Ona overwrite `~/.ssh/config` each time you paste their setup command? If so, put the forwards in a separate `Include`d file, or manage via a wrapper host entry. `~/.ssh/config` is per-machine and not typically in this dotfiles repo, but noting here to make sure the workflow gets set up.
