@@ -3,6 +3,25 @@ export ANTHROPIC_MODEL=opus[1m]
 export CLAUDE_CODE_EFFORT_LEVEL=max
 alias cc='claude --effort max --allowedTools "Bash(*)" "Git(*)" "Read" "Edit" "Write"'
 
-# fzf
-source /usr/share/doc/fzf/examples/key-bindings.zsh
-source /usr/share/doc/fzf/examples/completion.zsh
+# fzf — OS-specific source paths
+case "$OSTYPE" in
+  linux*)
+    [[ -f /usr/share/doc/fzf/examples/key-bindings.zsh ]] && \
+      source /usr/share/doc/fzf/examples/key-bindings.zsh
+    [[ -f /usr/share/doc/fzf/examples/completion.zsh ]] && \
+      source /usr/share/doc/fzf/examples/completion.zsh
+    ;;
+  darwin*)
+    if command -v brew >/dev/null 2>&1; then
+      source "$(brew --prefix)/opt/fzf/shell/key-bindings.zsh" 2>/dev/null
+      source "$(brew --prefix)/opt/fzf/shell/completion.zsh" 2>/dev/null
+    fi
+    ;;
+esac
+
+# Optional per-env zsh overlay
+if [[ -f ~/.dotfiles-env ]]; then
+  _env=$(<~/.dotfiles-env)
+  [[ -f ~/dotfiles/machines/$_env/zshrc.local ]] && source ~/dotfiles/machines/$_env/zshrc.local
+  unset _env
+fi

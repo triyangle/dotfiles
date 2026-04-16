@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": [
+      "Bash(tsc:*)",
+      "Bash(npx tsc:*)",
+      "Bash(yarn tsc:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(node_modules/.bin/tsc:*)"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "opus[1m]",
+  "enabledPlugins": {
+    "slack@claude-plugins-official": true
+  },
+  "autoDreamEnabled": true
+}

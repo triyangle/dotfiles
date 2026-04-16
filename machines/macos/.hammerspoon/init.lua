@@ -682,3 +682,231 @@ end tell
     hs.alert.show(ok and "Opened Wi-Fi panel" or "Wi-Fi script error (see Console)", 0.6)
   end)
 end
+
+-- Next screen
+hs.hotkey.bind({'ctrl','cmd'}, ']', function()
+  local s = hs.mouse.getCurrentScreen()
+  local n = s:next()
+  local c = hs.geometry.rectMidPoint(n:fullFrame())
+  hs.mouse.setAbsolutePosition(c)
+end)
+-- Previous screen
+hs.hotkey.bind({'ctrl','alt','cmd'}, '[', function()
+  local s = hs.mouse.getCurrentScreen()
+  local p = s:previous()
+  local c = hs.geometry.rectMidPoint(p:fullFrame())
+  hs.mouse.setAbsolutePosition(c)
+end)
+
+
+-- === CatchMouse-style numbered hotkeys for Hammerspoon ===
+-- ⌃⌘ + 1..9 → move cursor to the center of screen #N (ordered left→right)
+-- ⌃⌘⇧ + 1..9 → move cursor to your SAVED position on screen #N
+-- ⌃⌘ + S     → save current cursor position for the CURRENT screen
+-- ⌃⌘ + M     → open Screen Mirroring/Display menu
+
+local mod       = {'ctrl','cmd'}
+local modSaved  = {'ctrl','cmd','shift'}
+local inset     = 16  -- how far from the edges for corner jumps (if you add them)
+
+-- Mouse magnification effect (like CatchMouse)
+local magnifyCanvas = nil
+local function magnifyMouse(pt)
+  -- Clean up any existing canvas
+  if magnifyCanvas then
+    magnifyCanvas:delete()
+    magnifyCanvas = nil
+  end
+
+  -- Create a canvas for the magnification effect
+  local size = 200  -- starting size
+  magnifyCanvas = hs.canvas.new({
+    x = pt.x - size/2,
+    y = pt.y - size/2,
+    w = size,
+    h = size
+  })
+
+  -- Draw a pulsing circle
+  magnifyCanvas[1] = {
+    type = "circle",
+    action = "stroke",
+    strokeColor = { red = 0.2, green = 0.6, blue = 1.0, alpha = 0.8 },
+    strokeWidth = 4,
+    frame = { x = "0%", y = "0%", w = "100%", h = "100%" }
+  }
+
+  magnifyCanvas:level(hs.canvas.windowLevels.overlay)
+  magnifyCanvas:show()
+
+  -- Animate: shrink the circle to cursor size with fade
+  local steps = 12
+  local delay = 0.03
+  local step = 0
+
+  local function animate()
+    step = step + 1
+    if step > steps then
+      if magnifyCanvas then
+        magnifyCanvas:delete()
+        magnifyCanvas = nil
+      end
+      return
+    end
+
+    local progress = step / steps
+    local currentSize = size * (1 - progress * 0.85)  -- shrink to 15% of original
+    local alpha = 0.8 * (1 - progress)  -- fade out
+
+    if magnifyCanvas then
+      magnifyCanvas:frame({
+        x = pt.x - currentSize/2,
+        y = pt.y - currentSize/2,
+        w = currentSize,
+        h = currentSize
+      })
+      magnifyCanvas[1].strokeColor.alpha = alpha
+      hs.timer.doAfter(delay, animate)
+    end
+  end
+
+  animate()
+end
+
+-- Sort screens by physical layout: left→right, then top→bottom
+local function orderedScreens()
+  local ss = hs.screen.allScreens()
+  table.sort(ss, function(a, b)
+    local fa, fb = a:fullFrame(), b:fullFrame()
+    if fa.x == fb.x then return fa.y < fb.y end
+    return fa.x < fb.x
+  end)
+  return ss
+end
+
+local function moveToPoint(pt, label)
+  hs.mouse.setAbsolutePosition(pt)
+  magnifyMouse(pt)  -- Add magnification effect
+  if label then hs.alert.show(label, 0.3) end
+end
+
+local function moveTo(screen, where)
+  local f = screen:fullFrame()
+  local pt
+  if     where == 'center' then pt = { x = math.floor(f.x + f.w/2), y = math.floor(f.y + f.h/2) }
+  elseif where == 'tl'     then pt = { x = f.x + inset,               y = f.y + inset }
+  elseif where == 'tr'     then pt = { x = f.x + f.w - inset,         y = f.y + inset }
+  elseif where == 'bl'     then pt = { x = f.x + inset,               y = f.y + f.h - inset }
+  elseif where == 'br'     then pt = { x = f.x + f.w - inset,         y = f.y + f.h - inset }
+  else pt = { x = f.x + 10, y = f.y + 10 }
+  end
+  moveToPoint(pt, string.format("Screen %s (%s)", screen:name() or "?", where))
+end
+
+local function moveToIndex(i, where)
+  local s = orderedScreens()[i]
+  if not s then
+    hs.alert.show("No screen #"..i, 0.4)
+    return
+  end
+  moveTo(s, where or 'center')
+end
+
+-- --- SAVED POSITIONS (per display UUID) ---
+local storeKey = "catchmouse.savedPositions"
+local saved = hs.settings.get(storeKey) or {}  -- [uuid] = {x=..., y=...}
+
+local function moveToSaved(i)
+  local s = orderedScreens()[i]; if not s then return end
+  local pt = saved[s:getUUID()]
+  if pt then
+    moveToPoint(pt, string.format("Screen %s (saved)", s:name() or "?"))
+  else
+    moveTo(s, 'center')
+  end
+end
+
+-- Save the current cursor position for the CURRENT screen
+hs.hotkey.bind(mod, 'S', function()
+  local scr = hs.mouse.getCurrentScreen()
+  saved[scr:getUUID()] = hs.mouse.getAbsolutePosition()
+  hs.settings.set(storeKey, saved)
+  hs.alert.show(string.format("Saved for %s", scr:name() or "?"), 0.4)
+end)
+
+-- Open Control Center and position mouse on Screen Mirroring
+hs.hotkey.bind(mod, 'M', function()
+  local ok, result = hs.osascript.applescript([[
+    tell application "System Events"
+      tell process "ControlCenter"
+        -- Find and click Control Center menu bar item
+        set ccItems to menu bar items of menu bar 1 whose description contains "Control Center"
+        if (count of ccItems) = 0 then error "Control Center not found"
+        click item 1 of ccItems
+
+        -- Get the Control Center window and find Screen Mirroring/Display button
+        set theWin to missing value
+        try
+          set theWin to first window whose subrole is "AXDialog"
+        end try
+        if theWin is missing value then
+          try
+            set theWin to first window
+          end try
+        end if
+        if theWin is missing value then return {0,0,0,0}
+
+        -- Try to find Screen Mirroring or Display button
+        tell theWin
+          try
+            set mirrorBtns to buttons whose description contains "Screen Mirroring" or description contains "Display"
+            if (count of mirrorBtns) > 0 then
+              set btnPos to position of (item 1 of mirrorBtns)
+              set btnSize to size of (item 1 of mirrorBtns)
+              return {item 1 of btnPos, item 2 of btnPos, item 1 of btnSize, item 2 of btnSize}
+            end if
+          end try
+        end tell
+
+        -- Fallback: just return window position
+        set p to position of theWin
+        set s to size of theWin
+        return {item 1 of p, item 2 of p, item 1 of s, item 2 of s}
+      end tell
+    end tell
+  ]])
+
+  if ok and type(result) == "table" and #result == 4 then
+    local x, y, w, h = result[1], result[2], result[3], result[4]
+    if w > 0 and h > 0 then
+      -- Position on right side, below media controls (where Screen Mirroring button is)
+      -- Right side: x + 75% of width, Upper area: y + 28% of height
+      local clickX = x + w * 0.75
+      local clickY = y + h * 0.28
+      hs.mouse.absolutePosition({x = clickX, y = clickY})
+
+      -- Click the Screen Mirroring button immediately
+      hs.eventtap.leftClick({x = clickX, y = clickY})
+
+      -- Move mouse to first display option in Screen Mirroring menu immediately
+      local menuX = x + w * 0.75
+      local menuY = clickY - 120  -- Move up to first display entry
+      hs.mouse.absolutePosition({x = menuX, y = menuY})
+    end
+  end
+end)
+
+-- Numbered hotkeys: 1..9
+for i = 1, 9 do
+  hs.hotkey.bind(mod,      tostring(i), function() moveToIndex(i, 'center') end)
+  hs.hotkey.bind(modSaved, tostring(i), function() moveToSaved(i)            end)
+end
+
+-- OPTIONAL: corners (uncomment any you like)
+-- for i = 1, 9 do
+--   hs.hotkey.bind({'ctrl','alt'}, tostring(i), function() moveToIndex(i,'tl') end)
+-- end
+
+-- Keep a watcher alive (so mappings re-evaluate when displays change)
+local screenWatcher = hs.screen.watcher.new(function() end)
+screenWatcher:start()

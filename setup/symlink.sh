@@ -1,52 +1,67 @@
 #!/usr/bin/env bash
 
-echo -e "\nInitializing symlinking..."
+# Expects DOTFILES_ENV to be set (by setup.sh). Falls back to reading ~/.dotfiles-env.
+if [ -z "$DOTFILES_ENV" ] && [ -f "$HOME/.dotfiles-env" ]; then
+  DOTFILES_ENV=$(cat "$HOME/.dotfiles-env")
+fi
+if [ -z "$DOTFILES_ENV" ]; then
+  echo "ERROR: DOTFILES_ENV not set. Run setup/setup.sh first." >&2
+  return 1 2>/dev/null || exit 1
+fi
+
+echo -e "\nSymlinking dotfiles (env=$DOTFILES_ENV)..."
 
 dir=~/dotfiles
-# olddir=~/dotfiles_old
-# files=(.vimrc .ideavimrc .gitignore_global .jupyter)
 
-# echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-# mkdir -p $olddir
-# echo "done"
+# Common home dotfiles
+ln -sf "$dir"/config/home/.* ~/
 
-echo -e "\nChanging to the $dir directory..."
-cd $dir
-echo "Done"
+# Env-specific home dotfiles (overlay; overrides common for same filenames)
+if [ -d "$dir/machines/$DOTFILES_ENV" ]; then
+  for f in "$dir/machines/$DOTFILES_ENV"/.*; do
+    name=$(basename "$f")
+    { [ "$name" = "." ] || [ "$name" = ".." ]; } && continue
+    [ -e "$f" ] || continue
+    ln -sf "$f" ~/
+  done
+fi
 
-ln -sf ~/dotfiles/config/home/.* ~/
+# nvim
+mkdir -p ~/.config
+ln -sf "$dir/config/nvim" ~/.config/nvim
 
-ln -sf ~/dotfiles/config/nvim ~/.config/nvim
-
-# for file in "${files[@]}"; do
-    # echo "Moving any existing dotfiles from ~ to $olddir"
-    # mv ~/.$file ~/dotfiles_old/
-    # echo -e "\nCreating symlink to $file in home directory..."
-    # ln -s $dir/$file ~
-# done
-
-ln -sf ~/dotfiles/env/config/.* ~/
-
-echo -e "\nSymlinking vim spell"
+# vim spell
 mkdir -p ~/.vim
-ln -sf ~/dotfiles/config/.vim/spell ~/.vim/
+ln -sf "$dir/config/.vim/spell" ~/.vim/
 
-# echo -e "\nSymlinking gemini"
-# mkdir -p ~/.gemini
-# ln -s ~/dotfiles/config/.gemini/settings.json ~/.gemini/
-
-
-echo -e "\nSymlinking codex"
-mkdir -p ~/.codex
-ln -sf ~/dotfiles/config/.codex/config.toml ~/.codex/
-
-echo -e "\nSymlinking ipython profile"
+# ipython profile
 mkdir -p ~/.ipython/profile_default
-ln -sf ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
+ln -sf "$dir"/config/.ipython/profile_default/* ~/.ipython/profile_default/
 
-# echo -e "\nSymlinking Rectangle config file"
-# ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
+# codex: generated from common + env fragments
+mkdir -p ~/.codex
+cat "$dir/config/codex/common.toml" \
+    "$dir/machines/$DOTFILES_ENV/codex/env.toml" > ~/.codex/config.toml
 
-echo -e "\nSetting up crontab..."
-crontab ~/dotfiles/env/config/crontab
-echo "Done"
+# claude: env-specific settings.json; shared subdirs/CLAUDE.md if present
+mkdir -p ~/.claude
+ln -sf "$dir/machines/$DOTFILES_ENV/claude/settings.json" ~/.claude/settings.json
+for sub in agents commands skills output-styles; do
+  if [ -d "$dir/config/claude/$sub" ]; then
+    ln -sf "$dir/config/claude/$sub" ~/.claude/"$sub"
+  fi
+done
+if [ -f "$dir/config/claude/CLAUDE.md" ]; then
+  ln -sf "$dir/config/claude/CLAUDE.md" ~/.claude/CLAUDE.md
+fi
+
+# crontab (common)
+if [ -f "$dir/config/home/crontab" ]; then
+  crontab "$dir/config/home/crontab" 2>/dev/null || true
+fi
+
+# terminfo (italics-capable tmux entries)
+tic -xo ~/.terminfo "$dir/config/tmux/xterm-256color-italic.terminfo" 2>/dev/null || true
+tic -xo ~/.terminfo "$dir/config/tmux/tmux-256color.terminfo" 2>/dev/null || true
+
+echo "Symlinking done."

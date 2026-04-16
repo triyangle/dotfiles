@@ -1,0 +1,7 @@
+[user]
+    name = William Yang
+[core]
+    excludesfile = ~/.gitignore_global
+    editor = nvim
+[include]
+    path = ~/.gitconfig.local

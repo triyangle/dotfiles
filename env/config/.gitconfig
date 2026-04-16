@@ -1,6 +1,0 @@
-[user]
-    email = will.yang@vanta.com
-    name = William Yang
-[core]
-    excludesfile = /Users/williamyang/.gitignore_global
-    editor = nvim
