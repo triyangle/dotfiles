@@ -15,6 +15,7 @@
 ## Nice-to-haves
 
 - Add a `machines/<env>/zshrc.local` overlay hook documented in the README.
+- **`ona-start-all` zsh fn in `machines/macos/zshrc.local`.** Filters `ona environment list` on `ENVIRONMENT_PHASE_STOPPED` and loops `ona environment start --dont-wait <id>` (no bulk flag exists; `--dont-wait` avoids the default 30s-per-env wait). Work-laptop-only in practice (`ona` CLI not on personal mbp → fn exists but is a no-op), nothing sensitive, so the shared `machines/macos/` overlay is fine — no work/personal env split needed. Follow-up idea: launchd agent to auto-run at login if you want envs up without thinking about it.
 - Consider chezmoi if a 3rd active env ever appears with significant overlap with an existing one.
 
 ## Unrelated-but-tracked
