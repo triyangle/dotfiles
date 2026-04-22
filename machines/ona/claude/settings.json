@@ -211,6 +211,36 @@
         "DD_API_KEY": "${DATADOG_API_KEY}",
         "DD_APP_KEY": "${DATADOG_APP_KEY}"
       }
+    },
+    "ESLint": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["@eslint/mcp@latest"]
+    },
+    "context7": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@upstash/context7-mcp"]
+    },
+    "mcp-datetime": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "@odgrim/mcp-datetime"]
+    },
+    "unix_timestamps_mcp": {
+      "type": "stdio",
+      "command": "npx",
+      "args": ["-y", "github:Ivor/unix-timestamps-mcp"]
+    },
+    "MongoDB": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "mongodb-mcp-server",
+        "--connectionString",
+        "mongodb://localhost:27017/?directConnection=true"
+      ]
     }
   },
   "autoDreamEnabled": true
