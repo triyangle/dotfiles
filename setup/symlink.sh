@@ -77,6 +77,20 @@ if [ -f "$dir/config/claude/CLAUDE.md" ]; then
   safe_link "$dir/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 fi
 
+# Pre-seed ~/.claude.json on fresh installs so the first-run wizard is skipped
+# and theme/editorMode match the source machine. ~/.claude.json is NOT safe to
+# symlink across machines (Claude writes runtime state to it); we only touch
+# it when it doesn't exist yet. Existing state is never overwritten.
+if [ ! -f "$HOME/.claude.json" ]; then
+  cat > "$HOME/.claude.json" <<'EOF'
+{
+  "theme": "dark-daltonized",
+  "editorMode": "vim",
+  "hasCompletedOnboarding": true
+}
+EOF
+fi
+
 # crontab (common)
 if [ -f "$dir/config/home/crontab" ]; then
   crontab "$dir/config/home/crontab" 2>/dev/null || true

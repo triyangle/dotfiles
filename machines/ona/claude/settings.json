@@ -173,5 +173,45 @@
   "enabledPlugins": {
     "slack@claude-plugins-official": true
   },
+  "mcpServers": {
+    "figma": {
+      "type": "http",
+      "url": "https://mcp.figma.com/mcp"
+    },
+    "glean_default": {
+      "type": "http",
+      "url": "https://vanta-be.glean.com/mcp/default"
+    },
+    "datadog": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "datadog-mcp-server",
+        "--apiKey",
+        "${DATADOG_API_KEY}",
+        "--appKey",
+        "${DATADOG_APP_KEY}",
+        "--site",
+        "datadoghq.com",
+        "--logsSite",
+        "logs.datadoghq.com",
+        "--metricsSite",
+        "datadoghq.com"
+      ]
+    },
+    "datadog_logs": {
+      "type": "stdio",
+      "command": "npx",
+      "args": [
+        "-y",
+        "@i524/datadog-mcp-server",
+        "--stdio"
+      ],
+      "env": {
+        "DD_API_KEY": "${DATADOG_API_KEY}",
+        "DD_APP_KEY": "${DATADOG_APP_KEY}"
+      }
+    }
+  },
   "autoDreamEnabled": true
 }
