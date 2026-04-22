@@ -80,11 +80,12 @@ fi
 # Pre-seed stable user preferences into ~/.claude.json. Claude Code writes
 # runtime state to this file, so we must NOT symlink or overwrite — instead
 # we fill in ONLY missing keys (setdefault semantics) so existing values the
-# user or the first-run wizard may have set are preserved. Runtime-owned
-# fields (caches, install/auth state, counters, UUID-keyed maps) are
-# intentionally omitted so Claude populates them naturally on this machine.
+# user or the first-run wizard may have set are preserved. Only preferences
+# Claude Code does not expose via CLI (theme/editorMode/dismissals) are
+# handled here; MCP servers are registered via `claude mcp add` in
+# machines/<env>/setup.sh.
 if command -v python3 >/dev/null 2>&1; then
-  DOTFILES_DIR="$dir" DOTFILES_ENV="$DOTFILES_ENV" python3 - <<'PY'
+  python3 - <<'PY'
 import json, os
 path = os.path.expanduser("~/.claude.json")
 defaults = {
@@ -115,28 +116,6 @@ for k, v in defaults.items():
     if k not in data:
         data[k] = v
         changed = True
-
-# Env-specific MCP servers (user scope lives in ~/.claude.json, not settings.json).
-# Per-server setdefault so the user's existing servers are preserved.
-mcp_path = os.path.join(
-    os.environ.get("DOTFILES_DIR", ""),
-    "machines",
-    os.environ.get("DOTFILES_ENV", ""),
-    "claude",
-    "mcp-defaults.json",
-)
-if os.path.isfile(mcp_path):
-    with open(mcp_path) as f:
-        mcp_defaults = json.load(f)
-    servers = data.setdefault("mcpServers", {})
-    if servers is None or not isinstance(servers, dict):
-        servers = {}
-        data["mcpServers"] = servers
-    for name, config in mcp_defaults.items():
-        if name not in servers:
-            servers[name] = config
-            changed = True
-
 if changed:
     tmp = path + ".tmp"
     with open(tmp, "w") as f:
