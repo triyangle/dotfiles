@@ -77,16 +77,29 @@ if [ -f "$dir/config/claude/CLAUDE.md" ]; then
   safe_link "$dir/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 fi
 
-# Pre-seed ~/.claude.json on fresh installs so the first-run wizard is skipped
-# and theme/editorMode match the source machine. ~/.claude.json is NOT safe to
-# symlink across machines (Claude writes runtime state to it); we only touch
-# it when it doesn't exist yet. Existing state is never overwritten.
+# Pre-seed ~/.claude.json on fresh installs. Claude Code writes runtime state
+# to this file, so symlinking it across machines would cause corruption; we
+# only write when it doesn't exist. Picks up the stable user preferences and
+# one-time dismissal flags that are safe to copy verbatim. Runtime-owned
+# fields (caches, install/auth state, counters, UUID-keyed maps) are
+# intentionally omitted so Claude populates them naturally on this machine.
 if [ ! -f "$HOME/.claude.json" ]; then
   cat > "$HOME/.claude.json" <<'EOF'
 {
   "theme": "dark-daltonized",
   "editorMode": "vim",
-  "hasCompletedOnboarding": true
+  "hasCompletedOnboarding": true,
+  "autoUpdates": false,
+  "showSpinnerTree": false,
+  "hasSeenTasksHint": true,
+  "effortCalloutDismissed": true,
+  "effortCalloutV2Dismissed": true,
+  "opus45MigrationComplete": true,
+  "opusProMigrationComplete": true,
+  "sonnet1m45MigrationComplete": true,
+  "sonnet45MigrationComplete": true,
+  "thinkingMigrationComplete": true,
+  "subscriptionNoticeCount": 0
 }
 EOF
 fi
