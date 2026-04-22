@@ -2,66 +2,63 @@
 
 echo -e "\nInitializing macOS setup..."
 
-echo -e "\nInstalling homebrew..."
-/bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+if ! command -v brew >/dev/null 2>&1; then
+  echo -e "\nInstalling homebrew..."
+  /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+fi
 
-# need to fix this (after running prev. line to install homebrew, the brew cmd
-# is not yet available): /Users/williamyang/dotfiles/setup/brews.sh:4: command not found: brew
 echo -e "\nInstalling common brews..."
 source ~/dotfiles/setup/brews.sh
 
-echo -e "\nInstalling homebrew cask..."
-brew tap homebrew/cask
+# Modern brew: `brew install --cask <name>` replaces the deprecated
+# `brew tap homebrew/cask` + `brew cask install`. Each app is installed only
+# if not already present.
+_cask_install() {
+  if ! brew list --cask "$1" >/dev/null 2>&1; then
+    brew install --cask "$1"
+  fi
+}
 
-echo -e "\nInstalling iTerm 2..."
-brew cask install iterm2
+_cask_install iterm2
+_cask_install anaconda
 
-echo -e "\nInstalling Anaconda..."
-brew cask install anaconda
-
-echo -e "\nInstalling nvim..."
-brew install nvim
+if ! command -v nvim >/dev/null 2>&1; then
+  echo -e "\nInstalling nvim..."
+  brew install nvim
+fi
 
 echo -e "\nFinishing git setup..."
-brew link git
+brew link --overwrite git 2>/dev/null || true
 
-# echo -e "\nInstalling Java..."
-# brew cask install java
+# _cask_install java
+# _cask_install intellij-idea
 
-# echo -e "\nInstalling IntelliJ..."
-# brew cask install intellij-idea
+_cask_install flux
+_cask_install google-chrome
 
-echo -e "\nInstalling flux..."
-brew cask install flux
+_cask_install basictex
+if [ -d /Library/TeX/texbin ]; then
+  sudo tlmgr update --self 2>/dev/null || true
+  sudo tlmgr install latexmk 2>/dev/null || true
+  sudo tlmgr install texliveonfly 2>/dev/null || true
+fi
 
-echo -e "\nInstalling Google Chrome..."
-brew cask install google-chrome
-
-echo -e "\nInstalling BasicTeX..."
-brew cask install basictex
-sudo chmod -R 755 /Users/William/Library/texlive
-sudo tlmgr update --self
-sudo tlmgr install latexmk
-sudo tlmgr install texliveonfly
-
-echo -e "\nInstalling Skype..."
-brew cask install skype
-
-echo -e "\nInstalling keka..."
-brew cask install keka
-
-echo -e "\nInstalling rectangle..."
-brew cask install rectangle
+_cask_install keka
+_cask_install rectangle
 
 echo -e "\nFinishing zsh setup..."
-chsh -s /usr/local/bin/zsh
-echo "Done"
+# Homebrew on Apple Silicon installs zsh under /opt/homebrew; Intel under /usr/local.
+BREW_ZSH="$(brew --prefix 2>/dev/null)/bin/zsh"
+if [ -x "$BREW_ZSH" ] && [ "$SHELL" != "$BREW_ZSH" ]; then
+  # Make sure it's in /etc/shells before chsh'ing to it
+  grep -qxF "$BREW_ZSH" /etc/shells 2>/dev/null || echo "$BREW_ZSH" | sudo tee -a /etc/shells >/dev/null
+  chsh -s "$BREW_ZSH"
+fi
 
 echo -e "\nSyncing settings..."
 cd ~/dotfiles/machines/macos/settings
 source macOS.sh
 source flux.sh
 source safari.sh
-echo -e "\nDone"
 
-echo ""
+echo -e "\nDone"
