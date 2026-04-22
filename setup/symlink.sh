@@ -77,31 +77,50 @@ if [ -f "$dir/config/claude/CLAUDE.md" ]; then
   safe_link "$dir/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
 fi
 
-# Pre-seed ~/.claude.json on fresh installs. Claude Code writes runtime state
-# to this file, so symlinking it across machines would cause corruption; we
-# only write when it doesn't exist. Picks up the stable user preferences and
-# one-time dismissal flags that are safe to copy verbatim. Runtime-owned
+# Pre-seed stable user preferences into ~/.claude.json. Claude Code writes
+# runtime state to this file, so we must NOT symlink or overwrite — instead
+# we fill in ONLY missing keys (setdefault semantics) so existing values the
+# user or the first-run wizard may have set are preserved. Runtime-owned
 # fields (caches, install/auth state, counters, UUID-keyed maps) are
 # intentionally omitted so Claude populates them naturally on this machine.
-if [ ! -f "$HOME/.claude.json" ]; then
-  cat > "$HOME/.claude.json" <<'EOF'
-{
-  "theme": "dark-daltonized",
-  "editorMode": "vim",
-  "hasCompletedOnboarding": true,
-  "autoUpdates": false,
-  "showSpinnerTree": false,
-  "hasSeenTasksHint": true,
-  "effortCalloutDismissed": true,
-  "effortCalloutV2Dismissed": true,
-  "opus45MigrationComplete": true,
-  "opusProMigrationComplete": true,
-  "sonnet1m45MigrationComplete": true,
-  "sonnet45MigrationComplete": true,
-  "thinkingMigrationComplete": true,
-  "subscriptionNoticeCount": 0
+if command -v python3 >/dev/null 2>&1; then
+  python3 - <<'PY'
+import json, os
+path = os.path.expanduser("~/.claude.json")
+defaults = {
+    "theme": "dark-daltonized",
+    "editorMode": "vim",
+    "hasCompletedOnboarding": True,
+    "autoUpdates": False,
+    "showSpinnerTree": False,
+    "hasSeenTasksHint": True,
+    "effortCalloutDismissed": True,
+    "effortCalloutV2Dismissed": True,
+    "opus45MigrationComplete": True,
+    "opusProMigrationComplete": True,
+    "sonnet1m45MigrationComplete": True,
+    "sonnet45MigrationComplete": True,
+    "thinkingMigrationComplete": True,
+    "subscriptionNoticeCount": 0,
 }
-EOF
+try:
+    with open(path) as f:
+        data = json.load(f)
+    if not isinstance(data, dict):
+        data = {}
+except (FileNotFoundError, json.JSONDecodeError):
+    data = {}
+changed = False
+for k, v in defaults.items():
+    if k not in data:
+        data[k] = v
+        changed = True
+if changed:
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(data, f, indent=2)
+    os.replace(tmp, path)
+PY
 fi
 
 # crontab (common)
