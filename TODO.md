@@ -18,6 +18,15 @@
 - **`ona-start-all` zsh fn in `machines/macos/zshrc.local`.** Filters `ona environment list` on `ENVIRONMENT_PHASE_STOPPED` and loops `ona environment start --dont-wait <id>` (no bulk flag exists; `--dont-wait` avoids the default 30s-per-env wait). Work-laptop-only in practice (`ona` CLI not on personal mbp → fn exists but is a no-op), nothing sensitive, so the shared `machines/macos/` overlay is fine — no work/personal env split needed. Follow-up idea: launchd agent to auto-run at login if you want envs up without thinking about it.
 - Consider chezmoi if a 3rd active env ever appears with significant overlap with an existing one.
 
+## Manual post-bootstrap steps on fresh Ona
+
+- **Statsig siggy CLI keys.** `machines/ona/setup.sh` installs `@statsig/siggy` globally via npm. Configure API keys from 1Password:
+    ```sh
+    siggy config -k <client key>
+    siggy config -c <console key>
+    ```
+- **Claude Code `/plugin install slack@claude-plugins-official`.** User-scoped plugins don't auto-install from `enabledPlugins` (see below).
+
 ## Claude Code first-run
 
 - **Plugins still need manual `/plugin install`.** Confirmed empirically on fresh Ona: `extraKnownMarketplaces` + `enabledPlugins` in `settings.json` does NOT auto-install. It only (a) pre-registers the marketplace (no `/plugin marketplace add` needed) and (b) auto-enables the plugin once installed. On a fresh Ona, after Claude Code launches, run: `/plugin install slack@claude-plugins-official`. Track other plugins here if the user adds more user-scoped ones. Consider a post-bootstrap doc line in README or a `machines/ona/setup.sh` hook that launches Claude with `--install-plugin` flags if such a CLI exists.
