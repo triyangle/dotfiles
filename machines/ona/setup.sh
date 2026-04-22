@@ -54,8 +54,8 @@ if command -v claude >/dev/null 2>&1; then
 
   _mcp_http  figma               https://mcp.figma.com/mcp
   _mcp_http  glean_default       https://vanta-be.glean.com/mcp/default
+  _mcp_http  context7            https://mcp.context7.com/mcp
   _mcp_stdio ESLint              npx @eslint/mcp@latest
-  _mcp_stdio context7            npx -y @upstash/context7-mcp
   _mcp_stdio mcp-datetime        npx -y @odgrim/mcp-datetime
   _mcp_stdio unix_timestamps_mcp npx -y github:Ivor/unix-timestamps-mcp
   _mcp_stdio MongoDB             npx -y mongodb-mcp-server --connectionString 'mongodb://localhost:27017/?directConnection=true'
