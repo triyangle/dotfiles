@@ -1,0 +1,70 @@
+{
+  "figma": {
+    "type": "http",
+    "url": "https://mcp.figma.com/mcp"
+  },
+  "glean_default": {
+    "type": "http",
+    "url": "https://vanta-be.glean.com/mcp/default"
+  },
+  "datadog": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "datadog-mcp-server",
+      "--apiKey",
+      "${DATADOG_API_KEY}",
+      "--appKey",
+      "${DATADOG_APP_KEY}",
+      "--site",
+      "datadoghq.com",
+      "--logsSite",
+      "logs.datadoghq.com",
+      "--metricsSite",
+      "datadoghq.com"
+    ]
+  },
+  "datadog_logs": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "@i524/datadog-mcp-server",
+      "--stdio"
+    ],
+    "env": {
+      "DD_API_KEY": "${DATADOG_API_KEY}",
+      "DD_APP_KEY": "${DATADOG_APP_KEY}"
+    }
+  },
+  "ESLint": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["@eslint/mcp@latest"]
+  },
+  "context7": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@upstash/context7-mcp"]
+  },
+  "mcp-datetime": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "@odgrim/mcp-datetime"]
+  },
+  "unix_timestamps_mcp": {
+    "type": "stdio",
+    "command": "npx",
+    "args": ["-y", "github:Ivor/unix-timestamps-mcp"]
+  },
+  "MongoDB": {
+    "type": "stdio",
+    "command": "npx",
+    "args": [
+      "-y",
+      "mongodb-mcp-server",
+      "--connectionString",
+      "mongodb://localhost:27017/?directConnection=true"
+    ]
+  }
+}
