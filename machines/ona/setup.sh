@@ -42,11 +42,14 @@ if command -v claude >/dev/null 2>&1; then
   }
   _mcp_stdio_env() {
     # Args: <name> KEY=val [KEY=val ...] -- cmd [args...]
-    # KEY=val pairs before -- become -e flags.
+    # KEY=val pairs become --env=KEY=val flags. We use the `=`-bound long form
+    # rather than `-e KEY=val` because `-e`/`--env` is variadic in claude mcp
+    # add — repeated short flags get merged and swallow subsequent positionals
+    # (the server name gets misparsed as an env value).
     local name=$1; shift
     local -a env_args=()
     while [ $# -gt 0 ] && [[ "$1" == *"="* ]]; do
-      env_args+=(-e "$1"); shift
+      env_args+=("--env=$1"); shift
     done
     claude mcp remove --scope user "$name" >/dev/null 2>&1 || true
     claude mcp add --scope user "${env_args[@]}" "$name" -- "$@" >/dev/null
