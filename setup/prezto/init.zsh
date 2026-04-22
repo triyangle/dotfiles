@@ -11,11 +11,16 @@ for rcfile in "$ZPREZTO"/runcoms/*; do
   [ "$rcname" = "README.md" ] && continue
   target="${ZDOTDIR:-$HOME}/.$rcname"
 
-  # Replace any legacy symlink from a previous install
-  [ -L "$target" ] && rm -- "$target"
+  # Replace any legacy symlink from a previous install (tolerate rm failure)
+  [ -L "$target" ] && rm -- "$target" 2>/dev/null
 
-  # Create empty stub if missing
-  [ -f "$target" ] || : > "$target"
+  # Create empty stub if missing; skip this runcom entirely if the target
+  # can't be touched (e.g. Ona ships ~/.zshenv root-owned for secret
+  # injection and the user can't overwrite it).
+  if [ ! -f "$target" ]; then
+    touch "$target" 2>/dev/null || continue
+  fi
+  [ -w "$target" ] || continue
 
   # Idempotent: only add source line once
   if ! grep -q "zprezto/runcoms/$rcname" "$target" 2>/dev/null; then
@@ -23,7 +28,7 @@ for rcfile in "$ZPREZTO"/runcoms/*; do
   fi
 done
 
-# Ensure .zshrc.local is sourced (idempotent)
-if ! grep -q 'zshrc.local' ~/.zshrc 2>/dev/null; then
+# Ensure .zshrc.local is sourced (idempotent, writability-guarded)
+if [ -w ~/.zshrc ] && ! grep -q 'zshrc.local' ~/.zshrc 2>/dev/null; then
   echo '[[ -f ~/.zshrc.local ]] && source ~/.zshrc.local' >> ~/.zshrc
 fi
