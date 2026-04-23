@@ -1,52 +1,136 @@
 #!/usr/bin/env bash
 
-echo -e "\nInitializing symlinking..."
+# Expects DOTFILES_ENV to be set (by setup.sh). Falls back to reading ~/.dotfiles-env.
+if [ -z "$DOTFILES_ENV" ] && [ -f "$HOME/.dotfiles-env" ]; then
+  DOTFILES_ENV=$(cat "$HOME/.dotfiles-env")
+fi
+if [ -z "$DOTFILES_ENV" ]; then
+  echo "ERROR: DOTFILES_ENV not set. Run setup/setup.sh first." >&2
+  return 1 2>/dev/null || exit 1
+fi
 
-dir=~/dotfiles
-# olddir=~/dotfiles_old
-# files=(.vimrc .ideavimrc .gitignore_global .jupyter)
+# Portable equivalent of `ln -sfn`: replace target if it's a symlink (including
+# symlinks-to-dirs), then create fresh link. Without this, `ln -sf src dst/`
+# when dst is a symlink-to-dir FOLLOWS the symlink and creates the link INSIDE
+# the pointed-to dir — which is how the stale `config/nvim/nvim` was born.
+# GNU ln has -n and BSD ln has -h for this, but neither is portable; explicit
+# rm before link is.
+safe_link() {
+  local src=$1 dst=$2
+  [ -L "$dst" ] && rm -- "$dst"
+  ln -sf "$src" "$dst"
+}
 
-# echo -n "Creating $olddir for backup of any existing dotfiles in ~ ..."
-# mkdir -p $olddir
-# echo "done"
+# Link every dotfile (leading `.`) under a source dir into $HOME, overriding
+# whatever was there before.
+link_dotfiles() {
+  local src_dir=$1 f name
+  for f in "$src_dir"/.*; do
+    name=$(basename -- "$f")
+    { [ "$name" = "." ] || [ "$name" = ".." ]; } && continue
+    [ -e "$f" ] || continue
+    safe_link "$f" "$HOME/$name"
+  done
+}
 
-echo -e "\nChanging to the $dir directory..."
-cd $dir
-echo "Done"
+echo -e "\nSymlinking dotfiles (env=$DOTFILES_ENV)..."
 
-ln -s ~/dotfiles/config/home/.* ~/
+dir=$HOME/dotfiles
 
-ln -s ~/dotfiles/config/nvim ~/.config/nvim
+# Common home dotfiles
+link_dotfiles "$dir/config/home"
 
-# for file in "${files[@]}"; do
-    # echo "Moving any existing dotfiles from ~ to $olddir"
-    # mv ~/.$file ~/dotfiles_old/
-    # echo -e "\nCreating symlink to $file in home directory..."
-    # ln -s $dir/$file ~
-# done
+# Env-specific home dotfiles (overlay; overrides common for same filenames)
+if [ -d "$dir/machines/$DOTFILES_ENV" ]; then
+  link_dotfiles "$dir/machines/$DOTFILES_ENV"
+fi
 
-ln -s ~/dotfiles/env/config/.* ~/
+# nvim
+mkdir -p "$HOME/.config"
+safe_link "$dir/config/nvim" "$HOME/.config/nvim"
 
-echo -e "\nSymlinking vim spell"
-mkdir -p ~/.vim
-ln -s ~/dotfiles/config/.vim/spell ~/.vim/
+# vim spell
+mkdir -p "$HOME/.vim"
+safe_link "$dir/config/.vim/spell" "$HOME/.vim/spell"
 
-echo -e "\nSymlinking gemini"
-mkdir -p ~/.gemini
-ln -s ~/dotfiles/config/.gemini/settings.json ~/.gemini/
+# ipython profile (per-file so user's profile_default/ can coexist)
+mkdir -p "$HOME/.ipython/profile_default"
+for f in "$dir"/config/.ipython/profile_default/*; do
+  [ -e "$f" ] || continue
+  safe_link "$f" "$HOME/.ipython/profile_default/$(basename -- "$f")"
+done
 
+# codex: generated from common + env fragments
+mkdir -p "$HOME/.codex"
+cat "$dir/config/codex/common.toml" \
+    "$dir/machines/$DOTFILES_ENV/codex/env.toml" > "$HOME/.codex/config.toml"
 
-echo -e "\nSymlinking codex"
-mkdir -p ~/.codex
-ln -s ~/dotfiles/config/.codex/config.toml ~/.codex/
+# claude: env-specific settings.json; shared subdirs/CLAUDE.md if present
+mkdir -p "$HOME/.claude"
+safe_link "$dir/machines/$DOTFILES_ENV/claude/settings.json" "$HOME/.claude/settings.json"
+for sub in agents commands skills output-styles; do
+  if [ -d "$dir/config/claude/$sub" ]; then
+    safe_link "$dir/config/claude/$sub" "$HOME/.claude/$sub"
+  fi
+done
+if [ -f "$dir/config/claude/CLAUDE.md" ]; then
+  safe_link "$dir/config/claude/CLAUDE.md" "$HOME/.claude/CLAUDE.md"
+fi
 
-echo -e "\nSymlinking ipython profile"
-mkdir -p ~/.ipython/profile_default
-ln -s ~/dotfiles/config/.ipython/profile_default/* ~/.ipython/profile_default/
+# Pre-seed stable user preferences into ~/.claude.json. Claude Code writes
+# runtime state to this file, so we must NOT symlink or overwrite — instead
+# we fill in ONLY missing keys (setdefault semantics) so existing values the
+# user or the first-run wizard may have set are preserved. Only preferences
+# Claude Code does not expose via CLI (theme/editorMode/dismissals) are
+# handled here; MCP servers are registered via `claude mcp add` in
+# machines/<env>/setup.sh.
+if command -v python3 >/dev/null 2>&1; then
+  python3 - <<'PY'
+import json, os
+path = os.path.expanduser("~/.claude.json")
+defaults = {
+    "theme": "dark-daltonized",
+    "editorMode": "vim",
+    "hasCompletedOnboarding": True,
+    "autoUpdates": False,
+    "showSpinnerTree": False,
+    "hasSeenTasksHint": True,
+    "effortCalloutDismissed": True,
+    "effortCalloutV2Dismissed": True,
+    "opus45MigrationComplete": True,
+    "opusProMigrationComplete": True,
+    "sonnet1m45MigrationComplete": True,
+    "sonnet45MigrationComplete": True,
+    "thinkingMigrationComplete": True,
+    "subscriptionNoticeCount": 0,
+}
+try:
+    with open(path) as f:
+        data = json.load(f)
+    if not isinstance(data, dict):
+        data = {}
+except (FileNotFoundError, json.JSONDecodeError):
+    data = {}
+changed = False
+for k, v in defaults.items():
+    if k not in data:
+        data[k] = v
+        changed = True
+if changed:
+    tmp = path + ".tmp"
+    with open(tmp, "w") as f:
+        json.dump(data, f, indent=2)
+    os.replace(tmp, path)
+PY
+fi
 
-# echo -e "\nSymlinking Rectangle config file"
-# ln -s ~/dotfiles/env/settings/rectangle/com.knollsoft.Rectangle.plist ~/Library/Preferences/com.knollsoft.Rectangle.plist
+# crontab (common)
+if [ -f "$dir/config/home/crontab" ]; then
+  crontab "$dir/config/home/crontab" 2>/dev/null || true
+fi
 
-echo -e "\nSetting up crontab..."
-crontab ~/dotfiles/env/config/crontab
-echo "Done"
+# terminfo (italics-capable tmux entries)
+tic -xo "$HOME/.terminfo" "$dir/config/tmux/xterm-256color-italic.terminfo" 2>/dev/null || true
+tic -xo "$HOME/.terminfo" "$dir/config/tmux/tmux-256color.terminfo" 2>/dev/null || true
+
+echo "Symlinking done."

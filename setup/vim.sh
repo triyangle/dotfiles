@@ -7,9 +7,17 @@ curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.c
 echo -e "\nInstalling nvim plugins..."
 nvim +"PlugInstall YouCompleteMe" +PlugInstall +qall
 
-pip install neovim
-
-# echo -e "\nInstalling instant-markdown..."
-# npm -g install instant-markdown-d
+# pynvim for neovim's Python plugin support. On Ubuntu/Ona it comes via apt
+# as python3-pynvim (transitive dep of neovim). Fall back to pip only if the
+# module isn't already importable.
+if ! python3 -c 'import pynvim' >/dev/null 2>&1; then
+  if command -v pip3 >/dev/null 2>&1; then
+    pip3 install --user --break-system-packages pynvim 2>/dev/null \
+      || pip3 install --user pynvim 2>/dev/null \
+      || true
+  elif command -v pip >/dev/null 2>&1; then
+    pip install --user pynvim 2>/dev/null || true
+  fi
+fi
 
 echo ""

@@ -1,0 +1,5 @@
+# Ona-specific zsh overlay — sourced by config/home/.zshrc.local
+# when ~/.dotfiles-env reads `ona`.
+
+# Ona auto-sources secrets in .bashrc only; zsh needs it explicitly.
+[ -f /etc/profile.d/ona-secrets.sh ] && . /etc/profile.d/ona-secrets.sh

@@ -1,0 +1,38 @@
+{
+  "permissions": {
+    "allow": [],
+    "deny": [
+      "Bash(tsc:*)",
+      "Bash(npx tsc:*)",
+      "Bash(yarn tsc:*)",
+      "Bash(./node_modules/.bin/tsc:*)",
+      "Bash(node_modules/.bin/tsc:*)"
+    ],
+    "defaultMode": "default"
+  },
+  "model": "opus[1m]",
+  "extraKnownMarketplaces": {
+    "claude-plugins-official": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/claude-plugins-official"
+      }
+    },
+    "anthropic-agent-skills": {
+      "source": {
+        "source": "github",
+        "repo": "anthropics/skills"
+      }
+    },
+    "openai-codex": {
+      "source": {
+        "source": "github",
+        "repo": "openai/codex-plugin-cc"
+      }
+    }
+  },
+  "enabledPlugins": {
+    "slack@claude-plugins-official": true
+  },
+  "autoDreamEnabled": true
+}

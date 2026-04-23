@@ -1,0 +1,4 @@
+model_reasoning_effort = "high"
+
+# MCP servers
+# IMPORTANT: top-level key is `mcp_servers` (TOML), not `mcpServers` (JSON)
